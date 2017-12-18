@@ -4,9 +4,10 @@ public class LoginModel
 {
 	private int userid;
 	private String password_hash;
-	private String user_created_date;
-	private String last_login_date;
+	private long user_created_date;
+	private long last_login_date;
 	private String email;
+	private boolean first_login;
 
 	public int getUserid() {
 		return userid;
@@ -24,19 +25,19 @@ public class LoginModel
 		this.password_hash = password_hash;
 	}
 
-	public String getUser_created_date() {
+	public long getUser_created_date() {
 		return user_created_date;
 	}
 
-	public void setUser_created_date(String user_created_date) {
+	public void setUser_created_date(long user_created_date) {
 		this.user_created_date = user_created_date;
 	}
 
-	public String getLast_login_date() {
+	public long getLast_login_date() {
 		return last_login_date;
 	}
 
-	public void setLast_login_date(String last_login_date) {
+	public void setLast_login_date(long last_login_date) {
 		this.last_login_date = last_login_date;
 	}
 
@@ -46,6 +47,14 @@ public class LoginModel
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean getFirst_login() {
+		return first_login;
+	}
+
+	public void setFirst_login(boolean first_login) {
+		this.first_login = first_login;
 	}
 
 	@Override
