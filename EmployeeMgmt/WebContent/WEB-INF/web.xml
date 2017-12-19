@@ -15,8 +15,9 @@
 <!--         <servlet-name>jersey-serlvet</servlet-name> -->
 <!--         <url-pattern>/Rest/*</url-pattern> -->
 <!--     </servlet-mapping> -->
-     
-    <display-name>Spring MVC Application</display-name>
+     <listener>
+	    <listener-class>programs.examples.init.ConfigInititalizer</listener-class>
+    </listener> 
 
    <servlet>
       <servlet-name>springMVC</servlet-name>
@@ -29,5 +30,5 @@
       <servlet-name>springMVC</servlet-name>
       <url-pattern>/spring/*</url-pattern>
    </servlet-mapping>
-  
+   
 </web-app>
