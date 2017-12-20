@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import programs.examples.dao.LoginDao;
-import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 
 public class AuthenticationService 
@@ -24,15 +23,19 @@ public class AuthenticationService
     	return authenticationService;
     } 
     
-    public void authenticateUser(LoginModel loginModel){
+    public String authenticateUser(LoginModel loginModel){
+    	String login = "Not Authenticated";
     	if(loginModel.getUserid()!=0 && loginModel.getPassword_hash()!=null){
-    		EmployeeInfo employeeInfo = loginDao.getEmployeeInfo();
     		firstTimeLogin = loginModel.getFirst_login();  		
     		if(firstTimeLogin)
-    		 LOGGER.info("{} First time user {} ",loginModel.toString());
-    		
-    		
+    		 LOGGER.info(" First time user [{}] ",loginModel.toString());
+    		 
+    		login = "Authenticated";
     	}
+    	else {
+    		LOGGER.info(" UserID or Password dosent match [{}] ",loginModel.toString());
+    	}
+    	return login;
     }
     
 }

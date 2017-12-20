@@ -26,7 +26,7 @@ public class RegistrationController
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView registerEmployee(@ModelAttribute LoginModel loginModel){
-		LOGGER.info("[{}] REGISTER Controller Now {} ",loginModel.toString());
+		LOGGER.info(" REGISTER Controller Now [{}] ",loginModel.toString());
 		registerService.registerEmployeeByAdmin(loginModel);
 	    ModelAndView model = new ModelAndView("registersuccess");	    
 	    model.addObject("employee", loginModel);
