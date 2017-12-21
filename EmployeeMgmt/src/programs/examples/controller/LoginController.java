@@ -23,22 +23,25 @@ public class LoginController
 		return new ModelAndView("login");
 	}
 	
-	@RequestMapping(value = "/login" , method = RequestMethod.POST)
-	public ModelAndView userLogin(@ModelAttribute LoginModel loginModel){
-		LOGGER.info("Employee trying to login",loginModel.toString());
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView userLogin(@ModelAttribute LoginModel loginModel) {
+		LOGGER.info("Employee trying to login [{}] ", loginModel.toString());
 		ModelAndView loginView = new ModelAndView();
-		//loginView.add
+		loginView.addObject("loginModel", loginModel);
 		String login = authenticationService.authenticateUser(loginModel);
-		 switch(login){
-		   case "Authenticated":
-			  loginView.setViewName("dashboard");
-			  break;
-		   case "Not Authenticated":
-			  loginView.setViewName("/login");
-			  loginView.addObject("invalid_user", "invalid user/password");
-			  break;
-		 }
-		loginView.setViewName("");
+		switch (login) {
+		case "Authenticated":
+			loginView.setViewName("dashboard");
+			break;
+		case "Authenticated First time Login":
+			loginView.setViewName("changepassword");
+			break;	
+		case "Not Authenticated":
+			loginView.setViewName("login");
+			loginView.addObject("invalid", "invalid user/password");
+			break;
+		}
+
 		return loginView;
 	}
 	
@@ -46,7 +49,7 @@ public class LoginController
 	public ModelAndView userPasswordChange(@ModelAttribute LoginModel loginModel){
 		LOGGER.info("Employee trying to change password [{}] ",loginModel.toString());
 		authenticationService.authenticateUser(loginModel);
-		return new ModelAndView("/passwordchangesuccess");
+		return new ModelAndView("passwordchangesuccess");
 	}
 	
 }

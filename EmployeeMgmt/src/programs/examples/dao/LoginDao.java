@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import programs.examples.model.EmployeeInfo;
-import programs.examples.service.AuthenticationService;
 
 public class LoginDao 
 {
