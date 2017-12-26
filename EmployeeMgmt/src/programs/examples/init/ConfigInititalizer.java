@@ -17,7 +17,8 @@ public class ConfigInititalizer implements ServletContextListener
     private Properties appProperties = new Properties();
     String propertiesFilePath = "D:\\property files\\";
     String propertyFileName = "application.properties";
-    ServletContext context;
+    private static final String ATTRIBUTE = "config";
+    static ServletContext context;
     
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
@@ -30,8 +31,7 @@ public class ConfigInititalizer implements ServletContextListener
 			}
 			fileReader = new FileReader(file);
 			appProperties.load(fileReader);			
-			context = event.getServletContext();
-			context.setAttribute("config", appProperties);
+			event.getServletContext().setAttribute(ATTRIBUTE, this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally {
@@ -44,8 +44,8 @@ public class ConfigInititalizer implements ServletContextListener
 
 	}
 	
-	public ConfigInititalizer getConfig() {
-		 return (ConfigInititalizer) context.getAttribute("config");
+	public static ConfigInititalizer getConfig() {
+		 return (ConfigInititalizer) context.getAttribute(ATTRIBUTE);
 	}
 	
 	public String getProperty(String key){

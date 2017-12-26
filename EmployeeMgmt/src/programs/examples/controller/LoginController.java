@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import programs.examples.init.ConfigInititalizer;
 import programs.examples.model.LoginModel;
 import programs.examples.service.AuthenticationService;
 
@@ -20,6 +21,8 @@ public class LoginController
 	
 	@RequestMapping(value = "/login.jsp" , method = RequestMethod.GET)
 	public ModelAndView userLoginPage(){
+		ConfigInititalizer config = ConfigInititalizer.getConfig();
+		System.out.println(config.getProperty("DRIVER_NAME"));
 		return new ModelAndView("login");
 	}
 	
