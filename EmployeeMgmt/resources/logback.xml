@@ -23,8 +23,6 @@
         <logger name="programs.examples" level="INFO" additivity="false">
                 <appender-ref ref="FileAppender" />
         </logger>
-  <!--      <logger name="com.vas.theapp" level="DEBUG" additivity="false"> <appender-ref
-                ref="STDOUT"/> </logger> -->
         <root level="DEBUG">
                 <appender-ref ref="STDOUT,FileAppender" />
         </root>

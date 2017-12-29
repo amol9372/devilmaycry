@@ -4,22 +4,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.apache.commons.dbcp2.cpdsadapter.PStmtKeyCPDS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import com.programs.database.Database;
 
-import programs.examples.init.ConfigInititalizer;
 import programs.examples.model.LoginModel;
 
 public class RegisterDao 
 {
 	private static RegisterDao registerDao;
     
+	@Autowired
+	private Environment env;
+	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null ;
@@ -35,10 +36,9 @@ public class RegisterDao
 		return registerDao;
 	}
 	
-	public void registerEmployeeByAdmin(LoginModel loginModel){
-		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat("");
+	public void registerEmployeeByAdmin(LoginModel loginModel,Environment env){		
 		try {
-			//conn = Database.getConnection(config);
+			Connection conn = Database.getConnection(env);
 			String addEmployeeQuery = "insert into employee_login (loginid,password_hash,user_created_date,last_login_date,"
 					+ "email,first_time_login values (?,?,?,?,?,?))";
 			pstmt = conn.prepareStatement(addEmployeeQuery);

@@ -1,29 +1,32 @@
 package programs.examples.controller;
 
-import javax.servlet.ServletContext;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 
-import programs.examples.init.ConfigInititalizer;
+import programs.examples.config.AppConfig;
 import programs.examples.model.LoginModel;
 import programs.examples.service.RegisterService;
 
 @Controller
-public class RegistrationController implements ServletContextAware
+public class RegistrationController
 {
+	@Autowired
+	private Environment env;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
+	
 	private RegisterService registerService = RegisterService.getRegisterInstance();
-	//private ConfigInititalizer config = ConfigInititalizer.getConfig(getServletContext()); 
 	
 	@RequestMapping(value = "/register.jsp", method = RequestMethod.GET)
     public ModelAndView registerEmployeePage(){
+		System.out.println(env.getProperty("DRIVER_NAME"));
 		LOGGER.info("[{}] REGISTER Controller {} ");
 	    ModelAndView model = new ModelAndView("register");
 	    return model;
@@ -32,17 +35,11 @@ public class RegistrationController implements ServletContextAware
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView registerEmployee(@ModelAttribute LoginModel loginModel){
 		LOGGER.info(" REGISTER Controller Now [{}] ",loginModel.toString());
-		registerService.registerEmployeeByAdmin(loginModel);
+		registerService.registerEmployeeByAdmin(loginModel,env);
 	    ModelAndView model = new ModelAndView("registersuccess");	    
 	    model.addObject("employee", loginModel);
 	    return model;
     }
-
-	@Override
-	public void setServletContext(ServletContext arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 }
