@@ -23,33 +23,33 @@ public class LoginController
 	
 	private AuthenticationService authenticationService = AuthenticationService.getAuthenticationInstance();
 	
-	@RequestMapping(value = "/login" , method = RequestMethod.GET)
+	@RequestMapping(value = "/index.jsp" , method = RequestMethod.GET)
 	public ModelAndView userLoginPage(){
 		System.out.println(env.getProperty("DRIVER_NAME"));
 		return new ModelAndView("Login");		
 	}
 	
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public ModelAndView userLogin(@ModelAttribute LoginModel loginModel) {
-//		LOGGER.info("Employee trying to login [{}] ", loginModel.toString());
-//		ModelAndView loginView = new ModelAndView();
-//		loginView.addObject("loginModel", loginModel);
-//		String login = authenticationService.authenticateUser(loginModel);
-//		switch (login) {
-//		case "Authenticated":
-//			loginView.setViewName("dashboard");
-//			break;
-//		case "Authenticated First time Login":
-//			loginView.setViewName("changepassword");
-//			break;	
-//		case "Not Authenticated":
-//			loginView.setViewName("login");
-//			loginView.addObject("invalid", "invalid user/password");
-//			break;
-//		}
-//
-//		return loginView;
-//	}
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView userLogin(@ModelAttribute LoginModel loginModel) {
+		LOGGER.info("Employee trying to login [{}] ", loginModel.toString());
+		ModelAndView loginView = new ModelAndView();
+		loginView.addObject("loginModel", loginModel);
+		String login = authenticationService.authenticateUser(loginModel);
+		switch (login) {
+		case "Authenticated":
+			loginView.setViewName("dashboard");
+			break;
+		case "Authenticated First time Login":
+			loginView.setViewName("changepassword");
+			break;	
+		case "Not Authenticated":
+			loginView.setViewName("login");
+			loginView.addObject("invalid", "invalid user/password");
+			break;
+		}
+
+		return loginView;
+	}
 	
 	@RequestMapping(value = "/changePassword" , method = RequestMethod.POST)
 	public ModelAndView userPasswordChange(@ModelAttribute LoginModel loginModel){
