@@ -1,0 +1,10 @@
+package programs.examples.utils;
+
+public class EmployeeStatusConstants 
+{
+    public static final String AUTHENTICATED = "User Authenticated";
+    public static final String AUTHENTICATED_FIRST_TIME = "User Authenticated, First time User";    
+    public static final String NOT_AUTHENTICATED = "User Not Authenticated";
+    public static final String PASSWORD_CHANGED = "Password changed succuessfully";
+    public static final String PASSWORD_CHANGE_ERROR = "Password change error";
+}
