@@ -7,7 +7,7 @@ public class LoginModel
 	private long user_created_date;
 	private long last_login_date;
 	private String email;
-	private boolean first_login;
+	private int first_login;
 
 	public int getUserid() {
 		return userid;
@@ -49,17 +49,17 @@ public class LoginModel
 		this.email = email;
 	}
 
-	public boolean getFirst_login() {
+	public int getFirst_login() {
 		return first_login;
 	}
 
-	public void setFirst_login(boolean first_login) {
+	public void setFirst_login(int first_login) {
 		this.first_login = first_login;
 	}
 
 	@Override
 	public String toString() {
-		return "LoginModel [userid=" + userid + ", password_hash=" + password_hash + ", user_created_date="
+		return "LoginModel [userid=" + userid + ", user_created_date="
 				+ user_created_date + ", last_login_date=" + last_login_date + ", email=" + email + "]";
 	}
 

@@ -1,13 +1,14 @@
 package programs.examples.service;
 
+import java.security.NoSuchAlgorithmException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
 import programs.examples.dao.RegisterDao;
 import programs.examples.model.LoginModel;
+import programs.examples.utils.EmployeeHelper;
 
 public class RegisterService 
 {	
@@ -24,8 +25,7 @@ public class RegisterService
     }
     
     public void registerEmployeeByAdmin(LoginModel loginModel,Environment env){
-    	System.out.println(env.getProperty("DRIVER_NAME"));
-    	LOGGER.info("Saving Employee login info ",loginModel.toString());
+    	LOGGER.info("Saving Employee login info ",loginModel.toString());    	
     	registerDao.registerEmployeeByAdmin(loginModel,env);
     }
     

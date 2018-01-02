@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import programs.examples.config.AppConfig;
 import programs.examples.model.LoginModel;
 import programs.examples.service.RegisterService;
 
@@ -26,7 +25,6 @@ public class RegistrationController
 	
 	@RequestMapping(value = "/register.jsp", method = RequestMethod.GET)
     public ModelAndView registerEmployeePage(){
-		System.out.println(env.getProperty("DRIVER_NAME"));
 		LOGGER.info("[{}] REGISTER Controller {} ");
 	    ModelAndView model = new ModelAndView("register");
 	    return model;
