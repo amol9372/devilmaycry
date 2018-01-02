@@ -9,11 +9,10 @@
 <title>Login</title>
 <script type="text/javascript">
 	function userValidator() {
-		var regex=/^[0-9]+$/;
-		
-		var userid = document.getElementById("userid").value;
-		// alert(userid);
-		if(!userid.match(regex)){
+		var regex="/^[0-9]+$/";		
+		var userid = document.getElementById("userid");
+	
+		if(!userid.value.match(/^[0-9]+$/)){
 			document.getElementById("userError").innerHTML = "Please enter Numeric value !!!!";
 			alert("dosent match pattern");
 			return false;
@@ -25,7 +24,7 @@
 <body>
    <h1>Login Page</h1>
    <br>
-   <form method="post" action="/Employee/spring/login">
+   <form method="post" action="/Employee/spring/login" onsubmit="return userValidator();">
    <div>
       <table>
          <tr>
@@ -38,7 +37,7 @@
             <td><input type="password" name="password_hash" id="password"></td>
          </tr>
          <tr>
-          <td><input type="submit" value="Login" onclick="return userValidator();"></td>
+          <td><input type="submit" value="Login"></td>
          </tr>
          
       </table> 
