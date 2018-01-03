@@ -1,7 +1,5 @@
 package programs.examples.controller;
 
-import javax.validation.groups.Default;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import programs.examples.model.LoginModel;
@@ -38,23 +35,23 @@ public class LoginController
 		LOGGER.info("Employee trying to login [{}] ", loginModel.toString());
 		ModelAndView loginView = new ModelAndView();
 		loginView.addObject("loginModel", loginModel);
-		String login = authenticationService.authenticateUser(loginModel,env);
+		String login = authenticationService.authenticateUser(loginModel, env);
 		switch (login) {
 		case "Authenticated":
 			loginView.setViewName("dashboard");
 			break;
 		case "Authenticated First time Login":
 			loginView.setViewName("changepassword");
-			
-			break;	
+
+			break;
 		case "Not Authenticated":
 			loginView.setViewName("Login");
 			loginView.addObject("invalid", "invalid user/password , Please try again");
 			break;
-	    default:
+		default:
 			loginView.setViewName("Login");
 			loginView.addObject("invalid", "Login Error , Please try again");
-			break;	
+			break;
 		}
 
 		return loginView;
