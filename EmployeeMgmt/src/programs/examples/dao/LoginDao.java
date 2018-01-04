@@ -5,33 +5,69 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import com.programs.database.Database;
 
+import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 import programs.examples.model.PasswordChangeModel;
 import programs.examples.utils.EmployeeHelper;
 import programs.examples.utils.EmployeeStatusConstants;
 
+@Component
 public class LoginDao 
 {
    private static LoginDao loginDao;
    
+   @Autowired
+   private static EmployeeInfo empInfo;
+   
    private static final Logger LOGGER = LoggerFactory.getLogger(LoginDao.class);
    
-   private LoginDao(){}
+   public LoginDao(){}
    
    public static LoginDao getLoginInstance(){
 	   if(loginDao == null)
 		   loginDao = new LoginDao();
 	   return loginDao;
    }
+    
+   public static void main(String args[]){
+	   System.out.println(empInfo);
+	   //LoginDao.getLoginInstance().updatePasswords();
+	   
+   }
+   
+    /*void updatePasswords(){
+	   String updateLoginQuery = "select password_hash from employee_login ;";
+		try (Connection conn = Database.getConnection(env);
+				//Statement pstmt = conn.createStatement();
+				Statement pstmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+		                   ResultSet.CONCUR_UPDATABLE);) {
+			ResultSet rs = pstmt.executeQuery(updateLoginQuery);
+           int x = 0;
+			if (conn != null) {
+				while(rs.next()){
+					String password = rs.getString(1);
+					rs.updateString(1, password);
+					rs.updateRow();
+				}
+			}
+			if(x == 0)
+			  LOGGER.error("Couldnt update login info for user [{}] with error [{}]");
+		} catch (SQLException e) {
+			LOGGER.error("Error while updting login info for user [{}] with error [{}]");
+		}
+   }*/
    
    public LoginModel validateUser(LoginModel loginModel,Environment env){
 	   String loginQuery = "select password_hash,last_login_date,first_time_login,email from employee_login where loginid = ?;";

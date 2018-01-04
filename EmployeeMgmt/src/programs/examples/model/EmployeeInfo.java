@@ -1,5 +1,9 @@
 package programs.examples.model;
 
+import org.springframework.config.java.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmployeeInfo 
 {
 	private int userId;
@@ -9,7 +13,12 @@ public class EmployeeInfo
 	private String mobile;
 	private String email_official;
 	private String deptId;
-
+    
+	@Bean
+	public EmployeeInfo empInfo(){
+		return new EmployeeInfo();
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
