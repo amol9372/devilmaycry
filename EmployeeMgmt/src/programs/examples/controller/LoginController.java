@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 import programs.examples.model.PasswordChangeModel;
 import programs.examples.service.AuthenticationService;
@@ -21,12 +22,16 @@ public class LoginController
 	@Autowired
 	private Environment env;
 	
+//	@Autowired
+//	private EmployeeInfo employeeInfo;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	
 	private AuthenticationService authenticationService = AuthenticationService.getAuthenticationInstance();
 	
 	@RequestMapping(value = "/login.jsp" , method = RequestMethod.GET)
 	public ModelAndView userLoginPage(){
+//		System.out.println(employeeInfo);
 		return new ModelAndView("Login");		
 	}
 	

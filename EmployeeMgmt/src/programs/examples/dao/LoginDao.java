@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.programs.database.Database;
 
@@ -23,13 +25,10 @@ import programs.examples.model.PasswordChangeModel;
 import programs.examples.utils.EmployeeHelper;
 import programs.examples.utils.EmployeeStatusConstants;
 
-@Component
+@Repository
 public class LoginDao 
 {
    private static LoginDao loginDao;
-   
-   @Autowired
-   private static EmployeeInfo empInfo;
    
    private static final Logger LOGGER = LoggerFactory.getLogger(LoginDao.class);
    
@@ -42,7 +41,7 @@ public class LoginDao
    }
     
    public static void main(String args[]){
-	   System.out.println(empInfo);
+	 
 	   //LoginDao.getLoginInstance().updatePasswords();
 	   
    }

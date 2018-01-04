@@ -4,16 +4,22 @@ import java.security.NoSuchAlgorithmException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
 
 import programs.examples.dao.LoginDao;
+import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 import programs.examples.model.PasswordChangeModel;
 import programs.examples.utils.EmployeeHelper;
 
+@Service
 public class AuthenticationService 
 {
-
+	@Autowired
+	private EmployeeInfo employeeInfo;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationService.class);
 	
 	private static AuthenticationService authenticationService;
@@ -31,6 +37,7 @@ public class AuthenticationService
 	public String authenticateUser(LoginModel loginModel, Environment env) {
 		String login = "Not Authenticated";
 		try {
+			System.out.println(employeeInfo);
 			LoginModel loginModelDB = loginDao.validateUser(loginModel, env);
 			firstTimeLogin = loginModelDB.getFirst_login() == 1 ? true : false;
 			

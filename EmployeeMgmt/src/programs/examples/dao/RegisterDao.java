@@ -8,12 +8,14 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Repository;
 
 import com.programs.database.Database;
 
 import programs.examples.model.LoginModel;
 import programs.examples.utils.EmployeeHelper;
 
+@Repository
 public class RegisterDao 
 {
 	private static RegisterDao registerDao;
