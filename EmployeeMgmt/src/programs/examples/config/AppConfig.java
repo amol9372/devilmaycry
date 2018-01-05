@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-@EnableWebMvc
+//@EnableWebMvc
 @Configuration
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = "programs.examples")
