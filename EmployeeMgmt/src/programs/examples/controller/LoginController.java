@@ -3,14 +3,12 @@ package programs.examples.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 import programs.examples.model.PasswordChangeModel;
 import programs.examples.service.AuthenticationService;
@@ -19,19 +17,14 @@ import programs.examples.utils.EmployeeStatusConstants;
 @Controller
 public class LoginController 
 {	
-	@Autowired
-	private Environment env;
 	
-//	@Autowired
-//	private EmployeeInfo employeeInfo;
+	@Autowired
+	private AuthenticationService authenticationService;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
-	
-	private AuthenticationService authenticationService = AuthenticationService.getAuthenticationInstance();
-	
+		
 	@RequestMapping(value = "/login.jsp" , method = RequestMethod.GET)
 	public ModelAndView userLoginPage(){
-//		System.out.println(employeeInfo);
 		return new ModelAndView("Login");		
 	}
 	
@@ -40,7 +33,7 @@ public class LoginController
 		LOGGER.info("Employee trying to login [{}] ", loginModel.toString());
 		ModelAndView loginView = new ModelAndView();
 		loginView.addObject("loginModel", loginModel);
-		String login = authenticationService.authenticateUser(loginModel, env);
+		String login = authenticationService.authenticateUser(loginModel);
 		switch (login) {
 		case "Authenticated":
 			loginView.setViewName("dashboard");
@@ -66,7 +59,7 @@ public class LoginController
 	public ModelAndView userPasswordChange(@ModelAttribute PasswordChangeModel passwordChangeModel){
 		LOGGER.info("Employee trying to change password [{}] ",passwordChangeModel.getUserid());
 		ModelAndView passwordChangeView = new ModelAndView();
-		String passwordStatus = authenticationService.changePasswordFirstTimeUser(passwordChangeModel, env);
+		String passwordStatus = authenticationService.changePasswordFirstTimeUser(passwordChangeModel);
 		  switch(passwordStatus){
 		    case EmployeeStatusConstants.PASSWORD_CHANGED:
 		    	passwordChangeView.addObject("statusMessage", EmployeeStatusConstants.PASSWORD_CHANGED);		    	

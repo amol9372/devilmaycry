@@ -6,20 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.programs.database.Database;
 
-import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 import programs.examples.model.PasswordChangeModel;
 import programs.examples.utils.EmployeeHelper;
@@ -28,47 +23,31 @@ import programs.examples.utils.EmployeeStatusConstants;
 @Repository
 public class LoginDao 
 {
-   private static LoginDao loginDao;
    
    private static final Logger LOGGER = LoggerFactory.getLogger(LoginDao.class);
    
-   public LoginDao(){}
+   @Autowired
+   private Environment env;
    
-   public static LoginDao getLoginInstance(){
-	   if(loginDao == null)
-		   loginDao = new LoginDao();
-	   return loginDao;
-   }
-    
-   public static void main(String args[]){
-	 
-	   //LoginDao.getLoginInstance().updatePasswords();
-	   
-   }
-   
-    /*void updatePasswords(){
-	   String updateLoginQuery = "select password_hash from employee_login ;";
+   void updatePasswords(Environment env){
+	   String updateLoginQuery = "select * from employee_login ;";
 		try (Connection conn = Database.getConnection(env);
-				//Statement pstmt = conn.createStatement();
 				Statement pstmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
 		                   ResultSet.CONCUR_UPDATABLE);) {
 			ResultSet rs = pstmt.executeQuery(updateLoginQuery);
-           int x = 0;
-			if (conn != null) {
+         	if (conn != null) {
 				while(rs.next()){
-					String password = rs.getString(1);
-					rs.updateString(1, password);
+					String password = rs.getString(3);
+					rs.updateString(3, EmployeeHelper.getHashFromPassword(password));
 					rs.updateRow();
 				}
 			}
-			if(x == 0)
-			  LOGGER.error("Couldnt update login info for user [{}] with error [{}]");
-		} catch (SQLException e) {
-			LOGGER.error("Error while updting login info for user [{}] with error [{}]");
+		} catch (SQLException | NoSuchAlgorithmException e) {
+			LOGGER.error("Error while updting login info for with error [{}]",e);
 		}
-   }*/
+   }
    
-   public LoginModel validateUser(LoginModel loginModel,Environment env){
+   public LoginModel validateUser(LoginModel loginModel){
 	   String loginQuery = "select password_hash,last_login_date,first_time_login,email from employee_login where loginid = ?;";
 	   LoginModel loginModelDB = new LoginModel();
 		try (Connection conn = Database.getConnection(env);
@@ -90,7 +69,7 @@ public class LoginDao
 	   return loginModelDB;
    }
    
-   public void updateLoginInfo(LoginModel loginModel,Environment env){
+   public void updateLoginInfo(LoginModel loginModel){
 		String updateLoginQuery = "update employee_login set last_login_date = ? where loginid = ? ;";
 		try (Connection conn = Database.getConnection(env);
 				PreparedStatement pstmt = conn.prepareStatement(updateLoginQuery);) {
@@ -107,7 +86,7 @@ public class LoginDao
 		}
    }
    
-   public String changePassword(PasswordChangeModel passwordChangeModel,Environment env){
+   public String changePassword(PasswordChangeModel passwordChangeModel){
 		String changePasswordQuery = "update employee_login set password_hash = ?,first_time_login = 0 where loginid = ? ;";
 		String passwordChangeStatus = EmployeeStatusConstants.PASSWORD_CHANGE_ERROR;
 		try (Connection conn = Database.getConnection(env);

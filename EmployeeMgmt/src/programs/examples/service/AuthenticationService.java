@@ -5,11 +5,9 @@ import java.security.NoSuchAlgorithmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import programs.examples.dao.LoginDao;
-import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 import programs.examples.model.PasswordChangeModel;
 import programs.examples.utils.EmployeeHelper;
@@ -17,28 +15,17 @@ import programs.examples.utils.EmployeeHelper;
 @Service
 public class AuthenticationService 
 {
-	@Autowired
-	private EmployeeInfo employeeInfo;
-	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationService.class);
 	
-	private static AuthenticationService authenticationService;
-	
-	LoginDao loginDao = LoginDao.getLoginInstance();
-    
+	@Autowired
+	private LoginDao loginDao;
+	    
 	private boolean firstTimeLogin = false;
 	
-    public static AuthenticationService getAuthenticationInstance(){
-    	if(authenticationService == null)
-    		authenticationService = new AuthenticationService();
-    	return authenticationService;
-    } 
-    
-	public String authenticateUser(LoginModel loginModel, Environment env) {
+	public String authenticateUser(LoginModel loginModel) {
 		String login = "Not Authenticated";
 		try {
-			System.out.println(employeeInfo);
-			LoginModel loginModelDB = loginDao.validateUser(loginModel, env);
+			LoginModel loginModelDB = loginDao.validateUser(loginModel);
 			firstTimeLogin = loginModelDB.getFirst_login() == 1 ? true : false;
 			
 			if (!EmployeeHelper.isEmpty(loginModelDB.getPassword_hash())
@@ -50,7 +37,7 @@ public class AuthenticationService
 					LOGGER.info("User Authenticated [{}] ", loginModel.toString());
 					login = "Authenticated";
 					LOGGER.info(" Updating login info [{}] ", loginModel.toString());
-					loginDao.updateLoginInfo(loginModel, env);
+					loginDao.updateLoginInfo(loginModel);
 				}
 
 			} else
@@ -62,8 +49,8 @@ public class AuthenticationService
 		return login;
 	}
 	
-	public String changePasswordFirstTimeUser(PasswordChangeModel passwordChangeModel,Environment env){	
-		return loginDao.changePassword(passwordChangeModel, env);
+	public String changePasswordFirstTimeUser(PasswordChangeModel passwordChangeModel){	
+		return loginDao.changePassword(passwordChangeModel);
 	}
     
 }
