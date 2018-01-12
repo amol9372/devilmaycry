@@ -14,7 +14,6 @@
 	
 		if(!userid.value.match(/^[0-9]+$/)){
 			document.getElementById("userError").innerHTML = "Please enter Numeric value !!!!";
-			alert("dosent match pattern");
 			return false;
 		}
 		return true;	
@@ -30,7 +29,7 @@
          <tr>
             <td>UserID</td>
             <td><input type="text" name="userid" id="userid"></td>
-            <td><label class="userError"></label></td>     
+            <td><label id="userError"></label></td>     
          </tr>
          <tr>
             <td>Password</td>

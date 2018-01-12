@@ -4,14 +4,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Index page</title>
 <style>
 ul {
-	list-style-type: none;
+	list-style-type: disc;
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
+	overflow: auto;
 	background-color: #343;
 }
 
@@ -20,7 +28,7 @@ li {
 }
 
 li a {
-	display: block;
+	display: inline-table;
 	color: white;
 	text-align: center;
 	padding: 14px 16px;
@@ -39,7 +47,19 @@ li a:hover {
 		<li><a href="/Employee/spring/latestnews">Latest News</a></li>
 		<li><a href="/Employee/spring/help">Help</a></li>
 		<li><a href="/Employee/spring/contactus">Contact Us</a></li>
-		<li><a href="/Employee/spring/profile">Hi, ${loginModel.userid}</a></li>
+		<li class = "dropdown">
+			
+				<button class="btn btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Hi, ${loginModel.userid} <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="listbox">
+					<li><a href="/Employee/spring/profile.jsp">Profile</a></li>
+					<li><a href="/Employee/spring/logout">Logout</a></li>
+				</ul>
+			
+		</li>
+
 		<li><a href="/Employee/spring/logout">Logout</a></li>
 	</ul>
 </body>

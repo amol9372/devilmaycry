@@ -10,10 +10,12 @@
 
 <body>
 
-	<jsp:include page="index.jsp"/>
-<br>
+	<jsp:include page="index.jsp" />
+	<br>
 
-<h2>Welcome <label>${loginModel.userid}</label> </h2>   
+	<h2>
+		Welcome <label>${loginModel.userid}</label>
+	</h2>
 
 </body>
 </html>
