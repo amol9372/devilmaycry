@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 import programs.examples.model.PasswordChangeModel;
 import programs.examples.service.AuthenticationService;
+import programs.examples.service.ProfileService;
 import programs.examples.utils.EmployeeStatusConstants;
 
 @Controller
@@ -20,6 +22,9 @@ public class LoginController
 	
 	@Autowired
 	private AuthenticationService authenticationService;
+	
+	@Autowired
+	private ProfileService profileService;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 		
@@ -36,7 +41,9 @@ public class LoginController
 		String login = authenticationService.authenticateUser(loginModel);
 		switch (login) {
 		case "Authenticated":
+			//EmployeeInfo employeenfo = profileService.getEmployeeInfo(loginModel);
 			loginView.setViewName("dashboard");
+			//loginView.addObject("employee",employeenfo);
 			break;
 		case "Authenticated First time Login":
 			loginView.setViewName("changepassword");

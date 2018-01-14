@@ -46,7 +46,7 @@ li a:hover {
 		<li><a href="#home">Home</a></li>
 		<li><a href="/Employee/spring/latestnews">Latest News</a></li>
 		<li><a href="/Employee/spring/help">Help</a></li>
-		<li><a href="/Employee/spring/contactus">Contact Us</a></li>
+		<li><a href="/Employee/spring/contacts">Contact Us</a></li>
 		<li class = "dropdown">
 			
 				<button class="btn btn-primary dropdown-toggle" type="button"
@@ -54,7 +54,7 @@ li a:hover {
 					Hi, ${loginModel.userid} <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="listbox">
-					<li><a href="/Employee/spring/profile.jsp">Profile</a></li>
+					<li><a href="/Employee/spring/profile.jsp?empid=${loginModel.userid}">Profile</a></li>
 					<li><a href="/Employee/spring/logout">Logout</a></li>
 				</ul>
 			

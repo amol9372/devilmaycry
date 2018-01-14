@@ -18,8 +18,4 @@ public class SampleConfig
     	return new EmployeeInfo();
     }
 	
-	public static void main(String args[]){
-		
-	}
-	
 }

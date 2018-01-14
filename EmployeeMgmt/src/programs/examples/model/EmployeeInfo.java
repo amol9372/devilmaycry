@@ -1,5 +1,7 @@
 package programs.examples.model;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +14,10 @@ public class EmployeeInfo
 	private String mobile;
 	private String email_official;
 	private String deptId;
+	private String email;
+	private Date date_of_joinig;
+	private Address address;
+	private String profileStatus;
 	
 	public int getUserId() {
 		return userId;
@@ -67,6 +73,38 @@ public class EmployeeInfo
 
 	public void setDeptId(String deptId) {
 		this.deptId = deptId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public Date getDate_of_joinig() {
+		return date_of_joinig;
+	}
+
+	public void setDate_of_joinig(Date date_of_joinig) {
+		this.date_of_joinig = date_of_joinig;
+	}
+
+	public String getProfileStatus() {
+		return profileStatus;
+	}
+
+	public void setProfileStatus(String profileStatus) {
+		this.profileStatus = profileStatus;
 	}
 
 	@Override

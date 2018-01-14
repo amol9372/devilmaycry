@@ -1,34 +1,28 @@
 package programs.examples.service;
 
-import java.security.NoSuchAlgorithmException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import programs.examples.dao.RegisterDao;
 import programs.examples.model.LoginModel;
-import programs.examples.utils.EmployeeHelper;
 
 @Service
 public class RegisterService 
 {	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterService.class);
-	
-    private static RegisterService registerService = null;
     
-    private RegisterDao registerDao = RegisterDao.getRegisterInstance();
+	@Autowired
+    private RegisterDao registerDao;
     
-    public static RegisterService getRegisterInstance(){
-    	if(registerService == null)
-    		registerService = new RegisterService();
-    	return registerService;
-    }
-    
-    public void registerEmployeeByAdmin(LoginModel loginModel,Environment env){
+    public boolean registerEmployeeByAdmin(LoginModel loginModel){
     	LOGGER.info("Saving Employee login info ",loginModel.toString());    	
-    	registerDao.registerEmployeeByAdmin(loginModel,env);
+    	boolean registered = registerDao.registerEmployeeByAdmin(loginModel);
+    	if(registered)
+    		registerDao.registerEmployeeInfo(loginModel);
+    	
+    	return registered;
     }
     
     void registerEmployee(){

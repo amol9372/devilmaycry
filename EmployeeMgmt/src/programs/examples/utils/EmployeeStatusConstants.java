@@ -7,4 +7,7 @@ public class EmployeeStatusConstants
     public static final String NOT_AUTHENTICATED = "User Not Authenticated";
     public static final String PASSWORD_CHANGED = "Password changed succuessfully";
     public static final String PASSWORD_CHANGE_ERROR = "Password change error";
+    public static final String PROFILE_COMPLETED = "COMPLETED";     // All updated 
+    public static final String PROFILE_SEMI = "SEMI";               // Address pending , general info complete
+    public static final String PROFILE_STARTED = "STARTED";         // NOthing updated
 }

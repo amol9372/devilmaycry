@@ -33,7 +33,9 @@
          <tr>
           <td><input type="submit" value="Login"/></td>
          </tr>                  
-      </table> 
+      </table>
+      <br>
+      ${errorMessage} 
    </div>
    </form>
 </body>
