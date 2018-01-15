@@ -20,30 +20,30 @@
       <table>
          <tr>
             <td>UserID</td>
-            <td><input type="text" name="userid" id="userid" name="${employee.userid}" readonly/></td>     
+            <td><input type="text" name="userId" id="userid" value="${employee.userId}" readonly/></td>     
          </tr>
          <tr>
             <td>First Name</td>
-            <td><input type="text" name="fname" id="fname" name="${employee.fname}" readonly/></td>
+            <td><input type="text" name="fname" id="fname" value="${employee.fname}" readonly/></td>
          </tr>
          <tr>
             <td>Last Name</td>
-            <td><input type="text" name="lname" id="lname" name="${employee.lname}" readonly/></td>
+            <td><input type="text" name="lname" id="lname" value="${employee.lname}" readonly/></td>
          </tr>
          <tr>
             <td>Email</td>
-            <td><input type="text" name="email" id="email" name="${employee.email}" readonly/></td>
+            <td><input type="text" name="email" id="email" value="${employee.email}" readonly/></td>
          </tr>
          <tr>
             <td>Secondary Email</td>
-            <td><input type="text" name="secondaryEmail" id="secondaryEmail" name="${employee.secondaryEmail}" readonly/></td>
+            <td><input type="text" name="secondaryEmail" id="secondaryEmail" value="${employee.email_official}" readonly/></td>
          </tr>
          <tr>
             <td>Mobile</td>
-            <td><input type="text" name="mobile" id="mobile" name="${employee.mobile}" readonly/></td>
+            <td><input type="text" name="mobile" id="mobile" value="${employee.mobile}" readonly/></td>
          </tr>
          <tr>
-          <td><input type="submit" value="Login" disabled="disabled"/></td>
+          <td><input type="submit" value="Edit" disabled="disabled"/></td>
          </tr>                  
       </table> 
    </div>

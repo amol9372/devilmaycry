@@ -58,7 +58,8 @@ public class LoginDao
 			if (conn != null) {
 				if (rs.next()){
 					loginModelDB.setPassword_hash(rs.getString(1));
-				    loginModelDB.setLast_login_date(rs.getTimestamp(2).getTime());
+					if(!EmployeeHelper.isEmpty(rs.getString("last_login_date")))              // check for first time user 
+				     loginModelDB.setLast_login_date(rs.getTimestamp(2).getTime());
 				    loginModelDB.setFirst_login(rs.getInt(3));
 				    loginModelDB.setEmail(rs.getString(4));
 				}    

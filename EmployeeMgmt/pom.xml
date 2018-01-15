@@ -143,19 +143,27 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.javaconfig/spring-javaconfig -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.javaconfig</groupId> -->
-<!-- 			<artifactId>spring-javaconfig</artifactId> -->
-<!-- 			<version>1.0.0.M3</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.javaconfig</groupId> -->
+		<!-- <artifactId>spring-javaconfig</artifactId> -->
+		<!-- <version>1.0.0.M3</version> -->
+		<!-- </dependency> -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.40</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.1</version>
+		</dependency>
 
 	</dependencies>
+
 	<repositories>
 		<repository>
 			<id>spring-milestone</id>

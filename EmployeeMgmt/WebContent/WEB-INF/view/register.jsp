@@ -31,7 +31,7 @@
             <td><input type="text" name="email" id="email"/></td>
          </tr>
          <tr>
-          <td><input type="submit" value="Login"/></td>
+          <td><input type="submit" value="Register"/></td>
          </tr>                  
       </table>
       <br>
