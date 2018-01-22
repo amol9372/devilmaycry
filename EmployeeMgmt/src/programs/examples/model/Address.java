@@ -8,6 +8,7 @@ public class Address
    private String zip;
    private String state;
    private String county;
+   private String addressType;
 
 	public int getEmpid() {
 		return empid;
@@ -55,6 +56,14 @@ public class Address
 
 	public void setCounty(String county) {
 		this.county = county;
+	}
+
+	public String getAddressType() {
+		return addressType;
+	}
+
+	public void setAddressType(String addressType) {
+		this.addressType = addressType;
 	}
 
 	@Override

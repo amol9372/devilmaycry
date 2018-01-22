@@ -39,8 +39,24 @@
             <td><input type="text" name="secondaryEmail" id="secondaryEmail" value="${employee.email_official}" readonly/></td>
          </tr>
          <tr>
-            <td>Mobile</td>
-            <td><input type="text" name="mobile" id="mobile" value="${employee.mobile}" readonly/></td>
+            <td>Street</td>
+            <td><input type="text" name="street" id="street" value="${address.street}" readonly/></td>
+         </tr>
+         <tr>
+            <td>City</td>
+            <td><input type="text" name="city" id="city" value="${address.city}" readonly/></td>
+         </tr>
+         <tr>
+            <td>ZIP</td>
+            <td><input type="text" name="zip" id="zip" value="${address.zip}" readonly/></td>
+         </tr>
+         <tr>
+            <td>County</td>
+            <td><input type="text" name="county" id="county" value="${address.county}" readonly/></td>
+         </tr>
+         <tr>
+            <td>State</td>
+            <td><input type="text" name="state" id="state" value="${address.state}" readonly/></td>
          </tr>
          <tr>
           <td><input type="submit" value="Edit" disabled="disabled"/></td>

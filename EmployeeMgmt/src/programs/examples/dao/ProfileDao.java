@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.programs.database.Database;
 
+import programs.examples.model.Address;
 import programs.examples.model.EmployeeInfo;
 import programs.examples.model.LoginModel;
 
@@ -51,5 +52,32 @@ public class ProfileDao {
 
 		}
 		return employeeInfo;
+	}
+	
+	public Address getEmployeeAddress(int empid) {
+		Address address = new Address();
+		String getAddressQuery = "select * from employee_address where empid = ?;";
+		try (Connection conn = Database.getConnection(env);
+				PreparedStatement pstmt = conn.prepareStatement(getAddressQuery);) {
+			pstmt.setInt(1, empid);
+
+			ResultSet resultSet = pstmt.executeQuery();
+			if (conn != null) {
+				while (resultSet.next()) {
+					address.setStreet(resultSet.getString("street"));
+					address.setCity(resultSet.getString("city"));
+					address.setZip(resultSet.getString("zip"));
+					address.setCounty(resultSet.getString("county"));
+					address.setState(resultSet.getString("state"));
+					address.setAddressType(resultSet.getString("address_type"));
+					address.setEmpid(empid);
+				}
+
+			}
+		} catch (SQLException e) {
+			LOGGER.error("Error while fetching Address [{}] with error [{}]", empid, e);
+
+		}
+		return address;
 	}
 }
