@@ -15,7 +15,6 @@ import com.programs.database.Database;
 
 import programs.examples.model.Address;
 import programs.examples.model.EmployeeInfo;
-import programs.examples.model.LoginModel;
 
 @Repository
 public class ProfileDao {
