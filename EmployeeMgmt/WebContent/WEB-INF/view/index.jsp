@@ -44,9 +44,14 @@ li a:hover {
 <body>
 	<ul>
 		<li><a href="#home">Home</a></li>
-		<li><a href="/Employee/spring/latestnews">Latest News</a></li>
+		<li><a href="/Employee/spring/payroll">Payroll</a></li>
+		<li><a href="/Employee/spring/reimbursement">Reimbursement</a></li>
+		<li><a href="/Employee/spring/attendance">Attendance</a></li>
+		<li><a href="/Employee/spring/leave">Leave</a></li>
+		<li><a href="/Employee/spring/benefits">Benefits</a></li>
 		<li><a href="/Employee/spring/help">Help</a></li>
-		<li><a href="/Employee/spring/contacts">Contact Us</a></li>
+		<li><a href="/Employee/spring/contactus">Contact Us</a></li>
+		
 		<li class = "dropdown">
 			
 				<button class="btn btn-primary dropdown-toggle" type="button"
@@ -56,11 +61,8 @@ li a:hover {
 				<ul class="dropdown-menu" role="listbox">
 					<li><a href="/Employee/spring/profile.jsp?empid=${loginModel.userid}">Profile</a></li>
 					<li><a href="/Employee/spring/logout">Logout</a></li>
-				</ul>
-			
+				</ul>			
 		</li>
-
-		<li><a href="/Employee/spring/logout">Logout</a></li>
 	</ul>
 </body>
 </html>
