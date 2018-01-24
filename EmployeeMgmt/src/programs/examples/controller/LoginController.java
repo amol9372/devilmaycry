@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import programs.examples.model.EmployeeInfo;
@@ -17,6 +18,7 @@ import programs.examples.service.ProfileService;
 import programs.examples.utils.EmployeeStatusConstants;
 
 @Controller
+@SessionAttributes("employeeSession")
 public class LoginController 
 {	
 	
@@ -41,9 +43,9 @@ public class LoginController
 		String login = authenticationService.authenticateUser(loginModel);
 		switch (login) {
 		case "Authenticated":
-			//EmployeeInfo employeenfo = profileService.getEmployeeInfo(loginModel);
+			EmployeeInfo employeeInfo = profileService.getEmployeeInfo(loginModel.getUserid());
 			loginView.setViewName("dashboard");
-			//loginView.addObject("employee",employeenfo);
+			loginView.addObject("employeeSession",employeeInfo);
 			break;
 		case "Authenticated First time Login":
 			loginView.setViewName("changepassword");
