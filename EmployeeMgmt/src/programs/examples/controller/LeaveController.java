@@ -2,6 +2,7 @@ package programs.examples.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,22 +15,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("session")
+@SessionAttributes("userSession")
 public class LeaveController 
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	
-	private int count;
-	
 	@RequestMapping(value = "/leave.jsp", method = RequestMethod.GET)
-	public ModelAndView leave(HttpSession session) {
+	public ModelAndView leave(HttpServletRequest request) {		
+		HttpSession session = request.getSession(false);
 		ModelAndView leaveView = new ModelAndView();
 		leaveView.setViewName("leave");
-		int userid = (int) session.getAttribute("userid");
-		leaveView.addObject("session", userid);
-		leaveView.addObject("count", count);
-		leaveView.addObject("sessionCreatedTime",new Date(session.getCreationTime()));
-		leaveView.addObject("lastAccessedTime",new Date(session.getLastAccessedTime()));
+		if (session != null) {
+			leaveView.addObject("sessionCreatedTime", new Date(session.getCreationTime()));
+			leaveView.addObject("lastAccessedTime", new Date(session.getLastAccessedTime()));
+		}
 		return leaveView;
 	}
 	

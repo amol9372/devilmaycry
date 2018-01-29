@@ -1,13 +1,8 @@
 package programs.examples.controller;
 
-import java.util.Date;
-
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +18,7 @@ import programs.examples.service.ProfileService;
 import programs.examples.utils.EmployeeStatusConstants;
 
 @Controller
-@SessionAttributes("userid")
+@SessionAttributes("userSession")
 public class LoginController
 {	
 	
@@ -41,21 +36,17 @@ public class LoginController
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView userLogin(@ModelAttribute LoginModel loginModel, HttpSession session, HttpRequest request) {
+	public ModelAndView userLogin(@ModelAttribute LoginModel loginModel) {
 		LOGGER.info("Employee trying to login [{}] ", loginModel.toString());
-		ModelAndView loginView = new ModelAndView();
-		
-		session.setMaxInactiveInterval(200);
-		session.setAttribute("userid", loginModel.getUserid());
+		ModelAndView loginView = new ModelAndView();		
 		loginView.addObject("loginModel", loginModel);
-		loginView.addObject("sessionCreatedTime",new Date(session.getCreationTime()));
-		loginView.addObject("lastAccessedTime",new Date(session.getLastAccessedTime()));
 		String login = authenticationService.authenticateUser(loginModel);
 		switch (login) {
 		case "Authenticated":
 			EmployeeInfo employeeInfo = profileService.getEmployeeInfo(loginModel.getUserid());
 			loginView.setViewName("dashboard");
 			loginView.addObject("userid",employeeInfo.getUserId());
+			loginView.addObject("userSession", employeeInfo.getUserId());
 			break;
 		case "Authenticated First time Login":
 			loginView.setViewName("changepassword");

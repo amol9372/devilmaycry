@@ -46,18 +46,14 @@ li a:hover {
 </style>
 </head>
 <body>
-	<c:set var="session" scope="session" value="${userid}" />
-	<c:if test="${session == 0}">
-		<c:redirect url="http://localhost:8080/Employee/login.jsp" />
-	</c:if>
 
 	<ul>
 		<li><a href="#home">Home</a></li>
-		<li><a href="/Employee/spring/payroll/${employeeSession.userId}">Payroll</a></li>
+		<li><a href="/Employee/spring/payroll">Payroll</a></li>
 		<li><a href="/Employee/spring/reimbursement">Reimbursement</a></li>
-		<li><a href="/Employee/spring/attendance/${employeeSession.userId}">Attendance</a></li>
+		<li><a href="/Employee/spring/attendance">Attendance</a></li>
 		<li><a href="/Employee/spring/leave.jsp">Leave</a></li>
-		<li><a href="/Employee/spring/benefits/${employeeSession.userId}">Benefits</a></li>
+		<li><a href="/Employee/spring/benefits">Benefits</a></li>
 		<li><a href="/Employee/spring/help">Help</a></li>
 		<li><a href="/Employee/spring/contactus">Contact Us</a></li>
 
@@ -65,15 +61,15 @@ li a:hover {
 
 			<button class="btn btn-primary dropdown-toggle" type="button"
 				data-toggle="dropdown">
-				Hi, ${userid} <span class="caret"></span>
+				Hi, ${userSession} <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="listbox">
 				<li><a
-					href="/Employee/spring/profile.jsp?empid=${userid}">Profile</a></li>
-				<li><a href="/Employee/spring/logout">Logout</a></li>
+					href="/Employee/spring/profile.jsp">Profile</a></li>
+				<li><a href="/Employee/spring/logout.jsp">Logout</a></li>
 			</ul>
 		</li>
 	</ul>
-	<br> You are logged in as ${userid}
+	<br> You are logged in as ${userSession}
 </body>
 </html>
