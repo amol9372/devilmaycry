@@ -5,7 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+<link
+	href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -13,10 +14,22 @@
 <title>Leave page</title>
 
 <script type="text/javascript">
-$.noConflict();
-jQuery(document).ready(function ($) {
-    $('.datepicker').datepicker();
-});
+	$.noConflict();
+	jQuery(document).ready(function($) {
+		$('.datepickerTo').datepicker();
+		$('.datepickerFrom').datepicker();
+	});
+
+	function validate() {
+		var fromDate = new Date(document.getElementById("fromDate").value);
+		var toDate = new Date(document.getElementById("toDate").value);
+		if (fromDate.getTime() > toDate.getTime())
+			alert("fromdate > todate");
+		if(toDate.getMonth() === fromDate.getMonth() && toDate.getDate() - fromDate.getDate() > 3)
+			alert("Leave is for than 3 days");
+		
+		return false;
+	}
 </script>
 
 </head>
@@ -34,13 +47,14 @@ jQuery(document).ready(function ($) {
 
 	<h1>Employee Leave</h1>
 	<br>
-	<form method="post" action="/Employee/spring/applyLeave" onsubmit="return validate();">
+	<form method="post" action="/Employee/spring/applyLeave"
+		onsubmit="return validate();">
 		<div>
 			<table>
 				<tr>
 					<td>UserID</td>
 					<td><input type="text" name="userId" id="userid"
-						value="${userSession}" /></td>
+						value="${userSession}" readonly /></td>
 				</tr>
 				<tr>
 					<td>Reason for Leave</td>
@@ -48,11 +62,13 @@ jQuery(document).ready(function ($) {
 				</tr>
 				<tr>
 					<td>From Date</td>
-					<td><input type="text" name="fromDate" class="datepicker" class="form-control"></td>
+					<td><input type="text" name="fromDate" class="datepickerFrom"
+						id="fromDate"></td>
 				</tr>
 				<tr>
 					<td>To Date</td>
-					<td><input type="text" name="toDate" class="datepicker" class="form-control"></td>
+					<td><input type="text" name="toDate" class="datepickerTo"
+						id="toDate"></td>
 				</tr>
 				<tr>
 					<td>Leave Type</td>
@@ -62,6 +78,9 @@ jQuery(document).ready(function ($) {
 							<option value="Casual">Casual</option>
 							<option value="Optional">Optional</option>
 					</select></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Apply" /></td>
 				</tr>
 			</table>
 		</div>

@@ -32,7 +32,7 @@ public class LeaveController
 		return leaveView;
 	}
 	
-	@RequestMapping(value = "/applyLeave", method = RequestMethod.GET)
+	@RequestMapping(value = "/applyLeave", method = RequestMethod.POST)
 	public ModelAndView applyleave(@PathVariable int userId) {
 		ModelAndView leaveView = new ModelAndView();
 		leaveView.setViewName("leave");
