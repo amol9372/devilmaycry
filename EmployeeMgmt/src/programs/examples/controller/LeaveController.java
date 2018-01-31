@@ -22,13 +22,13 @@ public class LeaveController
 	
 	@RequestMapping(value = "/leave.jsp", method = RequestMethod.GET)
 	public ModelAndView leave(HttpServletRequest request) {		
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);		
 		ModelAndView leaveView = new ModelAndView();
 		leaveView.setViewName("leave");
 		if (session != null) {
 			leaveView.addObject("sessionCreatedTime", new Date(session.getCreationTime()));
 			leaveView.addObject("lastAccessedTime", new Date(session.getLastAccessedTime()));
-		}
+		}		
 		return leaveView;
 	}
 	

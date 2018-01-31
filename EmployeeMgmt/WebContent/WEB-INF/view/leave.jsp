@@ -25,8 +25,9 @@
 		var toDate = new Date(document.getElementById("toDate").value);
 		if (fromDate.getTime() > toDate.getTime())
 			alert("fromdate > todate");
-		if(toDate.getMonth() === fromDate.getMonth() && toDate.getDate() - fromDate.getDate() > 3)
+		if((toDate.getTime() -  fromDate.getTime())/86400000 > 3)
 			alert("Leave is for than 3 days");
+		
 		
 		return false;
 	}
