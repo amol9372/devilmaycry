@@ -15,6 +15,7 @@ import com.programs.database.Database;
 
 import programs.examples.model.Address;
 import programs.examples.model.EmployeeInfo;
+import programs.examples.utils.EmployeeStatusConstants;
 
 @Repository
 public class ProfileDao {
@@ -52,7 +53,7 @@ public class ProfileDao {
 		}
 		return employeeInfo;
 	}
-	
+
 	public Address getEmployeeAddress(int empid) {
 		Address address = new Address();
 		String getAddressQuery = "select * from employee_address where empid = ?;";
@@ -78,5 +79,27 @@ public class ProfileDao {
 
 		}
 		return address;
+	}
+
+	public String editEmployeeInfo(EmployeeInfo employeeInfo) {
+		String message = EmployeeStatusConstants.PROFILE_UPDATE_ERROR;
+		String editProfileQuery = "update employee_info set fname = ?, lname = ?, gender = ? where empid = ?;";
+		try (Connection conn = Database.getConnection(env);
+				PreparedStatement pstmt = conn.prepareStatement(editProfileQuery);) {
+
+			if (conn != null) {
+				pstmt.setString(1, employeeInfo.getFname());
+				pstmt.setString(2, employeeInfo.getLname());
+				pstmt.setString(3, "" + employeeInfo.getGender());
+				pstmt.setInt(4, employeeInfo.getUserId());
+				int k = pstmt.executeUpdate();
+				if (k != 1)
+					message = EmployeeStatusConstants.PROFILE_UPDATED;
+			}
+		} catch (SQLException e) {
+			LOGGER.error("Error while Saving Employee Info [{}] with error [{}]", employeeInfo.getUserId(), e);
+
+		}
+		return message;
 	}
 }

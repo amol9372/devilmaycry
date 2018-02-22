@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import programs.examples.service.ProfileService;
+
 @Controller
 @SessionAttributes("userSession")
 public class LeaveController 
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	
-	@RequestMapping(value = "/leave.jsp", method = RequestMethod.GET)
+	@Autowired
+	private ProfileService profileService;
+	
+	@RequestMapping(value = "/leave.jsp", method = RequestMethod.GET)	
 	public ModelAndView leave(HttpServletRequest request) {		
 		HttpSession session = request.getSession(false);		
 		ModelAndView leaveView = new ModelAndView();
@@ -34,6 +40,7 @@ public class LeaveController
 	
 	@RequestMapping(value = "/applyLeave", method = RequestMethod.POST)
 	public ModelAndView applyleave(@PathVariable int userId) {
+		
 		ModelAndView leaveView = new ModelAndView();
 		leaveView.setViewName("leave");
 		leaveView.addObject("empid", userId);

@@ -26,7 +26,7 @@
 		if (fromDate.getTime() > toDate.getTime())
 			alert("fromdate > todate");
 		if((toDate.getTime() -  fromDate.getTime())/86400000 > 3)
-			alert("Leave is for than 3 days");
+			alert("Leave is more than 3 days");
 		
 		
 		return false;
@@ -50,6 +50,22 @@
 	<br>
 	<form method="post" action="/Employee/spring/applyLeave"
 		onsubmit="return validate();">
+		<div class="">
+			<table>
+				<tr>
+					<td>Name :</td>
+					<td></td>
+					<td>Department :</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Approver :</td>
+					<td></td>
+					<td>Designation :</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
 		<div>
 			<table>
 				<tr>

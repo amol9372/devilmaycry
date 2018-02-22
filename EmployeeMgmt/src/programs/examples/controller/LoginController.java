@@ -1,5 +1,8 @@
 package programs.examples.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +34,10 @@ public class LoginController
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 		
 	@RequestMapping(value = "/login.jsp" , method = RequestMethod.GET)
-	public ModelAndView userLoginPage(){
+	public ModelAndView userLoginPage(HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		if(session!=null)
+			session.invalidate();
 		return new ModelAndView("Login");		
 	}
 	

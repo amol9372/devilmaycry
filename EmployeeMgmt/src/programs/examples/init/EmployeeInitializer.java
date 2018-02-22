@@ -10,7 +10,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import programs.examples.config.AppConfig;
 
-public class EmployeeInitializer implements WebApplicationInitializer {
+
+public class EmployeeInitializer implements WebApplicationInitializer{
 
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {

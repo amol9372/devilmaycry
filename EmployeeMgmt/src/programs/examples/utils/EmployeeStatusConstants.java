@@ -10,4 +10,6 @@ public class EmployeeStatusConstants
     public static final String PROFILE_COMPLETED = "COMPLETED";     // All updated 
     public static final String PROFILE_SEMI = "SEMI";               // Address pending , general info complete
     public static final String PROFILE_STARTED = "STARTED";         // NOthing updated
+    public static final String PROFILE_UPDATED = "profile updated successfully";
+    public static final String PROFILE_UPDATE_ERROR = "Error in updating profile";
 }
