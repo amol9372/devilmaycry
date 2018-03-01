@@ -12,7 +12,7 @@
 	  document.getElementById("lname").disabled = false;
 	  document.getElementById("secondaryEmail").disabled = false;
 	  document.getElementById("submitButton").disabled = false;
-	  
+	  document.getElementById("editButton").disabled = true;
   }
   
   function validate(){
