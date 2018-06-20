@@ -12,7 +12,7 @@ public class TestController2
 {
 	@RequestMapping("/showHomePage")
     public String showHome(){
-    	return "login";
+    	return "register";
     }
 	
 	@RequestMapping("/thyme")

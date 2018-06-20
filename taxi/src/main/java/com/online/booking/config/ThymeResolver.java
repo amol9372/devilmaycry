@@ -17,7 +17,8 @@ public class ThymeResolver
 	@Description("Thymeleaf Template Resolver")
 	public ServletContextTemplateResolver templateResolver() {
 	    ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
-	    templateResolver.setPrefix("/WEB-INF/views/static/");
+	    //templateResolver.setPrefix("/WEB-INF/views/static/");
+	    templateResolver.setPrefix("/assets/");
 	    templateResolver.setSuffix(".html");
 	    templateResolver.setTemplateMode("HTML5");
 	    //templateResolver.setOrder(2);
