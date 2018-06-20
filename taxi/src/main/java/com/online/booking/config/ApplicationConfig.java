@@ -23,7 +23,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
 	public ViewResolver getViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setSuffix("");
+		resolver.setSuffix(".jsp");
+		//resolver.setOrder(1);
 		return resolver;
 	}
 
@@ -39,4 +40,5 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
+	
 }
