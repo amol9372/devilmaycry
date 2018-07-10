@@ -32,7 +32,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
 		registry.addResourceHandler("/assets/**") //
-				.addResourceLocations("/assets/").setCachePeriod(31556926);
+				.addResourceLocations("/assets/");
 
 	}
 
