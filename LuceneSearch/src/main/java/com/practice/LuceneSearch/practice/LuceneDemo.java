@@ -39,8 +39,8 @@ public class LuceneDemo {
 			IndexWriter writer = new IndexWriter(memoryIndex, indexWriterConfig);
 			while ((record = csvReader.readNext()) != null) {
 				Document document = new Document();
-				document.add(new TextField("movieId", record[1], Field.Store.YES));
-				document.add(new TextField("tag", record[2], Field.Store.YES));
+				document.add(new TextField("primaryName", record[1], Field.Store.YES));
+				document.add(new TextField("primaryProfession", record[2], Field.Store.YES));
 				writer.addDocument(document);
 			}
 
@@ -63,11 +63,11 @@ public class LuceneDemo {
 	}
 
 	public static void main(String args[]) throws Exception {
-		 CSVReader csvReader = new CSVReader(new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\tags.csv"),',');
+		 CSVReader csvReader = new CSVReader(new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\name.basics.csv"),',');
 		 
          LuceneDemo luceneDemo = new LuceneDemo();
          luceneDemo.indexCSVDocuments(csvReader);
-         System.out.println(luceneDemo.searchDocuments("jesus", "tag"));
+         System.out.println(luceneDemo.searchDocuments("fred", "primaryName"));
          
 	}
 
