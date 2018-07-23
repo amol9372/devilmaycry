@@ -13,11 +13,18 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.spell.Dictionary;
+import org.apache.lucene.search.spell.LuceneDictionary;
+import org.apache.lucene.search.suggest.Lookup;
+import org.apache.lucene.search.suggest.analyzing.AnalyzingInfixSuggester;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 
@@ -27,11 +34,12 @@ public class LuceneDemo {
 
 	private Directory memoryIndex;
 	private StandardAnalyzer analyzer;
-	
-	public LuceneDemo(){
+
+	public LuceneDemo() {
 		this.memoryIndex = new RAMDirectory();
 		this.analyzer = new StandardAnalyzer();
 	}
+
 	public void indexCSVDocuments(CSVReader csvReader) {
 		String[] record = null;
 		try {
@@ -51,24 +59,45 @@ public class LuceneDemo {
 	}
 
 	public List<Document> searchDocuments(String query, String fieldToSearch) throws Exception {
-		Query queryParser = new QueryParser(fieldToSearch, analyzer).parse(query);
+		//Query termQuery = new BooleanQuery();
+		Query termQuery = new TermQuery(new Term(fieldToSearch, query));
+	   // Query queryParser = new QueryParser(fieldToSearch, analyzer).parse(termQuery);
 		IndexReader indexReader = DirectoryReader.open(memoryIndex);
 		IndexSearcher searcher = new IndexSearcher(indexReader);
-		TopDocs topDocs = searcher.search(queryParser, 10);
+		TopDocs topDocs = searcher.search(termQuery, 10);
 		List<Document> docList = new ArrayList<>();
-		for(ScoreDoc scoreDoc : topDocs.scoreDocs)
+		for (ScoreDoc scoreDoc : topDocs.scoreDocs)
 			docList.add(searcher.doc(scoreDoc.doc));
-		
+
 		return docList;
 	}
 
+	public void getSearchSuggestions(String term, String fieldToSearch) throws ParseException, IOException {
+		IndexReader indexReader = DirectoryReader.open(memoryIndex);
+		Dictionary dictionary = new LuceneDictionary(indexReader, fieldToSearch);
+		AnalyzingInfixSuggester analyzingInfixSuggester = new AnalyzingInfixSuggester(memoryIndex,
+				analyzer);
+		analyzingInfixSuggester.build(dictionary);
+		List<Lookup.LookupResult> lookupResultList = analyzingInfixSuggester.lookup(term, false, 10);
+		for (Lookup.LookupResult lookupResult : lookupResultList) 
+            System.out.println(lookupResult.key + ": " + lookupResult.value);
+        
+		analyzingInfixSuggester.close();
+	}
+
 	public static void main(String args[]) throws Exception {
-		 CSVReader csvReader = new CSVReader(new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\name.basics.csv"),',');
-		 
-         LuceneDemo luceneDemo = new LuceneDemo();
-         luceneDemo.indexCSVDocuments(csvReader);
-         System.out.println(luceneDemo.searchDocuments("fred", "primaryName"));
-         
+		// Read from CSV
+		CSVReader csvReader = new CSVReader(
+				new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\name.basics.csv"), ',');
+		LuceneDemo luceneDemo = new LuceneDemo();
+		// Index documents
+		luceneDemo.indexCSVDocuments(csvReader);
+		List<Document> searchList = luceneDemo.searchDocuments("Fre*", "primaryName");
+		for(Document doc : searchList)
+			System.out.println(doc.get("primaryName"));
+		//System.out.println(luceneDemo.searchDocuments("fred savage", "primaryName"));
+		//luceneDemo.getSearchSuggestions("fred", "primaryName");
+
 	}
 
 }
