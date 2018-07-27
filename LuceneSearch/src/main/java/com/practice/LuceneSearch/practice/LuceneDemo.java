@@ -15,7 +15,9 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.queryparser.xml.builders.RangeQueryBuilder;
+import org.apache.lucene.search.BooleanClause;
+import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
@@ -48,7 +50,7 @@ public class LuceneDemo {
 			while ((record = csvReader.readNext()) != null) {
 				Document document = new Document();
 				document.add(new TextField("primaryName", record[1], Field.Store.YES));
-				document.add(new TextField("primaryProfession", record[2], Field.Store.YES));
+				document.add(new TextField("primaryProfession", record[4], Field.Store.YES));
 				writer.addDocument(document);
 			}
 
@@ -85,6 +87,19 @@ public class LuceneDemo {
 		analyzingInfixSuggester.close();
 	}
 
+	public List<Document> searchDocumentsWithBooleanQuery(String term, String fieldToSearch) throws Exception {
+		IndexReader indexReader = DirectoryReader.open(memoryIndex);
+		IndexSearcher searcher = new IndexSearcher(indexReader);
+		BooleanQuery.Builder booleanQuery = new BooleanQuery.Builder();
+		booleanQuery.add(new TermQuery(new Term(fieldToSearch, "actor")), BooleanClause.Occur.MUST);
+		booleanQuery.add(new TermQuery(new Term(fieldToSearch, "director")), BooleanClause.Occur.MUST);
+		TopDocs topDocs = searcher.search(booleanQuery.build(), 10);
+		List<Document> docList = new ArrayList<>();
+		for (ScoreDoc scoreDoc : topDocs.scoreDocs)
+			docList.add(searcher.doc(scoreDoc.doc));
+		return docList;
+	}
+	
 	public static void main(String args[]) throws Exception {
 		// Read from CSV
 		CSVReader csvReader = new CSVReader(
@@ -92,12 +107,12 @@ public class LuceneDemo {
 		LuceneDemo luceneDemo = new LuceneDemo();
 		// Index documents
 		luceneDemo.indexCSVDocuments(csvReader);
-		List<Document> searchList = luceneDemo.searchDocuments("Fre*", "primaryName");
+		List<Document> searchList = luceneDemo.searchDocumentsWithBooleanQuery("", "primaryProfession");
 		for(Document doc : searchList)
 			System.out.println(doc.get("primaryName"));
 		//System.out.println(luceneDemo.searchDocuments("fred savage", "primaryName"));
 		//luceneDemo.getSearchSuggestions("fred", "primaryName");
-
+ 
 	}
 
 }
