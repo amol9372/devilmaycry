@@ -15,8 +15,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="../static/test.js"></script>
-<link rel="stylesheet" href="../static/test.css">	
+<script type="text/javascript" src="../static/js/test.js"></script>
+<link rel="stylesheet" href="../static/css/test.css">	
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Test view</title>
 </head>
@@ -30,8 +30,8 @@
                     	<span id="search_concept">Filter by</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">Contains</a></li>
-                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="Movies">Contains</a></li>
+                      <li><a href="titles">It's equal</a></li>
                       <li><a href="#greather_than">Greather than ></a></li>
                       <li><a href="#less_than">Less than < </a></li>
                       <li class="divider"></li>
