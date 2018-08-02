@@ -30,7 +30,6 @@ import org.apache.lucene.search.suggest.analyzing.AnalyzingInfixSuggester;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.BytesRef;
-import org.apache.lucene.util.automaton.UTF32ToUTF8;
 
 import com.opencsv.CSVReader;
 
