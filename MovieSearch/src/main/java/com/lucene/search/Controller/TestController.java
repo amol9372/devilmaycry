@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class TestController 
 {
 	@RequestMapping("/test")
-	public ModelAndView testPage(){
+	public ModelAndView testPage2(){
 		return new ModelAndView("testview");
 	}
 	
