@@ -3,3 +3,12 @@
 body{
     margin-top:300px;
 }
+
+select.selectpicker {
+      display: block;
+      margin: 0 auto;
+      padding-left: 20px;
+}
+.btn-new {
+      background-color: white;
+}

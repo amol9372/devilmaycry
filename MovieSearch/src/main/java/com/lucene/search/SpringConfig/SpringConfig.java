@@ -7,14 +7,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan({ "com.lucene.search" })
 @PropertySource(value = { "classpath:public.properties" })
-public class SpringConfig extends WebMvcConfigurerAdapter
+public class SpringConfig
 {
 	
 	@Bean
@@ -25,9 +24,9 @@ public class SpringConfig extends WebMvcConfigurerAdapter
 		return resolver;
 	}
 
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+//	@Override
+//	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//		configurer.enable();
+//	}
 	
 }

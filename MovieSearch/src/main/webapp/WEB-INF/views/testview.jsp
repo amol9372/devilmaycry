@@ -5,8 +5,8 @@
 <head>
 <!-- jQuery library -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!-- JS file -->
 <script src="../static/js/jquery.easy-autocomplete.min.js"></script>
 
@@ -14,13 +14,12 @@
 <link rel="stylesheet" href="../static/css/easy-autocomplete.min.css">
 
 <!-- Additional CSS Themes file - not required-->
-<link rel="stylesheet" href="../static/css/easy-autocomplete.themes.min.css">
+<link rel="stylesheet"
+	href="../static/css/easy-autocomplete.themes.min.css">
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
 
 <!-- Latest compiled JavaScript -->
 <script
@@ -37,22 +36,32 @@
 			<div class="col-xs-8 col-xs-offset-2">
 				<div class="input-group">
 					<div class="input-group-btn search-panel">
-						<button type="button" class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown">
-							<span id="search_concept">Filter by</span> <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li value="movies"><a href="movies">Movies</a></li>
-							<li><a href="titles">Titles</a></li>
-							<li><a href="names">Names</a></li>
-							<li><a href="tvepisodes">TV Episodes</a></li>
-							<li class="divider"></li>
-							<li><a href="all">All</a></li>
-						</ul>
+						<!-- 						<button type="button" class="btn btn-default dropdown-toggle" -->
+						<!-- 							data-toggle="dropdown"> -->
+						<!-- 							<span id="search_concept">Filter by</span> <span class="caret"></span> -->
+						<!-- 						</button> -->
+						<!-- 						<ul class="dropdown-menu" role="menu"> -->
+						<!-- 							<li value="movies"><a href="movies">Movies</a></li> -->
+						<!-- 							<li><a href="titles">Titles</a></li> -->
+						<!-- 							<li><a href="names">Names</a></li> -->
+						<!-- 							<li><a href="tvepisodes">TV Episodes</a></li> -->
+						<!-- 							<li class="divider"></li> -->
+						<!-- 							<li><a href="all">All</a></li> -->
+						<!-- 						</ul> -->
+
+						<div class="col-sm-2">
+							<select class="form-control" id="gender1" style="width: auto;">
+								<option selected>Filter By</option>
+								<option value="movies">Movies</option>
+								<option value="titles">Titles</option>
+								<option value="Names">Names</option>
+								<option value="tvepisodes">TV Episodes</option>
+							</select>
+
+						</div>
 					</div>
 					<input type="hidden" name="search_param" value="all"
-						id="search_param"> 
-					<input type="text" class="form-control"
+						id="search_param"> <input type="text" class="form-control"
 						name="x" placeholder="Find Movies,Titles or Episodes ...">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="button">
