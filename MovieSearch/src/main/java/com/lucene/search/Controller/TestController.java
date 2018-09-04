@@ -13,4 +13,9 @@ public class TestController
 		return new ModelAndView("testview");
 	}
 	
+	@RequestMapping("/test")
+	public ModelAndView googleOauth2(){
+		return new ModelAndView("testview");
+	}
+	
 }
