@@ -20,14 +20,14 @@ public class TestController
 		return new ModelAndView("testview");
 	}
 	
-	@RequestMapping("/googleOAuth")
-	public void googleOauth2(){
-		googleSigninService.oauth2Service();
-	}
+//	@RequestMapping("/googleOAuth")
+//	public void googleOauth2(){
+//		googleSigninService.oauth2Service();
+//	}
 	
-	@RequestMapping("/googleOAuthCallback")
-	public void googleOauth2Callback(@RequestParam("code") String code){
-		String accessToken = googleSigninService.getAccessToken(code);
-	}
+//	@RequestMapping("/googleOAuthCallback")
+//	public void googleOauth2Callback(@RequestParam("code") String code){
+//		String accessToken = googleSigninService.getAccessToken(code);
+//	}
 	
 }
