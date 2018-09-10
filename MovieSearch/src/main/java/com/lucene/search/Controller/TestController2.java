@@ -35,7 +35,7 @@ public class TestController2
 	public void googleOauth2(){
 		googleSigninService.oauth2Service();
 	}
-	
+		
 	@RequestMapping(value = "/googleOAuthCallback", method = RequestMethod.GET)
 	public void googleOauth2Callback(@RequestParam("code") String code){
 		String accessToken = googleSigninService.getAccessToken(code);
