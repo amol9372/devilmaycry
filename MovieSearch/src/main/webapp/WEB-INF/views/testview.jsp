@@ -35,7 +35,7 @@
 <body>
 	<div
 		style="position: absolute; top: 0; right: 0; color: blue; margin-right: 30px; margin-top: 20px">
-		<a href="https://accounts.google.com/o/oauth2/auth?"${amol} class="btn btn-default" onclick="googleOauth();">Google Sign-In</a>
+		<a href="#" class="btn btn-default" id="googleOAuthUrl">Google Sign-In</a>
 <!-- 		<button class="btn btn-default" onclick="googleOauth();">Google Sign In</button> -->
 
 	</div>
