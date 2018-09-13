@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +26,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="../static/js/config.js"></script>
 <script type="text/javascript" src="../static/js/test.js"></script>
 <link rel="stylesheet" href="../static/css/test.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -33,9 +35,8 @@
 <body>
 	<div
 		style="position: absolute; top: 0; right: 0; color: blue; margin-right: 30px; margin-top: 20px">
-		<a
-			href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=https://localhost:8080/MovieSearch/webapi/test&response_type=code&client_id=52424919169-remgpb2h4nhdua57plc1cem4p0qo4if8.apps.googleusercontent.com&approval_prompt=force"
-			class="btn btn-default">Google Sign-In</a>
+		<a href="https://accounts.google.com/o/oauth2/auth?"${amol} class="btn btn-default" onclick="googleOauth();">Google Sign-In</a>
+<!-- 		<button class="btn btn-default" onclick="googleOauth();">Google Sign In</button> -->
 
 	</div>
 	<div class="container">

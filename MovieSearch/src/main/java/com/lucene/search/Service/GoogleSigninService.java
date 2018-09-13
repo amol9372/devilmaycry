@@ -7,7 +7,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.lucene.search.Model.GoogleSignInProperties;
-import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -32,16 +31,16 @@ public class GoogleSigninService
         oauth2GetCodeUrl.append("&response_type=").append(getGoogleSignInProperties.getResponse_id());
         oauth2GetCodeUrl.append("&client_id=").append(getGoogleSignInProperties.getClient_id());
         oauth2GetCodeUrl.append("&approval_prompt=").append(getGoogleSignInProperties.getApproval_prompt());
-        
+        String url = "https://accounts.google.com/ServiceLogin?passive=1209600&continue=https://accounts.google.com/o/oauth2/auth?scope%3Demail%26redirect_uri%3Dhttp://localhost:8080/MovieSearch/webapi/googleOAuthCallback%26response_type%3Dcode%26client_id%3D52424919169-remgpb2h4nhdua57plc1cem4p0qo4if8.apps.googleusercontent.com%26approval_prompt%3Dforce%26from_login%3D1%26as%3DatFtpaSn4kKndbhQEAXn1w&followup=https://accounts.google.com/o/oauth2/auth?scope%3Demail%26redirect_uri%3Dhttp://localhost:8080/MovieSearch/webapi/googleOAuthCallback%26response_type%3Dcode%26client_id%3D52424919169-remgpb2h4nhdua57plc1cem4p0qo4if8.apps.googleusercontent.com%26approval_prompt%3Dforce%26from_login%3D1%26as%3DatFtpaSn4kKndbhQEAXn1w&oauth=1&sarp=1&scc=1";
 		Request request = new Request.Builder()
-		  .url(oauth2GetCodeUrl.toString()).get()
+		  .url(url).get()
 		  .addHeader("content-type", "application/x-www-form-urlencoded")
 		  .addHeader("cache-control", "no-cache")
 		  .build();
        
 		try {
 			Response response = client.newCall(request).execute();
-			System.out.println(response.toString());
+			System.out.println(response);
 			
 		} catch (IOException e) {
 			
