@@ -1,7 +1,5 @@
 package com.lucene.search.Controller;
 
-import java.io.IOException;
-
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -32,16 +30,10 @@ public class TestController2
 	    }
 	    return jsonArray.toString();
 	}
-	
-	@RequestMapping("/googleOAuth")
-	public void googleOauth2(){
-		googleSigninService.oauth2Service();
-	}
 		
 	@RequestMapping(value = "/googleOAuthCallback", method = RequestMethod.GET)
-	public void googleOauth2Callback(@RequestParam("code") String code) throws IOException{
-		String accessToken = googleSigninService.getAccessToken(code);
-		
+	public void googleOauth2Callback(@RequestParam("code") String code){
+		googleSigninService.getAccessToken(code);
 	}
 	
 	@RequestMapping(value ="/messages/{id}", method = RequestMethod.GET)
