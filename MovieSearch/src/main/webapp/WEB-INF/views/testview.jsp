@@ -33,8 +33,10 @@
 <title>Test view</title>
 </head>
 <body>
+<c:out value="${test}" />
 	<div
 		style="position: absolute; top: 0; right: 0; color: blue; margin-right: 30px; margin-top: 20px">
+		<h5><span class="label label-default"><c:out value="${googleUserInfo.getGiven_name()}"/> </span></h5>
 		<a href="#" class="btn btn-default" id="googleOAuthUrl">Google Sign-In</a>
 <!-- 		<button class="btn btn-default" onclick="googleOauth();">Google Sign In</button> -->
 

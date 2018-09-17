@@ -7,7 +7,7 @@ $(document).ready(function(e) {
 					+ "&response_type="+ googleSignInParams.response_type
 					+ "&approval_prompt"+ googleSignInParams.approval_prompt;
 			
-	alert(googleOAuthurl);
+	//alert(googleOAuthurl);
 	
 	document.getElementById('googleOAuthUrl').href = googleOAuthurl;		
 	
@@ -24,24 +24,24 @@ $(document).ready(function(e) {
 	
 });
 
-function googleOauth(){
-	$.ajax({
-		  url: googleSignInParams.oauth2_url,
-		  type: "get", //send it through get method
-		  data: { 
-			  client_id : '52424919169-remgpb2h4nhdua57plc1cem4p0qo4if8.apps.googleusercontent.com',
-			  response_type : 'code',
-			  redirect_uri : 'http://localhost:8080/MovieSearch/webapi/googleOAuthCallback',
-			  scope : 'email',	
-			  approval_prompt : 'force'
-			  //grant_type : 'authorization_code'	
-		  },
-		  beforeSend: function(xhr){xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');},
-		  success: function(response) {
-		    //Do Something
-		  },
-		  error: function(xhr) {
-		    //Do Something to handle error
-		  }
-	});
-}
+//function googleOauth(){
+//	$.ajax({
+//		  url: googleSignInParams.oauth2_url,
+//		  type: "get", //send it through get method
+//		  data: { 
+//			  client_id : '52424919169-remgpb2h4nhdua57plc1cem4p0qo4if8.apps.googleusercontent.com',
+//			  response_type : 'code',
+//			  redirect_uri : 'http://localhost:8080/MovieSearch/webapi/googleOAuthCallback',
+//			  scope : 'email',	
+//			  approval_prompt : 'force'
+//			  //grant_type : 'authorization_code'	
+//		  },
+//		  beforeSend: function(xhr){xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');},
+//		  success: function(response) {
+//		    //Do Something
+//		  },
+//		  error: function(xhr) {
+//		    //Do Something to handle error
+//		  }
+//	});
+//}

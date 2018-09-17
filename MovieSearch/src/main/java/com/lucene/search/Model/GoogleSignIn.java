@@ -1,6 +1,17 @@
 package com.lucene.search.Model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+
+import com.lucene.search.Utils.MovieUtils;
+
+@Component
 public class GoogleSignIn {
+	
+	@Autowired
+	private Environment env;
+	
 	private String id;
 	private String email;
 	boolean verigfied_email;
@@ -41,6 +52,8 @@ public class GoogleSignIn {
 	}
 
 	public String getGiven_name() {
+		if (MovieUtils.isEmpty(given_name))
+			return env.getProperty("default_given_name");
 		return given_name;
 	}
 

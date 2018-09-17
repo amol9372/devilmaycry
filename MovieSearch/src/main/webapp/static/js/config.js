@@ -4,7 +4,7 @@ googleSignInParams = {
   client_id : '52424919169-remgpb2h4nhdua57plc1cem4p0qo4if8.apps.googleusercontent.com',
   client_secret : 'BVqk8uJjqPr_1e74VksyV3nv',
   response_type : 'code',
-  redirect_uri : 'http://localhost:8080/MovieSearch/webapi/restApi/googleOAuthCallback',
+  redirect_uri : 'http://localhost:8080/MovieSearch/webapi/googleOAuthCallback',
   scope : 'email',	
   approval_prompt : 'force',
   grant_type : 'authorization_code'	  

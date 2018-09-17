@@ -52,4 +52,8 @@ public class SpringConfig
     	 googleSignInProperties.setGrant_type(env.getProperty("grant_type"));
     	 return googleSignInProperties;
      }
+     
+     public String getProperty(String key){
+ 		return env.getProperty(key);
+ 	}
 }

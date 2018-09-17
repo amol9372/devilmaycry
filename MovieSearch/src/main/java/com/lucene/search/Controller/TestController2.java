@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lucene.search.Model.GoogleSignIn;
 import com.lucene.search.Service.GoogleSigninService;
 
 @RestController
@@ -31,10 +32,13 @@ public class TestController2
 	    return jsonArray.toString();
 	}
 		
-	@RequestMapping(value = "/googleOAuthCallback", method = RequestMethod.GET)
-	public void googleOauth2Callback(@RequestParam("code") String code){
-		googleSigninService.getAccessToken(code);
-	}
+//	@RequestMapping(value = "/googleOAuthCallback", method = RequestMethod.GET)
+//	public void googleOauth2Callback(@RequestParam("code") String code){
+//		String accessToken = googleSigninService.getAccessToken(code);
+//		GoogleSignIn googleSignIn = googleSigninService.getUserInfo(accessToken);
+//		//save user-info to our Database
+//		//open the home page
+//	}
 	
 	@RequestMapping(value ="/messages/{id}", method = RequestMethod.GET)
 	public void displayId(@PathVariable("id") int id){

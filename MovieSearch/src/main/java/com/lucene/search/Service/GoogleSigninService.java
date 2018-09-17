@@ -25,7 +25,7 @@ public class GoogleSigninService
 	@Autowired
 	private GoogleSignInProperties getGoogleSignInProperties;
 
-	public void getAccessToken(String code) {
+	public String getAccessToken(String code) {
 		String accessToken = null;
 		StringBuilder getAccessTokenParams = new StringBuilder();
 		try {
@@ -58,15 +58,15 @@ public class GoogleSigninService
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		return accessToken;
 	}
 	
-	private GoogleSignIn getUserInfo(String accessToken){
+	public GoogleSignIn getUserInfo(String accessToken){
 		GoogleSignIn googleSignIn = new GoogleSignIn();
 		StringBuilder getUserInfoUrl = new StringBuilder();
 		try {
 			getUserInfoUrl.append(env.getProperty("user_info_url")).append("access_token=").append(accessToken);
-			URL url = new URL(env.getProperty("user_info_url"));
+			URL url = new URL(getUserInfoUrl.toString());
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
