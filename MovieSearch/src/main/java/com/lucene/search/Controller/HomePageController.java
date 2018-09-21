@@ -12,7 +12,7 @@ import com.lucene.search.Service.GoogleSigninService;
 
 @Controller
 @RequestMapping("/")
-public class TestController 
+public class HomePageController 
 {
 	@Autowired
 	private GoogleSigninService googleSigninService;
