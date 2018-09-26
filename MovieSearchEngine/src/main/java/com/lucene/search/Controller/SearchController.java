@@ -15,7 +15,7 @@ import com.lucene.search.Service.GoogleSigninService;
 
 @RestController
 @RequestMapping("/restApi")
-public class TestController2
+public class SearchController
 {
 	@Autowired
 	private GoogleSigninService googleSigninService;
@@ -31,14 +31,6 @@ public class TestController2
 	    }
 	    return jsonArray.toString();
 	}
-		
-//	@RequestMapping(value = "/googleOAuthCallback", method = RequestMethod.GET)
-//	public void googleOauth2Callback(@RequestParam("code") String code){
-//		String accessToken = googleSigninService.getAccessToken(code);
-//		GoogleSignIn googleSignIn = googleSigninService.getUserInfo(accessToken);
-//		//save user-info to our Database
-//		//open the home page
-//	}
 	
 	@RequestMapping(value ="/messages/{id}", method = RequestMethod.GET)
 	public void displayId(@PathVariable("id") int id){
