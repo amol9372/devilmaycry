@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-trailing-whitespace
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { testVariable } from '../mock-heroes';
@@ -18,10 +19,20 @@ export class HeroesComponent implements OnInit {
     id: 1,
     name: 'Amol'
   };
+   // tslint:disable-next-line:no-trailing-whitespace
+   
+  selectedHero: Hero;
+  isHeroSelected = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+   // tslint:disable-next-line:no-trailing-whitespace
+   
+  onSelect (hero: Hero) {
+    this.selectedHero = hero;
+    this.isHeroSelected = true;
   }
 
 }
