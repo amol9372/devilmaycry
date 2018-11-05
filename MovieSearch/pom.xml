@@ -9,7 +9,7 @@
 	<url>http://maven.apache.org</url>
 	<build>
 		<finalName>MovieSearch</finalName>
-		<!-- <sourceDirectory>src</sourceDirectory> -->
+<!-- 		<sourceDirectory>src</sourceDirectory> -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -24,7 +24,7 @@
 				<version>3.0.0</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<failOnMissingWebXml>True</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>

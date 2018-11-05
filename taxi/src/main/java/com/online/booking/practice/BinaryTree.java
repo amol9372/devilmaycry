@@ -1,5 +1,11 @@
 package com.online.booking.practice;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 class Node
 {
 	Node left;
@@ -77,8 +83,22 @@ public class BinaryTree
          deleteRecursive(root, value);	
     }
     
+    public static int[] a() {
+    	Map<Integer,Integer> l = new TreeMap<>(new Comparator<Integer>() {
+    		
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				// TODO Auto-generated method stub
+				return o1.compareTo(o2);
+			}
+		});
+    	return new int[] {1};
+    }
+    
     public static void main(String args[]){
-		BinaryTree binaryTree = new BinaryTree();
+	    List<Integer> wd = new ArrayList<>();
+	    Object[] d = wd.toArray();
+    	BinaryTree binaryTree = new BinaryTree();
 		binaryTree.addNode(3);
 		binaryTree.addNode(4);
 		binaryTree.addNode(7);

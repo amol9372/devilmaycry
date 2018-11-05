@@ -15,7 +15,7 @@ public class AInnerClass
 		Task1 task1 = () -> System.out.println("anytask method called with lambda expression");
 		task1.anyTask();
 		
-		Comparator<Employee> empComparator = (o1,o2) -> { return o1.getId() - o2.getId(); };
+		Comparator<Employee> empComparator = (o1,o2) -> o1.getId() - o2.getId();
 		
 		
  	}
