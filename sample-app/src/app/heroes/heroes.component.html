@@ -1,4 +1,7 @@
 <h2>My Heroes</h2>
+
+{{ oneWayBindingVariable }}
+
 <br>
 <ul class="heroes">
   <li *ngFor="let hero of heroList" (click)="onSelect(hero)">
@@ -6,4 +9,13 @@
   </li>
 </ul>
 
+<br>
+<input type="text" [(ngModel)]="twoWayBindingVariable"> VariableName : {{ twoWayBindingVariable }}
+<br>
+<input type="text" [ngModel]="oneway">
+
+<br>
+
 <app-hero-details [hero]="selectedHero"></app-hero-details>
+
+
