@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,13 +26,21 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="../static/js/config.js"></script>
 <script type="text/javascript" src="../static/js/test.js"></script>
 <link rel="stylesheet" href="../static/css/test.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Test view</title>
 </head>
 <body>
+<c:out value="${test}" />
+	<div
+		style="position: absolute; top: 0; right: 0; color: blue; margin-right: 30px; margin-top: 20px">
+		<h5><span class="label label-default"><c:out value="${googleUserInfo.getGiven_name()}"/> </span></h5>
+		<a href="#" class="btn btn-default" id="googleOAuthUrl">Google Sign-In</a>
+<!-- 		<button class="btn btn-default" onclick="googleOauth();">Google Sign In</button> -->
+
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2">
@@ -50,7 +60,7 @@
 						<!-- 						</ul> -->
 
 						<div class="col-sm-2">
-							<select class="form-control" id="gender1" style="width: auto;">
+							<select class="form-control" id="gender" style="width: auto;">
 								<option selected>Filter By</option>
 								<option value="movies">Movies</option>
 								<option value="titles">Titles</option>
