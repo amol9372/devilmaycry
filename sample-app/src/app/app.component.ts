@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { HeroService } from './hero.service';
+import { MessagesComponent } from './messages/messages.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { HeroService } from './hero.service';
 @NgModule({
   declarations: [
     HeroesComponent,
-    HeroDetailsComponent
+    HeroDetailsComponent,
+    MessagesComponent
   ],
   imports: [
     FormsModule
