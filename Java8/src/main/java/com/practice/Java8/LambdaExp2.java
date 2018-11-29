@@ -21,22 +21,22 @@ public class LambdaExp2 {
 		Predicate<List<String>> checkListSizeGreaterThan4 = (l) -> l.size() > 4 ;
 		
 		boolean validList = checkListContainsNameOrNot.and(checkListSizeGreaterThan4).test(nameList);
-		System.out.println("List is "+validList);
+		//System.out.println("List is "+validList);
+	    
+		Employee employee = getEmployee();
+		Department dept2 = null;
+		Optional<Department> department = Optional.ofNullable(employee.getDepartment());
+		Department department2 = Optional.ofNullable(dept2).orElse(employee.getDepartment());
 		
-		//Department dept1 = new Employee().getDepartment().get();
+		department.ifPresent(d -> {System.out.println(d.getName());});
 		
-		Optional<Department> dept = new Employee().getOptionalDepartment();
-		
-		Optional<Department> dept1 = Optional.ofNullable(new Employee().getDepartment());
-		
-		Department department = dept1.orElse(new Department());
-		
-		dept1.ifPresent((d) -> {
-			System.out.println(d.getName());
-		});
-		
+		System.out.println(department2.getId());
 		
  	}
+	
+	static Employee getEmployee(){
+		return new Employee("Amol", 98446, new Department(1, "CSE"));
+	}
 		
 	
 }

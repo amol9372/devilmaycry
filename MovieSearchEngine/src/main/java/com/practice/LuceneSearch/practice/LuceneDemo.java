@@ -52,6 +52,7 @@ public class LuceneDemo {
 				Document document = new Document();
 				document.add(new TextField("primaryName", record[1], Field.Store.YES));
 				document.add(new TextField("birthYear", record[2], Field.Store.YES));
+				document.add(new TextField("deathYear", record[3], Field.Store.YES));
 				document.add(new TextField("primaryProfession", record[4], Field.Store.YES));
 				writer.addDocument(document);
 			}

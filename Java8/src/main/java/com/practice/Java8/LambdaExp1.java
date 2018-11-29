@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class LambdaExp1 implements A{
     
@@ -39,6 +40,12 @@ public class LambdaExp1 implements A{
 		lambdaExp1.isPresent();
 		
 		System.out.println(b);
+		randomList.stream().forEach( l -> {System.out.println(l);});
+		
+		List<String> newList = randomList.stream().map(s -> s.toString()).collect(Collectors.toList());
+		Optional<Integer> maxElement = randomList.stream().max((Integer i1, Integer i2) -> { return i1.compareTo(i2); });
+		
+		maxElement.ifPresent((max) -> {System.out.println("max elemant is : "+max);});
 		
 	}
     

@@ -10,6 +10,12 @@ public class Employee {
 	private Optional<Department> optionalDepartment;
 	private Department department;
 
+	public Employee(String name, int id, Department department){
+		this.name = name;
+		this.id = id;
+		this.department = new Department(department.getId(), department.getName());
+	}
+	
 	public void setDepartment(Department department) {
 		this.department = department;
 	}

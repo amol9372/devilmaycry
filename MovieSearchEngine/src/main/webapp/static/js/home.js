@@ -7,8 +7,7 @@ $(document).ready(function(e) {
 					+ "&response_type="+ googleSignInParams.response_type
 					+ "&approval_prompt"+ googleSignInParams.approval_prompt;
 			
-	
-			
+				
 	document.getElementById('googleOAuthUrl').href = googleOAuthurl;		
 	
 	var options = {
