@@ -30,9 +30,11 @@ import org.apache.lucene.search.suggest.analyzing.AnalyzingInfixSuggester;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.BytesRef;
+import org.springframework.stereotype.Component;
 
 import com.opencsv.CSVReader;
 
+@Component
 public class LuceneDemo {
 
 	private Directory memoryIndex;
@@ -77,7 +79,8 @@ public class LuceneDemo {
 		return docList;
 	}
 
-	public void getSearchSuggestions(String term, String fieldToSearch) throws ParseException, IOException {
+	public List<String> getSearchSuggestions(String term, String fieldToSearch) throws ParseException, IOException {
+		List<String> suggestionList = new ArrayList<>();
 		IndexReader indexReader = DirectoryReader.open(memoryIndex);
 		Dictionary dictionary = new LuceneDictionary(indexReader, fieldToSearch);
 		AnalyzingInfixSuggester analyzingInfixSuggester = new AnalyzingInfixSuggester(memoryIndex,
@@ -87,7 +90,13 @@ public class LuceneDemo {
 		for (Lookup.LookupResult lookupResult : lookupResultList) 
             System.out.println(lookupResult.key + ": " + lookupResult.value);
         
+		lookupResultList.stream().forEach((lookupResult) -> {
+			suggestionList.add(lookupResult.key.toString());
+		});
+		
 		analyzingInfixSuggester.close();
+		
+		return suggestionList;
 	}
 
 	public List<Document> searchDocumentsWithBooleanQuery(String term, String fieldToSearch) throws Exception {

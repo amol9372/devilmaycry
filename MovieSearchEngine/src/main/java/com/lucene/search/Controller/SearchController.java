@@ -1,25 +1,33 @@
 package com.lucene.search.Controller;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lucene.search.Model.PersonModel;
+import com.lucene.search.Service.SearchService;
 
 @RestController
 @RequestMapping("/restApi")
 public class SearchController {
 
+	@Autowired
+	private SearchService searchService;
+	
 	@RequestMapping("/getSampleList")
 	public String testPage() throws JSONException {
 		JSONArray jsonArray = new JSONArray();
-		String[] countries = new String[] { "india", "pakistan", "nepal", "bhutan" };
+		String[] countries = new String[] { "india", "pakistan", "nepal", "bhuta" };
 		for (String country : countries) {
 			JSONObject json = new JSONObject();
 			json.put("name", country);
@@ -29,11 +37,16 @@ public class SearchController {
 	}
 
 	@RequestMapping(value = "/getPersonDetails/{searchPhrase}" , method = RequestMethod.GET)
-	public PersonModel SearchNames(@PathVariable("searchPhrase") String searchPhrase){
+	public PersonModel searchNames(@PathVariable("searchPhrase") String searchPhrase){
 		
-		return new PersonModel("Amol Singh",1990,3000,Arrays.asList("Actor","Producer","Directr"));	
+		return new PersonModel("Amol Singh",1990,3000,Arrays.asList("Actor","Producer","Direct"));	
 	}
 	
+	@RequestMapping(value = "/getSearchSuggestions/{searchPhrase}" , method = RequestMethod.GET)
+	public List<String> getSearchSugesstions(@PathVariable("searchPhrase") String searchPhrase) throws ParseException, IOException{
+		
+		return searchService.getSearchSuggestions(searchPhrase);
+	}
 	
 	
 	@RequestMapping(value = "/messages/{id}", method = RequestMethod.GET)

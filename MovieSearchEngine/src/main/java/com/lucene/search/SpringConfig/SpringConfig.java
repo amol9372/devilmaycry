@@ -1,5 +1,8 @@
 package com.lucene.search.SpringConfig;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -7,11 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.lucene.search.Model.GoogleSignInProperties;
+import com.opencsv.CSVReader;
+import com.practice.LuceneSearch.practice.LuceneDemo;
 
 @Configuration
 @EnableWebMvc
@@ -56,4 +60,14 @@ public class SpringConfig
      public String getProperty(String key){
  		return env.getProperty(key);
  	}
+     
+    @Bean
+    public LuceneDemo getLuceneDemo() throws FileNotFoundException{
+    	CSVReader csvReader = new CSVReader(
+				new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\name.basics.csv"), ',');
+		LuceneDemo luceneDemo = new LuceneDemo();
+		luceneDemo.indexCSVDocuments(csvReader);
+		return luceneDemo;
+    }
+     
 }
