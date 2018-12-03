@@ -43,9 +43,9 @@ public class SearchController {
 	}
 	
 	@RequestMapping(value = "/getSearchSuggestions/{searchPhrase}" , method = RequestMethod.GET)
-	public List<String> getSearchSugesstions(@PathVariable("searchPhrase") String searchPhrase) throws ParseException, IOException{
-		
-		return searchService.getSearchSuggestions(searchPhrase);
+	public String getSearchSugesstions(@PathVariable("searchPhrase") String searchPhrase) throws ParseException, IOException, JSONException{
+		JSONArray jsonArray = searchService.getSearchSuggestions(searchPhrase);
+		return jsonArray.toString();
 	}
 	
 	

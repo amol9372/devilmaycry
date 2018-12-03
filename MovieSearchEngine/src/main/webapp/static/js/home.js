@@ -12,7 +12,8 @@ $(document).ready(function(e) {
 	
 	var options = {
 		url : function(phrase) {
-			return "restApi/getSampleList?phrase=" + phrase + "&format=json";
+			//return "restApi/getSearchSuggestions/" + phrase + "&format=json";
+			return "restApi/getSearchSuggestions/" + phrase;
 		},
 
 		getValue : "name"
