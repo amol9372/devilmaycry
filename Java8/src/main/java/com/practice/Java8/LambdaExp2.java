@@ -38,5 +38,7 @@ public class LambdaExp2 {
 		return new Employee("Amol", 98446, new Department(1, "CSE"));
 	}
 		
-	
+	public void testAutowiringAnnotation(){
+		System.out.println("this annotation is working");
+	}
 }

@@ -2,7 +2,6 @@ package com.lucene.search.Controller;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.codehaus.jettison.json.JSONArray;
@@ -68,5 +67,8 @@ public class SearchController {
 	public void postId(@PathVariable("id") String id) {
 		System.out.println("Inside messages POST API , Id : " + id);
 	}
+	
+	
+	
 
 }

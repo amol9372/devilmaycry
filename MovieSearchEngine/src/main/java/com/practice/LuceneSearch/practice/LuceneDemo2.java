@@ -15,6 +15,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
@@ -64,16 +65,19 @@ public class LuceneDemo2 {
 	}
 
 	public List<Document> searchDocuments(String query, String fieldToSearch) throws Exception {
-		//Query termQuery = new BooleanQuery();
-		Query termQuery = new TermQuery(new Term(fieldToSearch, query));
-	   // Query queryParser = new QueryParser(fieldToSearch, analyzer).parse(termQuery);
+		// Query termQuery = new BooleanQuery();
+		QueryParser queryParser = new QueryParser(fieldToSearch, analyzer);
+		Query query1 = queryParser.parse(query);
 		IndexReader indexReader = DirectoryReader.open(memoryIndex);
 		IndexSearcher searcher = new IndexSearcher(indexReader);
-		TopDocs topDocs = searcher.search(termQuery, 10);
+		TopDocs topDocs = searcher.search(query1, 10);
 		List<Document> docList = new ArrayList<>();
 		for (ScoreDoc scoreDoc : topDocs.scoreDocs)
 			docList.add(searcher.doc(scoreDoc.doc));
 
+		docList.stream().forEach(d -> {
+			System.out.println(d.get("primaryName"));
+		});
 		return docList;
 	}
 
@@ -110,14 +114,14 @@ public class LuceneDemo2 {
 		// Read from CSV
 		CSVReader csvReader = new CSVReader(
 				new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\name.basics.csv"), ',');
-		LuceneDemo luceneDemo = new LuceneDemo();
+		LuceneDemo2 luceneDemo2 = new LuceneDemo2();
 		// Index documents
-		luceneDemo.indexCSVDocuments(csvReader);
+		luceneDemo2.indexCSVDocuments(csvReader);
 //		List<Document> searchList = luceneDemo.searchDocumentsWithBooleanQuery("", "primaryProfession");
 //		for(Document doc : searchList)
 //			System.out.println(doc.get("primaryName"));
-		System.out.println(luceneDemo.searchDocuments("Fred Astaire", "primaryName"));
-		//luceneDemo.getSearchSuggestions("fred", "primaryName");
+		//System.out.println(luceneDemo2.searchDocuments("Fred", "primaryName"));
+		luceneDemo2.getSearchSuggestions("fred", "primaryName");
  
 	}
 

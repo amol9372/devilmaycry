@@ -5,12 +5,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class LambdaExp1 implements A{
     
 	private static List<Integer> randomList = new ArrayList<>();
+	
+	@MyAutowiring
+	private LambdaExp2 lambdaExp2;
+	
+	public LambdaExp2 getLambdaExp2(){
+		return lambdaExp2;
+	}
 	
 	static {
 		Random randomInt = new Random();
@@ -35,9 +44,12 @@ public class LambdaExp1 implements A{
 		Predicate<List<Integer>> containsInteger6 = (l) -> l.contains(6);
 		boolean b = checkSizeOf10.or(containsInteger6).test(randomList);
 		
+		Supplier<String> nameSupplier = () -> { return "Amol Singh"; };
+		System.out.println(nameSupplier.get());
+		
 		Optional<LambdaExp1> lambdaExp1 = Optional.ofNullable(null);
 		lambdaExp1.orElse(new LambdaExp1());
-		lambdaExp1.isPresent();
+		lambdaExp1.isPresent();	
 		
 		System.out.println(b);
 		randomList.stream().forEach( l -> {System.out.println(l);});
@@ -47,8 +59,15 @@ public class LambdaExp1 implements A{
 		
 		maxElement.ifPresent((max) -> {System.out.println("max elemant is : "+max);});
 		
+		Function<String, Integer> convertStringToInteger = (s) -> { return Integer.parseInt(s); };
+		System.out.println(convertStringToInteger.apply("236"));
+		
 	}
     
+	@MyAnnotation
+    public void testMyAnnotation(String s){
+		System.out.println("the injected string is : "+s);
+	}
     
     
     public void displayName(A a) {
