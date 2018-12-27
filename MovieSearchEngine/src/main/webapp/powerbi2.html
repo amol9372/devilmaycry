@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/jquery/dist/jquery.js"></script>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+<script>
+window.onload = function () {
+    var accessToken = 'H4sIAAAAAAAEACVWxQr0CBJ-l_-ahbgtzCEdd9db0nF3G_bdt5m5FxT1af39x0qffkrzP__9E6uajPq83PCoIzvNoFEFG-mrCWqc5pvlKodCzZZwyxzZSiq7P-i7q9Kz6aIWWERde6de5A0dR81fmRewMK_O5C1LsLfYxf3Ikk_n4HB2rOupl6U0ET664aT3cuh53znKRvwQgeyGp4ODqKm_osxN0-YBPhu0DwzL8f4x4MIm5mcFaxTBM1LDwFMaH7WVy7GLrCsZ9um0pBC_55-yo9mnHFqHfRldIZ-AVD2ufa-gBvbLbsWc1JBwgAN9XUAQQqpkGtmDqzj-2yapbDfOygn4ibnw4LCQ1PaS0Aw-LRgELNCVU4eKyAyuyZMc6qS92nUryZ1U05qyMZLRIz5E6sGOi0AC1CEjj9zl59ljFT2TVj1LTpwP5aH1oXil-cJhjcGout56SDcYkKR7hW3P6UVU8ROXqaaS1GnyN9BWGxypj-HWCqTlNWEt7kwlTR3a4meSe8fNAKqSADafc4gf1JRVidGZJWf06pB3mQrv-XBZXh05A3T2YWmMHiaw30K6tzQ3M3fIQkMgma2geARaU3B3ciqzguuZzlT1kv3rB8MX1OXgvbEegflVli-IIAtLKlNCoNq2ijRx0KWCSKxlOK3rbvb2c1Z5EPDDTwE3XYUEEcrCRPdv9Elts1aQntuCArjUEk_AvfEXNBCVQhHl7UxtW8-aVrRyFLnfiSPAogUpK0JL5CxnxnN0D1DlCNs1lD0tFINM8dA4tXxJc4hK8T6QU7DowD21InJxP67oOZ3hpgCnd-pvvTLfmjdxRq6wmhl4DiwbpeoePmLApoRIADq54g1vvznegSDLYtFjCIiVJNR_27Gca1EQ1NQ-RcSMJZkalnyVLkKbZSB2HZdQT54ayxZLjs8gKMv8GQGhUTLKMXDOSezNaMiBi7rY58ToKxxhXNdjNO3z12GI3cHQE4myy3rYYeY_lfjql3jPWHREeLxZ-In2FEbDVlg74rttHiSNUhG0twxk2vlySz8O1unGZfDFs2EpYNpbcw6Hh6nBYsWLiCkf21DcAAmWtCZm63iDbC9wOfSnQkMng7sLPHkewo_zUKUEIbfdhGnlZxEB7SGn7xStquYRZCIqK5jYRxTsUYxWGylOkLTPRdcn8ONdWUmDMxlFUPhRloaPJsrMCd2gWykjDPBqdyj0Q8eA17IPTEmlsGTyTq96_92rsj9bpAqaTI7BtVg0jWgre64Ad3ZvKeRfsAght5prtJ6Eq3ad2bfZjWhud5dE1u5RSkMfUvi2y3ZqASB3fOS18o0YixHf49vhU95RsBSWRNa8nRG6LadGYWcVTAd1AciFNwuNOsvyUyiRvIu1fO9lHjX5oNG32lt5iUObDHZwszJhnLR0rzF4XqGeRNiuPGXvPbXJws5Wx7rmzmbfJNla7s_H2ssFVHY9-newOZfG5Xh8OBr1--LaXO2j96Sm0-s-iuBBmwfgffZ2P6t5-Wgf_3MohzUAGGurTKQoj6GLpIJfkHi5a3kLxXjb6DvR9WnJNc7hnGTLqRTg98YS8rXvZHXoKMoZvJnYOZH3exXgAXLfw2cE7h-f54sru0KnyC1swhyYn2WSWRqfIbspj9NTRQx-KWpgty_1-hkv3IhVibUhBGs4dDsLaao18oS0Tb68QUKeDh_2gb5GwlsLckg9BOTY29erv1JWH37QlNFs1t9t8FCgW3WLtozF0dAbjhtdxjUtXhH9a8xbiOk6QIxRgOG5WAVGdD7WyrUoBEjIUbGyUkvFVQomvrkehW-6l66eC7zFYkqmriYOJTEA_UHKsrgpqFsWU39eMkPXePzYcdZyL8gsW7tQJ3fc4RkclEDOq2EIcojcZsUAULumMa4v0ndOapmICtuyrrBSfnIxPT2zt9JA3rkHEShIv6obHgGjZKFJVgJo6XDgf1iRvh5OCp_ekkYS1Jt4ODZzsuHp0dnrcXbu10Uyrat4D-btsShY7HqV1M8M0BLFOR4s13PHiCFPIjNrfhl6R5ThPs9hm9T9t3_ko0UD2vh0-Xym5yju1HDsNmdfNYU7ZNjW_pK2aG6epUg5L9l0BnaXB-6Y4-qub6Ma5zT5HepqyWlRaUk1Wop8Rl_E17d1zKAnpxsy80GWkdynsqkv8FBiYhmeAbToKjyszoN0P731cv0CDpxUNr0FQet38B-B-IqX5dCDx8QRpYqRkN8-wfb63QOGOOlx90wjRy9rcIOWaQmWCs4J6j57lXyPzWHhDOfa8Hf6GP6c1lkvIPist5IMYerlQaCI1sEELcCbTD7I3t9eV2VfLu5A86GrJUjJUze5DVU6T_X0i8xS5Zciacr_9ec_f9j1mfdJLZ7f6xNCe2lydIkEaruK8_XaZC4qT-tcrnOvMTmqynZeCkTFyHBNFPygTx329-O7Yn99XR8dCKoSGbpwZwyj0SBuMYk7eXtRbn2No3NqgmO2cVQiLtL51Xpj4MjJnl_dxHMEvrXOR8yIsAhU0_Ck1FSUzCSqgCNf1fs6pLIG5LFJ9zrlhBMnKcF79aoGZ2-lXR_RlyXlQ4CDkZnX_mmzepdexXTTtvOpcWuF2tkdtOnF9jGqrRkbXgPrJLJERd3jaXPSMnY2IXaNj_Xi0WAnlPm-7-JVQn0Rv-wZKv4R4kMGW0wZh3JQLGxGsdapZAiW6jNjN3kBvhU_6JODtWYO0h56GPV-Xn_9A_Mz18UqBz-U-R_3Rm3f9ivpFIo66s1vzb9TblON6X6sxW_sanmFBi6MAjD-djJ6Urmv4UkxrRy5NcEob8XgtaiXLVEZcIF7MbQev6qMyFDDQmjT2hDpTxJc7w3TAUZYLSJMa5eR4J6yEDGmkmZywifdLy8CiHk_9acD_As0J_qNKNQvRChi2ryZj0y8pSzpLA2Xj';
+
+    // Read embed URL from Model
+    var embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=feb96c19-cad7-478a-934d-2e647f98a4ff&groupId=1bef2b97-3211-4a73-8aad-580e412c4e78';
+
+    // Read report Id from Model
+    var embedReportId = 'feb96c19-cad7-478a-934d-2e647f98a4ff';
+
+    // Get models. models contains enums that can be used.
+    var models = window['powerbi-client'].models;
+
+    // Embed configuration used to describe the what and how to embed.
+    // This object is used when calling powerbi.embed.
+    // This also includes settings and options such as filters.
+    // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
+    var config = {
+        type: 'report',
+        //tokenType: models.TokenType.Aad,
+        accessToken: accessToken,
+        embedUrl: embedUrl,
+       // id: embedReportId,
+        permissions: models.Permissions.All,
+        settings: {
+            filterPaneEnabled: true,
+            navContentPaneEnabled: true
+        }
+    };
+
+    // Get a reference to the embedded report HTML element
+    var reportContainer = $('#reportContainer')[0];
+
+    // Embed the report and display it within the div container.
+    var report = powerbi.embed(reportContainer, config);
+ }    
+</script>
+</head>
+<body>
+    <div id="reportContainer"></div>
+</body>
+</html>

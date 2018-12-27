@@ -1,120 +1,46 @@
-<!DOCTYPE html>
-
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Power BI access Token</title>
-		
+<html>
+<head>
+<title>access token Api</title>
        <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.12/js/adal.min.js"></script>
 	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-			 <script>
-			  window.config  = {
-				  instance: 'https://login.microsoftonline.com/',
-				  tenant: '67da140c-2b2e-4193-8cdf-3c07fc72ad37', //COMMON OR YOUR TENANT ID
-                  prompt: 'consent',
-				  clientId: 'b8d851b1-45da-436c-8c90-ef3697fb6133', //This is your client ID
-				  redirectUri: 'https://login.live.com/oauth20_desktop.srf', //This is your redirect URI
+<script>
 
-				  callback: userSignedIn,
-				  popUp: true
-			  };
-			  
-			  var ADAL = new AuthenticationContext(config);
+var config = {
+    tenant: '67da140c-2b2e-4193-8cdf-3c07fc72ad37',
+    clientId: 'b8d851b1-45da-436c-8c90-ef3697fb6133',
+    redirectUri: 'http://localhost:8080/PowerBiApp',
+    navigateToLoginRequestUrl:false,
 
-				function signIn() {
-				      ADAL.login();
-				  }
-				
-				  function userSignedIn(err, token) {
-				      console.log('userSignedIn called');
-				      if (!err) {
-                				          
-                  showWelcomeMessage();
-				  
-				  ADAL.acquireToken("https://analysis.windows.net/powerbi/api", function (error, token) {
+};
 
-            // Handle ADAL Error
-            if (error || !token) {
-                printErrorMessage('ADAL Error Occurred: ' + error);
-                return;
-            }
+var authContext=new AuthenticationContext(config);
 
-            // Get TodoList Data
-            $.ajax({
-                type: "GET",
-                url: "https://api.powerbi.com/v1.0/myorg/datasets",
-                headers: {
-                    'Authorization': 'Bearer ' + token,
-                },
-            }).done(function (data) {
+var hash = window.location.hash;
 
-               
-                console.log(data);
+if(hash.length!=0){
+    authContext.handleWindowCallback(hash);
+    var user=authContext.getCachedUser();
+}
+    
 
-                    
+function login(){
+    authContext.login();
+}
 
-                // Update the UI
-                $loading.hide();
-               
+function acqureToken(){
+    authContext.acquireToken("https://graph.microsoft.com", function(error, token, message){
+        console.log(token)
 
-            }).fail(function () {
-                printErrorMessage('Error getting todo list data')
-            }).always(function () {
+    })
+}
 
-                // Register Handlers for Buttons in Data Table
-                registerDataClickHandlers();
-            });
-        });
-				      }
-				      else {
-				          console.error("error: " + err);
-				      }
-				  }
-				  
-				  
-				  
-				  
-				  function getDataSets(){
-				   
-						      
-                  var trythis = "Bearer " + token;
-    							var request = new XMLHttpRequest();
+</script>
+</head>
 
-                  request.open('GET', 'https://api.powerbi.com/v1.0/myorg/datasets');
-                  
-                  request.setRequestHeader('Authorization', trythis);
-                  
-                  request.onreadystatechange = function () {
-                    if (this.readyState === 4) {
-                      console.log('Status:', this.status);
-                      console.log('Body:', this.responseText);
-                    }
-                  };
-                  
-                  request.send();
-				  
-				  
-				  }
-				  
-				  
-				  
-				
-				  function showWelcomeMessage() {
-				      var user = ADAL.getCachedUser();
-				      var divWelcome = document.getElementById('WelcomeMessage');
-				      divWelcome.innerHTML = "Welcome " + user.profile.name;
-				  }
-        </script>
+<body>
+<button onclick="login()">Login</button>
+<button onclick="acqureToken()">AcquireToken</button>
 
-    </head>
-    <body>
-        
-        
-			 <button id="SignIn" onclick="signIn()">Sign In</button>
-			 <h4 id="WelcomeMessage"></h4>	
-             
-      
-             
-             
-    </body>
+</body>
 </html>
+
