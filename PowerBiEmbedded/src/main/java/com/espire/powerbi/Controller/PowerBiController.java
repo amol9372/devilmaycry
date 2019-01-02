@@ -96,8 +96,9 @@ public class PowerBiController {
 		
 		reportList.add(new PowerBiReportModel("12b1b8d1-1703-4c8f-a2dc-118c12010652","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=12b1b8d1-1703-4c8f-a2dc-118c12010652&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		reportList.add(new PowerBiReportModel("3a73c36a-603a-404c-bb62-07068010b2b4","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=3a73c36a-603a-404c-bb62-07068010b2b4&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("35fdaeec-503e-40c9-890b-b33fe449de56","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=35fdaeec-503e-40c9-890b-b33fe449de56&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		
-		String embedToken[] = new String[2];
+		String embedToken[] = new String[3];
 		int i=0;
 		for(PowerBiReportModel powerBiReportModel : reportList){
 			String accessToken = powerBiService.getAccessToken();
@@ -121,7 +122,8 @@ public class PowerBiController {
 //		reportView.addObject("embedUrl",objectMapper.writeValueAsString(powerBiReportModel.getEmbedUrl()));
 		//reportView.addObject("reportJson", objectMapper.writeValueAsString(reportJson));
 		reportView.addObject("embedToken2", objectMapper.writeValueAsString(embedToken[0]));
-		reportView.addObject("embedToken1", objectMapper.writeValueAsString(embedToken[1]));		
+		reportView.addObject("embedToken1", objectMapper.writeValueAsString(embedToken[1]));
+		reportView.addObject("embedToken3", objectMapper.writeValueAsString(embedToken[2]));		
 		return reportView;
 	}
 
