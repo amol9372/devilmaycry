@@ -3,6 +3,7 @@ package com.practice.LuceneSearch.practice;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -33,6 +34,8 @@ import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.springframework.stereotype.Component;
 
+import com.lucene.search.Model.NameBasicsModel;
+import com.lucene.search.Utils.NameBasicsIterator;
 import com.opencsv.CSVReader;
 
 @Component
@@ -50,9 +53,14 @@ public class LuceneDemo {
 	public void indexCSVDocuments(CSVReader csvReader) {
 		String[] record = null;
 		try {
+			List<NameBasicsModel> nameBasicsList = new ArrayList<>();
 			IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
 			IndexWriter writer = new IndexWriter(memoryIndex, indexWriterConfig);
+			record = csvReader.readNext();
 			while ((record = csvReader.readNext()) != null) {
+				//List<String> primaryProfessionList = Arrays.asList(record[4].split(",").);
+				
+				nameBasicsList.add(new NameBasicsModel(record[1], Integer.parseInt(record[2]), Integer.parseInt(record[3]), null));
 				Document document = new Document();
 				document.add(new TextField("primaryName", record[1], Field.Store.YES));
 				document.add(new TextField("birthYear", record[2], Field.Store.YES));
@@ -61,7 +69,7 @@ public class LuceneDemo {
 				writer.addDocument(document);
 			}
 			writer.close();
-			//buildDictionary(memoryIndex, analyzer, "primaryName");
+			buildDictionary(memoryIndex, analyzer, "primaryName",nameBasicsList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,12 +93,13 @@ public class LuceneDemo {
 		return docList;
 	}
 	
-	private void buildDictionary(Directory memoryIndex, StandardAnalyzer analyzer, String field) throws IOException{
-		IndexReader indexReader = DirectoryReader.open(memoryIndex);
-		Dictionary dictionary = new LuceneDictionary(indexReader, field);
+	private void buildDictionary(Directory memoryIndex, StandardAnalyzer analyzer, String field, List<NameBasicsModel> nameBasicsList) throws IOException{
+		//IndexReader indexReader = DirectoryReader.open(memoryIndex);
+		//Dictionary dictionary = new LuceneDictionary(indexReader, field);
 		analyzingInfixSuggester = new AnalyzingInfixSuggester(memoryIndex,
 				analyzer);
-		analyzingInfixSuggester.build(dictionary);
+		analyzingInfixSuggester.build(new NameBasicsIterator(nameBasicsList.iterator()));
+		//analyzingInfixSuggester.build(dictionary);
 	}
 
 	public List<String> getSearchSuggestions(String term, String fieldToSearch) throws ParseException, IOException {

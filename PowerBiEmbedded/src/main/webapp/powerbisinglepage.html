@@ -21,64 +21,30 @@
     </style>
     <script type="text/javascript">
         window.onload = function () {
-
-
+        
             var models = window['powerbi-client'].models;
 
             var permissions = models.Permissions.All;
 
             var embedConfiguration = {
                 type: 'report',
-                //pageName: 'Page 1',
-               // visualName: '5a874c7e3621b4bb98b9',
-                accessToken: 'H4sIAAAAAAAEACWWtQ70CBKE3-VPvZKZVtrAzMzOzDhjxtO9-81p8wq6v25V1X_-2NkzTln55-8_UUHW-F2r5Zqcr-r0GCAXeSJ2UPKyLtdQM1BBsPQ542E4FuWsHCULUaofrkJXFOpo9EZ199eXHOxiAUlX8Q6H_SomLKS25jMvjLwZMW2DRSVt7vYJt_L4uITiFjgzltGcJcl3IVhJpS2rLJlzX4Or1ezlDj8tYsovvGVFiwzAfBnCwiPEVwfraw2s4EGr8WgV_Zv7jS60oIMty4dhGSqfC-uxrYwQ7clxswXrusYGXCmf9_nx6dcE8gPsQg-Ny1RxnKg8D_oOmEt_JHcMwxbEC8SLCb4hvq7ZQBz93B8u9R2uYFQTgpwuie33iBsoYM5tvPxyo4ppZWXJm3K5XTdkMisLWxTYlvySiChfVlRrMuOg3ukCsG2hk9uXaEfjYJ1E6h4Rpd2weSdi5-laPvylNR1g4khlpZN1K6M7gEI5o4GRfbH23UtqAvr3mF2q-V4X62qT7NK4XyN9lRMPBZ4sd31XcQmDl9r2F2meyecQT3WjbzesmGSmmynqFZCbziPg0vbdMHaZXWV0moVaLRGWFNUxkBV1kYi_rOwQA45oRqBaTXEMuRcCcwA2IDmSDxG8t06InugkVtn1AVnU5MdNjqXRDQKLLcLMHcn5vrVweHIOYRHmGamB5Yg1RpdknwyUOfvGSsx7oesrHCqfDZnEESOolImJrmaZ4LMMLfDetkt7P4hQH0rR1M2s0qO-hKx00MSBzDa8sKsl7PJ6nvdl8eDRpByJV1fC6z1A4Fpo2yfwUSckFcVaEYtbVZfSk813BZF9cYiAOyYaUZrOhWePD0gSIW1aJrlbYoMyTNuFVkKY4eRKBHinE5pigydR2WaElM7IEMFcYw01q3XNgJcI7cvUpl709Hi99O6n3wxZrXJ9xFOtwFJdUE1Qt6-ih9HANV5bBvxRJSxNU1KMhn0z0kgPEhCxoPAoJh3YoJQ4eORa9DXMHmad6ChVhFGgTN8OZA3Zme5qDR7rQyts7fQfQhF5BHhU2Ac7izRBCgFDixujXh3WHehvQbpVDS2x3-rwF6kGl4ikTDM_56jweyZepKGtrF1k4iPq1BAj6osKGNszRRO_J5-J4sheFk6IhuhiO1PvN57YyJ2DOyq0mvX5lO-o1cfX6_FafWMUy5kQAVCYDTOUDT-BGosyeqozf1Lc9S7vwt5zfgaveACjk80DvstyiTjhh6j7xtTaPpUbVv8MxaaSk4K72USZ5kABzAdrAlJbiciPXJYBT2qLsAqpQIrPSIkODdAPQpP39ij1Woj9EFjCNJ3_yS_uwBm4jCEP7U5uztabWd4oNVBNFNlEkz1X9_ZdvY8kcahnBLzCKkJSb4cZtDHn242uaEMfJqnxIUnPL_plum3U8PSKk0DxpjDhnGnw3MZTmVCScsUYoZp5cVLYQKu1rKa21fzbq0YYvotBC5PFARhHF9jLwKAYXCr1PghmE3CI1P0APQMz_JxX_q3cp7qmsmDRGuP4ThO4DH0eRkp6ryK78BUJcy-sZkMIsH2FPV1W8Ihcxp2QqdJyvTg23CYm78zkbCltrP0DpZgl5p5ykaAUv6QPsPGnTB6LnkIGQfJL3gTbUQAj7ZFVkKiB1pm12_H3nhrsKz6j5quvTTh2uinkgw8yQUsiceff2cZMnxSKD-3sJw8dnBWKSGY4nP3dLjmTrYRQjrvwLXCTlavps5ClVq3Lz3BQxRZNw65q0IW6lUVcsyL0y1Fk8qcnnAD0r8pwVNzzLm5cHVegkXsO488Tm1H6oZZ6rntfxojyJnQ9I61aKCAlTZipyWb7g-IYAzQVuEm5_IuoGpNLNeznt3-I5NDlMxdntj2dNLI_bz8U3hnDxbe73uyY-CMWcsfAKTiAjHwNgvLrHOcNokk4AG-9ObnLFzqWzbBYMFcxmGia4et8qNe06o0zVMzdiRqmKsTB5FlrRfD6fA8unGT_MDZoLlKvQkgjkE6rho1G2ufoXFMrqYgMv0aO8Atj1nPprSSI1CKzyb717m1myrw8XbDVz1i1X6rWzI8kYRsapEzCnrgfb3R3ZXN8g_7GK1WsQ-DkuJw3Turv1Ukm24G2glB2wbT2kUm8mPk58NYUMpZQma7dhUdKS3WWqiopiXYAHC-vHP2QhrYGtsZfkzTF_eRYe0e5cUGIaSnvfY3QFaRHTAABhm-WWNbNAXqmJxmlrdb4ccNRCjYJgkdTlQnngkjc5CEvxEt1Ab4YiaFtzmAHGVTKFHC2pi2eYZL4G8ZZvsbF1Kdbbf46yMBPnQ3YQJ-SgFacxNBov4EMUQdt4KjtBjuGQaXvIrGpYNNRNfV2p1AXhDnPUrLTnp0N1o0s_in9PAF1D9wbNi7jc6cmAWP--efPX3-49Zn3SaueX02ycbeTYy21SXTeOPQQcUO5Kr70PaYBksNyeaevrqDGC2Vo43GIoRzVKAkw-fJsowM8QTRu6DZb4K9JAb8fN-16EPRgpuT9oihXotz35zDi41t3-CIrEzt0_jayq2kDdX8-zI5p4S9OK6MQNxmOsGHJTC6XgOqb8UHF8en1BtSi-k2mfDknGIkjAugmBSzmoMdoLIhU0BvbROqLe1YUlKdvF_Gdg2Daov8QNYCPRBwz9lwhO3CR28tXGuNyuRLmF3lzQJMvLsbECChCnw_lZCZn-dlLaFmt66FYMMknsuHgrJMYC0xJGc3rcvbtUYeB39l_yDSVQIXFcDZ699DqmA4yBpt_MT9zW61K-KN8ffCTVKAgmNn3JPx0Ea0J-Vfldc0324-1-smOpqG0VNTQlZGMwguEgxKgMQvgeaVvmPKJiFg8uv39NYG_INNxLEPSZfKKb09kroLzM8ggwjxVkfABxQjNx3Z2AbgOROBzCOZpuYv5c_W9RKGY6CLb1zpXpJ4mGlIes_RVPzyt79TgYAW9wOombMmYN3YpFNTLEzaEC5Iyo6hni_LMOTHNkAbOXi8gyskpe-lw4LZ0_EbC1MLdOrFKBTScOCnjSztlWm1hrvo-f5DmRg_S6210GU8K--FuMIrCTUUzPDB2QqM2uNL2X9vprrpjuO5sdbTNYCuNkY84GhesQO2Bj_M1UDTp-joZuOp6fOnNhnpoQ_MBYZZnTrNFv9qI9_6P-b__A1w6lgoaDAAA',
+                //pageName: 'ReportSection',
+                // visualName: '5a874c7e3621b4bb98b9',
+                accessToken: 'H4sIAAAAAAAEAB2WxQ70CA6E3-W_ZqQwjTSHMDPnlnSwwwyrffftnbslW_XZ5frPHzt7-ikr_vz9h6PSp1a0bQWUHhr5SP_QkBarr3zHijAaBEz7TLcUQII1y40s8sbC6pmDukYM0uKpWiH1txIg72njTRVhNGxOIqNCaB3zjQ-5YNF6BVTqko-3KUM89fNp9bDrdrpT0JpXElsNja649tbJVs4PWmX5LovIDoqD8djOItOiumlNEIBiC1VhVzVrcPoOSFJdNTDHsF912ipaKxgUzxFo0Sx0dKzn11IekFU0Yv7zmkkK7CGR3k-r6zbKJGpndpcfVq6C9YaoUBjX9DF3aAcyG655yEP_BdsKoylktsgVxyMh9keGFwJ6tJF3c23-w66f-0Hi0BORoQt3Fy2-prq1zFGnjKF05jqWu9ScE8Krl0W2xNXOS0jTYu0pvaaHcDUJ26ZYLhZvbAhvhA2XVB58WBh0vMPA8hTEjFn62qCB6Kqc5WQbfaykHN89dXUdyodXRjlSDVg7hSR8BcKAwX4TDcyeUpSh5qsFNyd1VHQEMCu6-SmGydQHjqKN6EtdYVp5EO1Vbw6FrzhTipM5ulf6nRKxP3sDIAh9AIFi5pVlTGHLYSBWUu99wak2e3A6qOWUXrFtREcmhOssn6SJgcwUFRYOsJtTBAfLr6e4mJNn5gIkYWkPRHy1KgCgxns1yF0edh_ZFflH2fuHFvN64RGgYwuR4J_ihDhU4xldl1CywYMEv8MIFifVmF5X-TYUj8U6Hhl7qEMPTwlEHmOcaYul5RwJUT34XvJJWysgHHFf47lHk6jDB7_BGIzJ6Sq_2KF8r1cPPDufLIAUiJq8fvvzwzMMwHJEBZO7Q19v9haIghkyAB0O9tYCX5VmAWroZsuQEVCv9Dnf2WoV4bKKKWwowQ0JEXfBO7p4KQ-2HXg3Tw4fY2_vvvNFysAOjNAnQgywGs7zgRVMHaSRBl6B2AK3mOfIdavf-FxnyF9eU-WvXlIWgc0tpSqnlkruxMj9OQUgTqJ8mOofVqkM5-JcSELV_aqLosvvUJAjAbPzgPhQPAGp7LZsw3FWz7c9fssq7CIYeNpcI5yQNsbWmRLFxoZLnLlmkGQG30_k_UDEBTPp6Wjt-S509zguMtjoSRpvoTuaDdm0o4hGkAn4ozWYje1-lu0AG28PfqRPk9ZxvSns-SDo2HJ5BHIs3DO3FDD0iJp2DS7YEkToyafw3633HF-WwNy37vqmSwzM-wfajdA1uGS52Jn1jBCH4K9YCc2X_ki-eX1D8EFIm1TW1baSB1OKCkkK2vLGLkjuCh7RuRCuBbDwQulqwcCeNroOtgXoWAFphN6pNJuS1UPFa5ejr-8OH4lldv1UtMEt85df2GdNWiU84yhmFG6GRRR8kSLhB76GUo2buzt9UsVRAWdqhg1kXUk2StL6EIeeFZPfdaZJxds5ua_xKflPniavaELbrBVbH0-OQ1pD3B8HOqepxiv7qmrp3nwGv1U5JHMK05RmaZPsJmmUfFa6zKbDlc2XCfLirR6CdppHmOYx_eR7wrtvG4RdrF1Z_OkzDXeKyWbt6wCmPM5akxnSTHgrIuctp0bg-hpJXf4wuP68nnAJpsuOnb26qz2N13XNeCC15q2AfdtzLbHhL_nTTMiQkpZNA1VtsbctDllZgkhR_GcqHolTlue_Ib5DHVDEZP0EznG_9ejz3yYuzaECOD4HsiV2lu4UaayVa8Kaaw2YfPbElVqp9U_mO1IaTzUK6mGAP8z3gAoPiALnoSK2vsB6AksUJD1HXW2-Fspod9J-4lgltcPPHnLm1mVLluZpVhwGJXufIId6yfoZlixfiFq8qf3QEoy0QXZJQe-B4jEj1hlk3ptmZOXrUaqpGk5jS88HezX8XNxFxbsDvDdv3KR5vzEZeG5uNcl4aUOuCShSoG618D0p-CvYDx2Ds1jIfTi0Cuy1CFqnrV6eXdUZXX_qES061LDX4m3Ta_2Ltg2XfzZnEFOz00C-IbQ3X6-CNn4fD_767ExSrHq_ZGEQB6psEN11N0WZEMuGDt3z7ZPnlKdp_c66j9EijJYmPoO_SzsgjeibT1PB-8BSiM4t7_50C4C79nm5HYM0U2zGCuWkmXydV3KT8ZZUOR5w7qd9RHPOm-CQm0-L9ghELkYQQ4QNKUUC-KK0XF5sy40_TR6WrHHSFWWPRxqFeaRGUMgpw5xCLeT2-InJDRBRGiQzEMjXwMrztofFp3tfOV5xG2Mke4-jPpXRi07KbNEHSaxLUfynmTCSxcuDYrQ4t4xj-HjNViRdMO-YFOVY7HoXjisbfrz52PriBSW7gu9wh5tR7qDGsevY5sc1uuJQmevq2xnbP3_--sOtz7xPWvn8ok8SbmSXU9EB0fjcTWfTy09ZBnrb13a8CVp4fGYOjQGhXSOGcQxcBd8vUI49d9POqO5p1wyQ_JBzyZdRk6_mkeEts0zg2ELa7YSZaMG05dCn5b3L6Qmh3JSctuR8tzmWlu37_baEFshTsr-3aEzUfUkTPg_gB9GFvXg21EBpj1p7tH8uDSUtUb6IffvlMPuGAMkvNgkkSvJrSxoVGhkEGyu8gjSobHx-7-FSju231adlrr7Mpi4oVfPbWdvj3lw81_gOi8hErPhnEpQC-qnPyDXM5vu1Zr_nzzqhqfJD_ZITPoCTxKxY3uKGZd-JsaHuYP0MOh7yi5soUuaqBNOb9Zo5eaj_-VfmZ27KVQl_Kkf-SMKkXIiq-8Xkpl8i9KmYf6u8th6z_VjLX1loKk6CLxn6UlUvxM0SvTUwR0eYGPHjzKl1uGASadmFk1Ma7bRPatL8Va-ZLr-ea2BWbeVraPLdjYAg0_QEndIX4XcL4ocdGw1kVtXeg5GLmsx6xreWHjG5Wbd3rfIjICT5q31po1vUqICLgv3BrF8ePQJFamgXwQIFTmU6xCPwINBM3Jm9PaMUjyY2wLV-RPODBBa9c-HyKiDFue36gDSqKmVDAqXJZeQPlBpocVTI08VfDqOYGMD3-mqFTpnVF-0zQgepC1w0sNThiV9FdcCQGVBVhBAWWNzHz31g0dm9bPbhJP7iPAJ1w8Ayll6IxgiuDnVhKx3ZkonKPVFJu3pI_w_jv_8DMtZs2-4LAAA=',
                 id: '12b1b8d1-1703-4c8f-a2dc-118c12010652',
                 //for Power BI Embedded
                 tokenType: models.TokenType.Embed,
                 //tokenType: tokenType == '0' ? models.TokenType.Aad : models.TokenType.Embed,
-                embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=12b1b8d1-1703-4c8f-a2dc-118c12010652&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+                embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=3a73c36a-603a-404c-bb62-07068010b2b4&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
                 permissions: permissions,
-                // settings: {
-                //     filterPaneEnabled: true,
-                //     navContentPaneEnabled: true
-                // }
                 settings: {
-                    layoutType: models.LayoutType.Custom,
-                    customLayout : {
-                        pageSize: {
-                            type: models.PageSizeType.Custom,
-                            width: 1600,
-                            height: 1200
-                        },
-                        displayOption: models.DisplayOption.ActualSize,
-                        pagesLayout: {
-                            "ReportSection": {
-                                defaultLayout: {
-                                    displayState: {
-                                        mode: models.VisualContainerDisplayMode.Hidden
-                                    }
-                                },
-                                visualsLayout: {
-                                    "90de33ad17139b4104db": {
-                                        x: 1,
-                                        y: 1,
-                                        z: 1,
-                                        width: 400,
-                                        height: 300,
-                                        displayState: {
-                                            mode: models.VisualContainerDisplayMode.Visible
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    filterPaneEnabled: true,
+                    navContentPaneEnabled: true
                 }
 
             };
 
             var $reportContainer = $('#reportContainer');
-
             var report = powerbi.embed($reportContainer.get(0), embedConfiguration);
 
         }
@@ -92,7 +58,7 @@
                     // Retrieve active page.
                     var activePage = pages.find(function (page) {
                         console.log("Active page is : " + page.name + " - " + page.displayName);
-                        return page.isActive
+                        return page.isActive;
                     });
 
                     activePage.getVisuals()
@@ -114,14 +80,28 @@
                 .catch(function (errors) {
                     console.log(errors);
                 });
+        }       
+
+        function showPage(pageName = "ReportSectione9dfbb33d4de29236d74") {
+            var $reportContainer = $('#reportContainer')[0];
+            var report = powerbi.get($reportContainer);
+            const page = report.page('ReportSectione9dfbb33d4de29236d74');
+            page.setActive();
+            // report.setPage(pageName)
+            //     .then(function () {
+            //         console.log("Page was set to: " + pageName);
+            //     })
+            //     .catch(function (errors) {
+            //         console.log(errors);
+            //     });
         }
     </script>
 </head>
 
 <body>
-    <h1>Check your Report below</h1>
     <div id="reportContainer"></div>
     <button id="showVisuals" onclick="showVisuals();">Show Visuals</button>
+    <button id="showPage" onclick="showPage();">Show Page</button>
 </body>
 
 </html>
