@@ -6,7 +6,6 @@ import { HEROES } from '../mock-heroes';
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
 import { viewParentEl } from '@angular/core/src/view/util';
-import * as pbi from 'powerbi-client';
 
 @Component({
   selector: 'app-heroes',
