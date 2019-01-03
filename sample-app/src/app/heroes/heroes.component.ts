@@ -46,10 +46,6 @@ export class HeroesComponent implements OnInit {
  // }
   // tslint:disable-next-line:no-trailing-whitespace
 
-  onSelect(hero: Hero) {
-    this.selectedHero = hero;
-    this.isHeroSelected = true;
-  }
 
   getHeroes(): void {
     this.heroService.getHeroes()
