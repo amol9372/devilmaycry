@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroesComponent implements OnInit {
 
+  welcomeHeros = 'Welcome to the heroes component';
+
   constructor() { }
 
   ngOnInit() {
   }
+   
+    
 
 }

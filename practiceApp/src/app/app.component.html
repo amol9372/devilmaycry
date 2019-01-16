@@ -1,16 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
+
+  <nav>
+    <a routerLink="/heroes/{{id}}">Heroes</a>
+  </nav>
   <h1>
     Welcome to {{ title }}!
-    <br>
-    {{ name1.name }}
-    <br>
-    <ul>
-      <li *ngFor="let person of sampleArray" onselect="showSelectedPerson(person)">
-        <span>{{ person.name }}</span>
-      </li>
-    </ul>
-    <br>
-    <span>{{ selectedPerson.name }}</span>
   </h1>
+  <br>
+  <ul>
+    <li *ngFor="let person of sampleArray" (click)="showSelectedPerson(person)">
+      <span>{{ person.name }}</span>
+    </li>
+  </ul>
+  <br>
+  <span>{{ selectedPerson.name }}</span>
 </div>
+
+<router-outlet></router-outlet>
+
+<app-event-component [var1]="title" (func1)="callFunction1($event)"></app-event-component>

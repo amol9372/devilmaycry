@@ -1,5 +1,5 @@
 import { Abc } from './names';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
     title = 'practice app';
     name1: Abc = {
        id: 1,
@@ -19,12 +20,19 @@ export class AppComponent implements OnInit {
       { name: 'rahul', id: 2 }
   ];
 
-  selectedPerson: Abc;
+  selectedPerson: Abc = { name: 'amol', id: 1 };
+  route: any;
 
   showSelectedPerson(person: Abc) {
     this.selectedPerson = person;
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    //const id = +this.route.snapshot.paramMap.get('id');
+  }
+
+  callFunction1(event) {
+      console.log('value is emitted' + event);
+  }
 
 }
