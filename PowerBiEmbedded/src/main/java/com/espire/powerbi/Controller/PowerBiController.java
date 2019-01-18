@@ -55,7 +55,7 @@ public class PowerBiController {
 		
 //		reportList.add(new PowerBiReportModel("d044ca01-26a9-40e1-94fd-1d5384b4b696","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=d044ca01-26a9-40e1-94fd-1d5384b4b696&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 //		reportList.add(new PowerBiReportModel("2c4f5bbd-8242-426d-bdec-7e2a51c26841","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=2c4f5bbd-8242-426d-bdec-7e2a51c26841&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
-//		reportList.add(new PowerBiReportModel("b66479ee-f7c5-4d97-8529-ddca2c5a32f6","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=b66479ee-f7c5-4d97-8529-ddca2c5a32f6&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		reportList.add(new PowerBiReportModel("12b1b8d1-1703-4c8f-a2dc-118c12010652","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=12b1b8d1-1703-4c8f-a2dc-118c12010652&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		reportList.add(new PowerBiReportModel("3a73c36a-603a-404c-bb62-07068010b2b4","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=3a73c36a-603a-404c-bb62-07068010b2b4&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		
@@ -96,9 +96,10 @@ public class PowerBiController {
 		
 		//reportList.add(new PowerBiReportModel("12b1b8d1-1703-4c8f-a2dc-118c12010652","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=12b1b8d1-1703-4c8f-a2dc-118c12010652&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		//reportList.add(new PowerBiReportModel("3a73c36a-603a-404c-bb62-07068010b2b4","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=3a73c36a-603a-404c-bb62-07068010b2b4&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
-		reportList.add(new PowerBiReportModel("1887fbcb-2caa-4f40-b9b1-6ddc4e466186","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=1887fbcb-2caa-4f40-b9b1-6ddc4e466186&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
-		reportList.add(new PowerBiReportModel("35fdaeec-503e-40c9-890b-b33fe449de56","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=35fdaeec-503e-40c9-890b-b33fe449de56&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+//		reportList.add(new PowerBiReportModel("1887fbcb-2caa-4f40-b9b1-6ddc4e466186","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=1887fbcb-2caa-4f40-b9b1-6ddc4e466186&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		reportList.add(new PowerBiReportModel("a983c854-32b6-43cc-8fa8-c879a5f90a31","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=a983c854-32b6-43cc-8fa8-c879a5f90a31&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("1887fbcb-2caa-4f40-b9b1-6ddc4e466186","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=1887fbcb-2caa-4f40-b9b1-6ddc4e466186&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		
 		
 		String embedToken[] = new String[3];
@@ -124,9 +125,9 @@ public class PowerBiController {
 //		reportView.addObject("groupId",objectMapper.writeValueAsString(powerBiReportModel.getGroupId()));
 //		reportView.addObject("embedUrl",objectMapper.writeValueAsString(powerBiReportModel.getEmbedUrl()));
 		//reportView.addObject("reportJson", objectMapper.writeValueAsString(reportJson));
-		reportView.addObject("embedToken1", objectMapper.writeValueAsString(embedToken[0]));  //1887fbcb-2caa-4f40-b9b1-6ddc4e466186
+		reportView.addObject("embedToken2", objectMapper.writeValueAsString(embedToken[0]));  //1887fbcb-2caa-4f40-b9b1-6ddc4e466186
 		
-		reportView.addObject("embedToken2", objectMapper.writeValueAsString(embedToken[1]));  //a983c854-32b6-43cc-8fa8-c879a5f90a31
+		reportView.addObject("embedToken1", objectMapper.writeValueAsString(embedToken[1]));  //a983c854-32b6-43cc-8fa8-c879a5f90a31
 		reportView.addObject("embedToken3", objectMapper.writeValueAsString(embedToken[2]));  //35fdaeec-503e-40c9-890b-b33fe449de56		
 		return reportView;
 	}
