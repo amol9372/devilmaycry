@@ -22,9 +22,9 @@ div {
 	right: 0;
 	bottom: 0;
 	left: 0;
-/* 	margin-top: 100px; */
-/* 	margin-right: 100px; */
-/* 	margin-left: 200px */
+	/* 	margin-top: 100px; */
+	/* 	margin-right: 100px; */
+	/* 	margin-left: 200px */
 }
 
 .powerbi {
@@ -36,6 +36,8 @@ div {
 
 window.onload = function () {
 	
+	var models = window['powerbi-client'].models;
+	var permissions = models.Permissions.All;
 	    var obj = JSON.parse(${reportJson});
 		var reports = obj.reportList;
 		var count=1;
@@ -43,9 +45,7 @@ window.onload = function () {
 // 			console.log("ReportId is " + reports[reportId].reportId);
 // 			console.log("GroupId is " + reports[reportId].groupId);
 // 			console.log("embedToken is " + reports[reportId].embedToken);
-			var models = window['powerbi-client'].models;
-
-			var permissions = models.Permissions.All;
+			
 
 			var embedConfiguration = {
 				type : 'report',
@@ -107,7 +107,7 @@ window.onload = function () {
 </script>
 </head>
 <body>
-	
+
 	<div class="powerbi" id="reportContainer1"></div>
 	<div class="powerbi" id="reportContainer2"></div>
 	<div class="powerbi" id="reportContainer3"></div>
