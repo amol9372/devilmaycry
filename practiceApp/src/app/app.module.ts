@@ -1,24 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
-import { EventComponentComponent } from './event-component/event-component.component';
+import {DndModule} from 'ng2-dnd';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeroesComponent,
-    DashboardComponent,
-    EventComponentComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    BrowserModule, DragDropModule, DndModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

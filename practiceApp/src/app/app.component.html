@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-
+<!--
   <nav>
     <a routerLink="/heroes/{{id}}">Heroes</a>
   </nav>
@@ -8,15 +8,62 @@
     Welcome to {{ title }}!
   </h1>
   <br>
-  <ul>
-    <li *ngFor="let person of sampleArray" (click)="showSelectedPerson(person)">
-      <span>{{ person.name }}</span>
-    </li>
-  </ul>
-  <br>
-  <span>{{ selectedPerson.name }}</span>
+
+
+
+<div cdkDrop #new="cdkDrop"
+    [cdkDropData]="sampleArray" 
+    [cdkDropConnectedTo]="[active]"
+    (cdkDropDropped)="dropped($event)">
+  <div *ngFor="let person of sampleArray" cdkDrag>{{person.name}}</div>
 </div>
+
+<br><br><br>
+
+
+<div cdkDrop #active="cdkDrop" 
+     [cdkDropData]="sampleArray2" 
+     [cdkDropConnectedTo]="[new]"
+     (cdkDropDropped)="dropped($event)">
+  <div *ngFor="let person2 of sampleArray2" cdkDrag>{{person2.name}}</div>
+</div>
+
 
 <router-outlet></router-outlet>
 
 <app-event-component [var1]="title" (func1)="callFunction1($event)"></app-event-component>
+
+-->
+<br>
+
+
+<h4>Drag-and-Drop - Shopping basket</h4>
+<div class="row">
+ 
+    <div class="col-sm-3">
+        <div class="panel panel-success">
+            <div class="panel-heading">Available products</div>
+            <div class="panel-body">
+                <div *ngFor="let product of availableProducts" class="panel panel-default"
+                    dnd-draggable [dragEnabled]="product.quantity>0" [dragData]="product" (onDragSuccess)="orderedProduct($event)" [dropZones]="['demo1']">
+                    <div class="panel-body">
+                        <div [hidden]="product.quantity===0">{{product.name}} - \${{product.cost}}<br>(available: {{product.quantity}})</div>
+                        <div [hidden]="product.quantity>0"><del>{{product.name}}</del><br>(NOT available)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div dnd-droppable (onDropSuccess)="addToBasket($event)" [dropZones]="['demo1']" class="panel panel-info">
+            <div class="panel-heading">Shopping Basket<br>(to pay: \${{totalCost()}})</div>
+            <div class="panel-body">
+                <div *ngFor="let product of shoppingBasket" class="panel panel-default">
+                    <div class="panel-body">
+                    {{product.name}}<br>(ordered: {{product.quantity}}<br>cost: \${{product.cost * product.quantity}})
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

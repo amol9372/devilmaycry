@@ -1,38 +1,56 @@
 import { Abc } from './names';
 import { Component, OnInit, Input } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Person } from './person';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
 
-    title = 'practice app';
-    name1: Abc = {
-       id: 1,
-       name: 'amol'
-    };
-    // tslint:disable-next-line:no-trailing-whitespace
-
-    sampleArray: Abc[] = [
-      { name: 'amol', id: 1 },
-      { name: 'rahul', id: 2 }
-  ];
-
-  selectedPerson: Abc = { name: 'amol', id: 1 };
-  route: any;
-
-  showSelectedPerson(person: Abc) {
-    this.selectedPerson = person;
-  }
-
-  ngOnInit() {
-    //const id = +this.route.snapshot.paramMap.get('id');
-  }
-
-  callFunction1(event) {
-      console.log('value is emitted' + event);
-  }
-
+export class AppComponent {
+  availableProducts: Array<Product> = [];
+    shoppingBasket: Array<Product> = [];
+ 
+    constructor() {
+        this.availableProducts.push(new Product('Blue Shoes', 3, 35));
+        this.availableProducts.push(new Product('Good Jacket', 1, 90));
+        this.availableProducts.push(new Product('Red Shirt', 5, 12));
+        this.availableProducts.push(new Product('Blue Jeans', 4, 60));
+    }
+ 
+    orderedProduct($event: any) {
+        let orderedProduct: Product = $event.dragData;
+        orderedProduct.quantity--;
+    }
+ 
+    addToBasket($event: any) {
+        let newProduct: Product = $event.dragData;
+        for (let indx in this.shoppingBasket) {
+            let product: Product = this.shoppingBasket[indx];
+            if (product.name === newProduct.name) {
+                product.quantity++;
+                return;
+            }
+        }
+        this.shoppingBasket.push(new Product(newProduct.name, 1, newProduct.cost));
+        this.shoppingBasket.sort((a: Product, b: Product) => {
+            return a.name.localeCompare(b.name);
+        });
+    }
+ 
+    totalCost(): number {
+        let cost: number = 0;
+        for (let indx in this.shoppingBasket) {
+            let product: Product = this.shoppingBasket[indx];
+            cost += (product.cost * product.quantity);
+        }
+        return cost;
+    }
+}
+ 
+class Product {
+  constructor(public name: string, public quantity: number, public cost: number) {}
 }
