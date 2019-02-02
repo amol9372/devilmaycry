@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/jquery/dist/jquery.js"></script>
+<script
+	src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+<script
+	src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Power Bi - Report</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+html, body, .container {
+	height: 100%;
+	background-color: #eee;
+}
+
+.carousel, .carousel-inner, .carousel-item {
+	height: calc(100vh - 120px);
+}
+
+.container {
+	max-width: 100%;
+	width: 100%;
+}
+
+.logo {
+	text-align: right;
+	padding: 15px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+	opacity: 1;
+	width: auto;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+	background-color: #124c91;
+	padding: 10px;
+}
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var models = window['powerbi-client'].models;
+
+		var permissions = models.Permissions.All;
+
+		var preloadConfig = {
+			type : 'report',
+			baseUrl : 'https://embedded.powerbi.com/reportEmbed',
+		};
+
+		var preloadElement = powerbi.preload(preloadConfig);
+
+		preloadElement.onload(function() {
+			
+		});
+		
+		//==========================================
+		
+		var token = 'H4sIAAAAAAAEACWWxQ70iBGE3-W_OpJpTJH2YI-ZmW5mZvYq757Z5F6Xrqrur__-YyZPPyX5n3__MUj5mA5rq9LiFUZapvQl7vO81OFCdR4s8JuBNVDXWowLehB0V5douvCFpYRmdj8T4WWSJMVv8MZ8HQStAbf7V0Ax4sbQDj6T7_ZKdTYdJAPDDHSW66cPWc8GA-_xErLXltmAJC8qaRLZaVvl2f0FnxtuVUMF4OyFWcLb7PI5crd5IbXDOIa8cifWjaPL1EYFDkHwi7qghHY2MWJNjEJY05ptgQpnx0-npgMAuXRtp0jJAd0zG3AuJLtOUzA5vgK-mzzH4LcWEitf3azipXCbN5UqD2bqQ7DPmy9SQfQWQKpiKcgno0DEBhoKWVkzsQ-zyFoLlotBlrRMPaXuADU8qnB3_KJobjFr3uptZj5DuRTdxsOSq4bXGYlBAg8D_80o43OQDxz507HynDfJr6RU5pMWtBoQ1krZTXhDvvPFMwyTEwfK3euO1WGyq3ouo6ibHD5fBdHDlLqNyRQutcsEgQYoj9cGsFrm-3xBZAJafXJeZvD7Ye4r_vn8IXnYvTpvG4pbMSq-UcMH1ahHkl8hCa10YJAunlpdcRM-LLESWpRv-R4AdktrRUKx0FlnOHj1dJRF7kDCDj0dabK6FKv7-TV9gS1UAUGuemAWbKDgJeFvf5jH8IzRYrlXcpGCdVThGH3zBo3ROok4eUo54sHyBiLk51mAmcwVHyIA0EnajkhhvwhnsLLcEExceB4i3gBJrVAJPRtjfnQVjWcE-vtrQITxzdo0dMFWiYPpENmbQox0bhhVBSW7EoJ6bFfvJ6lSHz_B1vtTa7a0B5dpBtoERLVZuG9MzySc8eEhULNpXvhcuah3CNXnPfw7hRVTODqmMl_iW7GB-TVWeunr6gjUwA_hXgparae6NiSgx3YIfATjm0Rl1MHBqSgsMxPHuTpknTkQs54NWYnX1ltq3hHlCrkilohrFZ3msDdXkBXFW7iwj1vTNfal00EotTCc4tCDC265gVyy7rT9NMwpNCnzW0Z8tONVH41wrE1jjlUw4D3A3iA0-a1GokWyPGWftT5KnnIy6HaYEZFFtVRpsTTjYJukkEbgtTMAaYrz61e0FU7mIXYhfKHsXbwbYYqxg3xZ8UMDL7o2oMSeOP7laKyc5lh5BucLUgMQOEjWCM3QA3XTGaHsE9sUlTvffdOjOnQxICvtcWmdx6IO7Dq4IcRMss7VyidX0tCFoHSDYrYDBbVRZAnz49uvZQhZ7bfHrcMBKELvl1ZQHzIFllQsa293hwRUDRcD3f_OjWYICDCmupU9NqRKWlH7UIUFiqy1SuiIHpcNR6YymS5zNp3hLxYGgqSMn4yT1g14mBxMfdr_aaQsHBhsvnen71xjNb7xNZvwALaIa79T1PApY7MUgx1I_-Ubv-SHOfaHz4dKPnzO74LmlGbJ9w3MEG8VtdOt7Aaqaxr5ydI9o6kwo0726QQAox89epbvuZQwNgchQMKcdp5PM6CwwqbyN-z1w16J3ki47fDhJk4Pxz18Ye_SMIM8euPQtd-YvucKgrCxrt0MZWFpjkkzVN248jEQ85SWnhoe-zNBzm0bsDG3ATh3KyeyowH1WFc7METFaxMAfRxp0mipCzEq19LuwETyKPGDg-3JcBlG4BhIiS6i0C-dLQT88tuCoLO28shbCBtk9-klpjiYaCY4QQ5IwjmQBy3fEOG7APllKAdYXIgjv01X9iBHmaVFNNls98VY-Zd5rVBpfBT-mQYX3yJveKdkIMW8E2P7Wc33CqHOowIk2MXhN7n-xJK-i3FVsv03F1PXLkUwM4GzAUYlAKp4MacPnFcfPItvoJc0-6BU8NlzWQWcpHOO65GtEAo0BR2_BXcBuN8tiOLgdTw3KW_bgmngY7LcKqMenlN9udF2Rsy-Mx15rdNHATMbuXPr8riqzwZ8qP13ANF9Cr1rbbvrZdYq2tLHeVy9l1fyBQpJ_dQSH6ohQLjWjHbS7kL8BxldVaoYbq_LlICF2H1gr-YcrU52GdvzsloomuouTJJ1UQvifop_4BGx23lMbbyp5DzwdRuG1Y53T1vLbt83rsdgHZ1eG-zRhm7Doo9Kbmearnvq1ss2ivULagTIJ72qyZIfZ-ckN8B6tkMNKa82mXkAVzf9iHie3hkvWZaUXhcO4qQAOfW0jFeRlNXFdFJs4sIxrZh4ICfoE4Ax04PIeLF_TcEjlfAqtQYVXy0LTkmCH3d0hDrC7FSh-9M6RmCM0_WFwCJJ0TbDjyH0ByJcr52rhwAdr1MnxBGVddPcZLjBlPvej_2HdraOBf84KutUad0zRNMkvMGsgM852nfoYJURQkj73Wq414HnqItrLLo694o7S2yetCmcYd7TnNf7jSP6r7_-_OvPd33mfVKK5_cmpTJxSB6G_QIPrmjoVvJQNXRjVLh7vHObJmVbW2XrhmO9kZ4X6ibh4RwbbQnXoohdAmnWS_C4Wp0OI64gu1dbM3RspHdxUaPbMq8Y1fz0S5cbX9QL1Wr1VFjN9Q_3Vsj9_QSrVUbodGjsKSZnOLH2XjXVz-RXSe2HM7C5eCHWz71jUK5777JzjzF6Sjg8IzquS9c72JJgQL1zV_xTj4AEbC9bwWhmFqGJ9S-CFCaaWnuEjVSeUJ_X0IrGxtG5QOaUJaIxumzIhe7IYXFszQ2ZWEutZwrLhpB3e7AvWAJaLjkhhZM3FE27kCpjQZ0KLQW3zXoBwsjcAsRmyd3SBvH1VV3_t_mZ62KV_J_LogF3hpI4al73n9k_avZOpup_KqepxmQ_1uInS9g1RbUtVYAtv7GWZjDQiu_0ZCE9ohoLZn26sMQr4nNCyHi4lHAJ1vKIv-R1_KVzkz3PMObTF-CZ1CCbvOHeYObhwBoM3jDvEct-W4IS3Gwf5F3F5KRzDk9am9ZIqdrN0xEGADuLO30FeJrREDAEm9S3HswV8gMGPeDU14cg_og4Cc8eyqgoSNbdeiQAwdCunrpc3UfEwcDqJ2vuVaq6L2KdW9OoW1fROxRgOzx1VOnB2F3TwRoIXY3giz9geNOJkH9CNYdZYKeuegEgw4WtlmVtr0kjNhR-QlN-CwewvwdshLXGxTgvmAs5a9mpBP8wA5Odlcd1utBAip4Hvzwh-P3H5v_8F44gLBMaDAAA';
+
+		var embedConfiguration1 = {
+			type : 'report',
+			accessToken : token,
+			id : '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+			tokenType : models.TokenType.Embed,
+			embedUrl : 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+			permissions : permissions,
+			settings : {
+				filterPaneEnabled : true,
+				navContentPaneEnabled : true
+			}
+
+		};
+
+		var $reportContainer1 = document.getElementById('reportContainer7');
+
+		var report = powerbi.load($reportContainer1, embedConfiguration1);
+
+		report.on("loaded", function() {
+			report.getPages().then(pages => {
+				// inspect pages in browser console
+				for(var i=0;i<pages.length;i++){
+				   	 console.log(pages[i].name)
+					 var embedConfiguration2 = {
+	            		type: 'report',
+	                    pageName: pages[i].name,
+	                    accessToken: token,
+	                    id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+	                    tokenType: models.TokenType.Embed,
+	                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+	                    permissions: permissions,
+	                    settings: {
+	                        filterPaneEnabled: true,
+	                        navContentPaneEnabled: true
+	                    }
+   
+	                };  
+					var $reportContainer = $('#reportContainer'+(i+1));
+					powerbi.embed($reportContainer.get(0), embedConfiguration2);
+				}
+				
+			});
+		});
+
+// 		report.on('rendered', function() {
+// 			console.log("rendered event executing");
+// 		});
+
+	}
+</script>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="logo">
+			<img
+				src="http://www.espire.com/-/media/feature/identity/logo.png?h=76&w=101&la=en&hash=5C02FB870E77014A8E0FF7449D833852A1FBE517"
+				alt="espire Logo">
+		</div>
+		<div id="carouselExampleControls" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+
+
+				<div class="carousel-item active" id="reportContainer1"></div>
+				<div class="carousel-item" id="reportContainer2"></div>
+				<div class="carousel-item" id="reportContainer3"></div>
+				<div class="carousel-item" id="reportContainer4"></div>
+				<div class="carousel-item" id="reportContainer5"></div>
+
+				<div class="carousel-item" id="reportContainer6"></div>
+				<div class="carousel-item" id="reportContainer7"></div>
+				<!-- 				<div class="carousel-item" id="reportContainer8"></div> -->
+				<!-- 				<div class="carousel-item" id="reportContainer9"></div> -->
+				<!-- 				<div class="carousel-item" id="reportContainer10"></div> -->
+				<!-- 				<div class="carousel-item" id="reportContainer11"></div> -->
+				<!-- 				<div class="carousel-item" id="reportContainer12"></div> -->
+				<!-- 				<div class="carousel-item" id="reportContainer13"></div> -->
+				<!-- 				<div class="carousel-item" id="reportContainer14"></div> -->
+
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleControls"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleControls"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

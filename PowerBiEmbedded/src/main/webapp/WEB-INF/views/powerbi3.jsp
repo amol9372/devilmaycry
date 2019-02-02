@@ -55,21 +55,6 @@ html, body, .container {
 
             var permissions = models.Permissions.All;
 
-            var embedConfiguration1 = {
-                type: 'report',
-                pageName: 'ReportSection2fb772098336cd0a418e',
-                accessToken: ${embedToken1},
-                id: '1887fbcb-2caa-4f40-b9b1-6ddc4e466186',
-                tokenType: models.TokenType.Embed,
-                embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=1887fbcb-2caa-4f40-b9b1-6ddc4e466186&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                permissions: permissions,
-                settings: {
-                    filterPaneEnabled: true,
-                    navContentPaneEnabled: true
-                }
-
-            };
-
             var embedConfiguration2 = {
             		type: 'report',
                     pageName: 'ReportSection',
@@ -131,36 +116,34 @@ html, body, .container {
             };
             
             var embedConfiguration24 = {
-           		 type: 'report',
-                    pageName: 'ReportSectiona6d147710858aab247db',
-                    accessToken: ${embedToken2},
-                    id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+              		 type: 'report',
+                       pageName: 'ReportSectiona6d147710858aab247db',
+                       accessToken: ${embedToken2},
+                       id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+                       tokenType: models.TokenType.Embed,
+                       embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+                       permissions: permissions,
+                       settings: {
+                           filterPaneEnabled: true,
+                           navContentPaneEnabled: true
+                       }
 
-           };
-            
-            
+              };
             
             var embedConfiguration11 = {
-           		 type: 'report',
-                    pageName: 'ReportSection',
-                    accessToken: ${embedToken4},
-                    id: 'ace7cbb9-b547-49ab-bb88-8cc7b968bbe7',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=ace7cbb9-b547-49ab-bb88-8cc7b968bbe7&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+              		 type: 'report',
+                       pageName: 'ReportSection',
+                       accessToken: ${embedToken4},
+                       id: 'ace7cbb9-b547-49ab-bb88-8cc7b968bbe7',
+                       tokenType: models.TokenType.Embed,
+                       embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=ace7cbb9-b547-49ab-bb88-8cc7b968bbe7&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+                       permissions: permissions,
+                       settings: {
+                           filterPaneEnabled: true,
+                           navContentPaneEnabled: true
+                       }
 
-           };
+              };
             
             var embedConfiguration6 = {
                     type: 'report',
@@ -267,6 +250,7 @@ html, body, .container {
 
             };
             
+           
             var embedConfiguration14 = {
                     type: 'report',
                     pageName: 'ReportSection',
@@ -409,7 +393,6 @@ html, body, .container {
             };
             
             
-            var $reportContainer1 = $('#reportContainer1');
             
             var $reportContainer2 = $('#reportContainer2');
             var $reportContainer3 = $('#reportContainer3');
@@ -422,8 +405,7 @@ html, body, .container {
             var $reportContainer8 = $('#reportContainer8');
             var $reportContainer9 = $('#reportContainer9');
             var $reportContainer10 = $('#reportContainer10');
-            
-            
+           
             var $reportContainer12 = $('#reportContainer12');
             
             var $reportContainer13 = $('#reportContainer13');
@@ -437,9 +419,8 @@ html, body, .container {
             var $reportContainer21 = $('#reportContainer21');
             var $reportContainer22 = $('#reportContainer22');
             var $reportContainer23 = $('#reportContainer23');
-           
 
-            var report1 = powerbi.embed($reportContainer1.get(0), embedConfiguration1);
+           
             var report2 = powerbi.embed($reportContainer2.get(0), embedConfiguration2);
             var report3 = powerbi.embed($reportContainer3.get(0), embedConfiguration3);
             var report4 = powerbi.embed($reportContainer4.get(0), embedConfiguration4);
@@ -451,7 +432,6 @@ html, body, .container {
             var report8 = powerbi.embed($reportContainer8.get(0), embedConfiguration8);
             var report9 = powerbi.embed($reportContainer9.get(0), embedConfiguration9);
             var report10 = powerbi.embed($reportContainer10.get(0), embedConfiguration10);
-            
             
             var report12 = powerbi.embed($reportContainer12.get(0), embedConfiguration12);
             var report13 = powerbi.embed($reportContainer13.get(0), embedConfiguration13);
@@ -465,7 +445,7 @@ html, body, .container {
             var report21 = powerbi.embed($reportContainer21.get(0), embedConfiguration21);
             var report22 = powerbi.embed($reportContainer22.get(0), embedConfiguration22);
             var report23 = powerbi.embed($reportContainer23.get(0), embedConfiguration23);
-        
+            
             
             
            
@@ -487,9 +467,9 @@ html, body, .container {
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel">
 			<div class="carousel-inner">
-			    <div class="carousel-item active" id="reportContainer1"></div>
 			    
-			    <div class="carousel-item" id="reportContainer2"></div>				
+			    
+			    <div class="carousel-item active" id="reportContainer2"></div>				
 				<div class="carousel-item" id="reportContainer3"></div>
 				<div class="carousel-item" id="reportContainer4"></div>
 				<div class="carousel-item" id="reportContainer5"></div>

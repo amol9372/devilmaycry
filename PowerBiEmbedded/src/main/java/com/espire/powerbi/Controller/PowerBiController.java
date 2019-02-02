@@ -83,7 +83,7 @@ public class PowerBiController {
 		return reportView;
 	}
 	
-	@RequestMapping("/viewpagewisereports")
+	@RequestMapping("/viewpagewisereports1")
 	public ModelAndView viewPageWiseReports() throws JsonProcessingException {
 		//PowerBiReportModel powerBiReportModel = new PowerBiReportModel();
 		List<PowerBiReportModel> reportList = new ArrayList<>();
@@ -97,12 +97,16 @@ public class PowerBiController {
 		//reportList.add(new PowerBiReportModel("12b1b8d1-1703-4c8f-a2dc-118c12010652","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=12b1b8d1-1703-4c8f-a2dc-118c12010652&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		//reportList.add(new PowerBiReportModel("3a73c36a-603a-404c-bb62-07068010b2b4","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=3a73c36a-603a-404c-bb62-07068010b2b4&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 //		reportList.add(new PowerBiReportModel("1887fbcb-2caa-4f40-b9b1-6ddc4e466186","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=1887fbcb-2caa-4f40-b9b1-6ddc4e466186&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
-		reportList.add(new PowerBiReportModel("80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
-		reportList.add(new PowerBiReportModel("a983c854-32b6-43cc-8fa8-c879a5f90a31","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=a983c854-32b6-43cc-8fa8-c879a5f90a31&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		reportList.add(new PowerBiReportModel("1887fbcb-2caa-4f40-b9b1-6ddc4e466186","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=1887fbcb-2caa-4f40-b9b1-6ddc4e466186&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		
+		reportList.add(new PowerBiReportModel("f353054b-1e85-4043-9e40-5eb91dc06d9b","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("ace7cbb9-b547-49ab-bb88-8cc7b968bbe7","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=ace7cbb9-b547-49ab-bb88-8cc7b968bbe7&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
 		
-		String embedToken[] = new String[3];
+		reportList.add(new PowerBiReportModel("0f5071ec-0f45-4583-9b00-4be9698ee7ae","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=0f5071ec-0f45-4583-9b00-4be9698ee7ae&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("9d7d348a-ddaa-49d1-b5dd-445e9f3816fa","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+
+		String embedToken[] = new String[reportList.size()];
 		int i=0;
 		for(PowerBiReportModel powerBiReportModel : reportList){
 			String accessToken = powerBiService.getAccessToken();
@@ -125,10 +129,56 @@ public class PowerBiController {
 //		reportView.addObject("groupId",objectMapper.writeValueAsString(powerBiReportModel.getGroupId()));
 //		reportView.addObject("embedUrl",objectMapper.writeValueAsString(powerBiReportModel.getEmbedUrl()));
 		//reportView.addObject("reportJson", objectMapper.writeValueAsString(reportJson));
-		reportView.addObject("embedToken2", objectMapper.writeValueAsString(embedToken[0]));  //1887fbcb-2caa-4f40-b9b1-6ddc4e466186
+		reportView.addObject("embedToken1", objectMapper.writeValueAsString(embedToken[0]));  //1887fbcb-2caa-4f40-b9b1-6ddc4e466186
 		
-		reportView.addObject("embedToken1", objectMapper.writeValueAsString(embedToken[1]));  //a983c854-32b6-43cc-8fa8-c879a5f90a31
-		reportView.addObject("embedToken3", objectMapper.writeValueAsString(embedToken[2]));  //35fdaeec-503e-40c9-890b-b33fe449de56		
+		reportView.addObject("embedToken2", objectMapper.writeValueAsString(embedToken[1]));  //a983c854-32b6-43cc-8fa8-c879a5f90a31
+		reportView.addObject("embedToken3", objectMapper.writeValueAsString(embedToken[2]));  //35fdaeec-503e-40c9-890b-b33fe449de56
+		reportView.addObject("embedToken4", objectMapper.writeValueAsString(embedToken[3]));
+		reportView.addObject("embedToken5", objectMapper.writeValueAsString(embedToken[4]));  //35fdaeec-503e-40c9-890b-b33fe449de56
+		reportView.addObject("embedToken6", objectMapper.writeValueAsString(embedToken[5]));
+		return reportView;
+	}
+	
+	@RequestMapping("/viewpagewisereports2")
+	public ModelAndView viewPageWiseReports2() throws JsonProcessingException {
+		
+		List<PowerBiReportModel> reportList = new ArrayList<>();
+		ModelAndView reportView = new ModelAndView();
+		
+		reportView.setViewName("powerbi3");
+	    reportList.add(new PowerBiReportModel("80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("f353054b-1e85-4043-9e40-5eb91dc06d9b","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("ace7cbb9-b547-49ab-bb88-8cc7b968bbe7","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=ace7cbb9-b547-49ab-bb88-8cc7b968bbe7&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("0f5071ec-0f45-4583-9b00-4be9698ee7ae","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=0f5071ec-0f45-4583-9b00-4be9698ee7ae&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+		reportList.add(new PowerBiReportModel("9d7d348a-ddaa-49d1-b5dd-445e9f3816fa","cb6d2214-38ec-405c-a7fc-92d3c32602f9","https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9",""));
+
+		
+		String embedToken[] = new String[reportList.size()];
+		int i=0;
+		for(PowerBiReportModel powerBiReportModel : reportList){
+			String accessToken = powerBiService.getAccessToken();
+			embedToken[i] = powerBiService.getEmbedToken(powerBiReportModel, accessToken);
+			//powerBiReportModel.setEmbedToken(embedToken);
+			i++;
+		}
+		
+		PowerBiModel powerBiModel = new PowerBiModel();
+		powerBiModel.setReportList(reportList);
+		
+		
+		Gson gson = new Gson();
+		String reportJson = gson.toJson(powerBiModel);
+		System.out.println(reportJson);
+		
+		com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+
+		
+		
+		reportView.addObject("embedToken2", objectMapper.writeValueAsString(embedToken[0]));  //a983c854-32b6-43cc-8fa8-c879a5f90a31
+		reportView.addObject("embedToken3", objectMapper.writeValueAsString(embedToken[1]));
+		reportView.addObject("embedToken4", objectMapper.writeValueAsString(embedToken[2]));//35fdaeec-503e-40c9-890b-b33fe449de56		
+		reportView.addObject("embedToken5", objectMapper.writeValueAsString(embedToken[3]));  //35fdaeec-503e-40c9-890b-b33fe449de56
+		reportView.addObject("embedToken6", objectMapper.writeValueAsString(embedToken[4]));
 		return reportView;
 	}
 
