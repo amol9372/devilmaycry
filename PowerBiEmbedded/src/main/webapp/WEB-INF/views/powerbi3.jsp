@@ -50,408 +50,281 @@ html, body, .container {
 }
 </style>
 <script type="text/javascript">
-        window.onload = function () {
-            var models = window['powerbi-client'].models;
+window.onload = function () {
+    var models = window['powerbi-client'].models;
 
-            var permissions = models.Permissions.All;
+    var permissions = models.Permissions.All;
 
-            var embedConfiguration2 = {
-            		type: 'report',
-                    pageName: 'ReportSection',
-                    accessToken: ${embedToken2},
-                    id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+   
 
-            };
+    var embedConfiguration2 = {
+    		type: 'report',
+            pageName: 'ReportSection',
+            accessToken: ${embedToken2},
+            id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            var embedConfiguration3 = {
-            		 type: 'report',
-                     pageName: 'ReportSectionec5af81b228b39ad9714',
-                     accessToken: ${embedToken2},
-                     id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
-                     tokenType: models.TokenType.Embed,
-                     embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                     permissions: permissions,
-                     settings: {
-                         filterPaneEnabled: true,
-                         navContentPaneEnabled: true
-                     }
+    };
 
-            };
+    var embedConfiguration3 = {
+    		 type: 'report',
+             pageName: 'ReportSectionec5af81b228b39ad9714',
+             accessToken: ${embedToken2},
+             id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+             tokenType: models.TokenType.Embed,
+             embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+             permissions: permissions,
+             settings: {
+                 filterPaneEnabled: true,
+                 navContentPaneEnabled: true
+             }
 
-            var embedConfiguration4 = {
-            		 type: 'report',
-                     pageName: 'ReportSectionc567fe0620ac99a77679',
-                     accessToken: ${embedToken2},
-                     id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
-                     tokenType: models.TokenType.Embed,
-                     embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                     permissions: permissions,
-                     settings: {
-                         filterPaneEnabled: true,
-                         navContentPaneEnabled: true
-                     }
+    };
 
-            };
+    var embedConfiguration4 = {
+    		 type: 'report',
+             pageName: 'ReportSectionc567fe0620ac99a77679',
+             accessToken: ${embedToken2},
+             id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+             tokenType: models.TokenType.Embed,
+             embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+             permissions: permissions,
+             settings: {
+                 filterPaneEnabled: true,
+                 navContentPaneEnabled: true
+             }
 
-            var embedConfiguration5 = {
-            		 type: 'report',
-                     pageName: 'ReportSection2a908940d78029d589ea',
-                     accessToken: ${embedToken2},
-                     id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
-                     tokenType: models.TokenType.Embed,
-                     embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                     permissions: permissions,
-                     settings: {
-                         filterPaneEnabled: true,
-                         navContentPaneEnabled: true
-                     }
+    };
 
-            };
-            
-            var embedConfiguration24 = {
-              		 type: 'report',
-                       pageName: 'ReportSectiona6d147710858aab247db',
-                       accessToken: ${embedToken2},
-                       id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
-                       tokenType: models.TokenType.Embed,
-                       embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                       permissions: permissions,
-                       settings: {
-                           filterPaneEnabled: true,
-                           navContentPaneEnabled: true
-                       }
+    var embedConfiguration5 = {
+    		 type: 'report',
+             pageName: 'ReportSection2a908940d78029d589ea',
+             accessToken: ${embedToken2},
+             id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+             tokenType: models.TokenType.Embed,
+             embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+             permissions: permissions,
+             settings: {
+                 filterPaneEnabled: true,
+                 navContentPaneEnabled: true
+             }
 
-              };
-            
-            var embedConfiguration11 = {
-              		 type: 'report',
-                       pageName: 'ReportSection',
-                       accessToken: ${embedToken4},
-                       id: 'ace7cbb9-b547-49ab-bb88-8cc7b968bbe7',
-                       tokenType: models.TokenType.Embed,
-                       embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=ace7cbb9-b547-49ab-bb88-8cc7b968bbe7&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                       permissions: permissions,
-                       settings: {
-                           filterPaneEnabled: true,
-                           navContentPaneEnabled: true
-                       }
+    };
+    
+    
+    var embedConfiguration50 = {
+   		 type: 'report',
+            pageName: 'ReportSectiona6d147710858aab247db',
+            accessToken: ${embedToken2},
+            id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-              };
-            
-            var embedConfiguration6 = {
-                    type: 'report',
-                    pageName: 'ReportSection358d1eaa37f6b3f5fc0f',
-                    accessToken: ${embedToken3},
-                    id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+   };
+    
+    
+    
+    
+    var embedConfiguration11 = {
+   		 type: 'report',
+            pageName: 'ReportSection',
+            accessToken: ${embedToken4},
+            id: 'ace7cbb9-b547-49ab-bb88-8cc7b968bbe7',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=ace7cbb9-b547-49ab-bb88-8cc7b968bbe7&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            
-            var embedConfiguration7 = {
-                    type: 'report',
-                    pageName: 'ReportSection48c7b77ada501059194a',
-                    accessToken: ${embedToken3},
-                    id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+   };
+    
+    var embedConfiguration6 = {
+            type: 'report',
+            pageName: 'ReportSection358d1eaa37f6b3f5fc0f',
+            accessToken: ${embedToken3},
+            id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            
-            var embedConfiguration8 = {
-                    type: 'report',
-                    pageName: 'ReportSectionedd0398feda59d43649a',
-                    accessToken: ${embedToken3},
-                    id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+    
+    var embedConfiguration7 = {
+            type: 'report',
+            pageName: 'ReportSection48c7b77ada501059194a',
+            accessToken: ${embedToken3},
+            id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            
-            var embedConfiguration9 = {
-                    type: 'report',
-                    pageName: 'ReportSection904a776fc8900d532390',
-                    accessToken: ${embedToken3},
-                    id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+    
+    var embedConfiguration8 = {
+            type: 'report',
+            pageName: 'ReportSectionedd0398feda59d43649a',
+            accessToken: ${embedToken3},
+            id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            
-            var embedConfiguration10 = {
-                    type: 'report',
-                    pageName: 'ReportSection706e6127dd7d209da25b',
-                    accessToken: ${embedToken3},
-                    id: 'f353054b-1e85-4043-9e40-5eb91dc06d9b',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+    
+    
+    var embedConfiguration12 = {
+            type: 'report',
+            pageName: 'ReportSection1523237b60b71c04390c',
+            accessToken: ${embedToken5},
+            id: '0f5071ec-0f45-4583-9b00-4be9698ee7ae',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=0f5071ec-0f45-4583-9b00-4be9698ee7ae&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            
-            var embedConfiguration12 = {
-                    type: 'report',
-                    pageName: 'ReportSection1523237b60b71c04390c',
-                    accessToken: ${embedToken5},
-                    id: '0f5071ec-0f45-4583-9b00-4be9698ee7ae',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=0f5071ec-0f45-4583-9b00-4be9698ee7ae&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+    
+ 
+    
+    var embedConfiguration14 = {
+            type: 'report',
+            pageName: 'ReportSection',
+            accessToken: ${embedToken6},
+            id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            
-            var embedConfiguration13 = {
-                    type: 'report',
-                    pageName: 'ReportSection5897e99a0e0ed139212a',
-                    accessToken: ${embedToken5},
-                    id: '0f5071ec-0f45-4583-9b00-4be9698ee7ae',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=0f5071ec-0f45-4583-9b00-4be9698ee7ae&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+    var embedConfiguration15 = {
+            type: 'report',
+            pageName: 'ReportSection7a6fb9089045b0bb98d5',
+            accessToken: ${embedToken6},
+            id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            
-           
-            var embedConfiguration14 = {
-                    type: 'report',
-                    pageName: 'ReportSection',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+    var embedConfiguration16 = {
+            type: 'report',
+            pageName: 'ReportSection0af17a107349470ed300',
+            accessToken: ${embedToken6},
+            id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            var embedConfiguration15 = {
-                    type: 'report',
-                    pageName: 'ReportSection7a6fb9089045b0bb98d5',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+  
+    var embedConfiguration18 = {
+            type: 'report',
+            pageName: 'ReportSection0b64d42db9d4206043c7',
+            accessToken: ${embedToken6},
+            id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
+            tokenType: models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
 
-            };
-            var embedConfiguration16 = {
-                    type: 'report',
-                    pageName: 'ReportSection0af17a107349470ed300',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
+    };
+    
+    
+    
+   
+    
+    var $reportContainer2 = $('#reportContainer2');
+    var $reportContainer3 = $('#reportContainer3');
+    var $reportContainer4 = $('#reportContainer4');
+    var $reportContainer5 = $('#reportContainer5');
+    var $reportContainer50 = $('#reportContainer50');
+    
+    var $reportContainer6 = $('#reportContainer6');            
+    var $reportContainer7 = $('#reportContainer7');
+    var $reportContainer8 = $('#reportContainer8');
+    
+    
+    
+    var $reportContainer12 = $('#reportContainer12');
+    
+    
+    var $reportContainer14 = $('#reportContainer14');
+    var $reportContainer15 = $('#reportContainer15');
+    var $reportContainer16 = $('#reportContainer16');
+    
+    var $reportContainer18 = $('#reportContainer18');
+   
+   
 
-            };
-            var embedConfiguration17 = {
-                    type: 'report',
-                    pageName: 'ReportSection2e5597a102020a85c019',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
-
-            };
-            var embedConfiguration18 = {
-                    type: 'report',
-                    pageName: 'ReportSection0b64d42db9d4206043c7',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
-
-            };
-            var embedConfiguration19 = {
-                    type: 'report',
-                    pageName: 'ReportSectionbb77002e000684dd3cd2',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
-
-            };
-            var embedConfiguration20 = {
-                    type: 'report',
-                    pageName: 'ReportSection7b0c98a049430677dbcb',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
-
-            };
-            var embedConfiguration21 = {
-                    type: 'report',
-                    pageName: 'ReportSection8fcbec6256e4ce3e188b',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
-
-            };
-            var embedConfiguration22 = {
-                    type: 'report',
-                    pageName: 'ReportSectioncb3bfb35ea4ac85b0726',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=f353054b-1e85-4043-9e40-5eb91dc06d9b&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
-
-            };
-            var embedConfiguration23 = {
-                    type: 'report',
-                    pageName: 'ReportSectionb2c8cdffa3231a3de702',
-                    accessToken: ${embedToken6},
-                    id: '9d7d348a-ddaa-49d1-b5dd-445e9f3816fa',
-                    tokenType: models.TokenType.Embed,
-                    embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=9d7d348a-ddaa-49d1-b5dd-445e9f3816fa&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
-                    permissions: permissions,
-                    settings: {
-                        filterPaneEnabled: true,
-                        navContentPaneEnabled: true
-                    }
-
-            };
-            
-            
-            
-            var $reportContainer2 = $('#reportContainer2');
-            var $reportContainer3 = $('#reportContainer3');
-            var $reportContainer4 = $('#reportContainer4');
-            var $reportContainer5 = $('#reportContainer5');
-            var $reportContainer24 = $('#reportContainer24');
-            var $reportContainer11 = $('#reportContainer11');
-            var $reportContainer6 = $('#reportContainer6');            
-            var $reportContainer7 = $('#reportContainer7');
-            var $reportContainer8 = $('#reportContainer8');
-            var $reportContainer9 = $('#reportContainer9');
-            var $reportContainer10 = $('#reportContainer10');
-           
-            var $reportContainer12 = $('#reportContainer12');
-            
-            var $reportContainer13 = $('#reportContainer13');
-            var $reportContainer14 = $('#reportContainer14');
-            var $reportContainer15 = $('#reportContainer15');
-            var $reportContainer16 = $('#reportContainer16');
-            var $reportContainer17 = $('#reportContainer17');
-            var $reportContainer18 = $('#reportContainer18');
-            var $reportContainer19 = $('#reportContainer19');
-            var $reportContainer20 = $('#reportContainer20');
-            var $reportContainer21 = $('#reportContainer21');
-            var $reportContainer22 = $('#reportContainer22');
-            var $reportContainer23 = $('#reportContainer23');
-
-           
-            var report2 = powerbi.embed($reportContainer2.get(0), embedConfiguration2);
-            var report3 = powerbi.embed($reportContainer3.get(0), embedConfiguration3);
-            var report4 = powerbi.embed($reportContainer4.get(0), embedConfiguration4);
-            var report5 = powerbi.embed($reportContainer5.get(0), embedConfiguration5);
-            var report24 = powerbi.embed($reportContainer24.get(0), embedConfiguration24);
-            var report11 = powerbi.embed($reportContainer11.get(0), embedConfiguration11);
-            var report6 = powerbi.embed($reportContainer6.get(0), embedConfiguration6);
-            var report7 = powerbi.embed($reportContainer7.get(0), embedConfiguration7);
-            var report8 = powerbi.embed($reportContainer8.get(0), embedConfiguration8);
-            var report9 = powerbi.embed($reportContainer9.get(0), embedConfiguration9);
-            var report10 = powerbi.embed($reportContainer10.get(0), embedConfiguration10);
-            
-            var report12 = powerbi.embed($reportContainer12.get(0), embedConfiguration12);
-            var report13 = powerbi.embed($reportContainer13.get(0), embedConfiguration13);
-            var report14 = powerbi.embed($reportContainer14.get(0), embedConfiguration14);
-            var report15 = powerbi.embed($reportContainer15.get(0), embedConfiguration15);
-            var report16 = powerbi.embed($reportContainer16.get(0), embedConfiguration16);
-            var report17 = powerbi.embed($reportContainer17.get(0), embedConfiguration17);
-            var report18 = powerbi.embed($reportContainer18.get(0), embedConfiguration18);
-            var report19 = powerbi.embed($reportContainer19.get(0), embedConfiguration19);
-            var report20 = powerbi.embed($reportContainer20.get(0), embedConfiguration20);
-            var report21 = powerbi.embed($reportContainer21.get(0), embedConfiguration21);
-            var report22 = powerbi.embed($reportContainer22.get(0), embedConfiguration22);
-            var report23 = powerbi.embed($reportContainer23.get(0), embedConfiguration23);
-            
-            
-            
-           
-            
-            
-        }
+    
+    var report2 = powerbi.embed($reportContainer2.get(0), embedConfiguration2);
+    var report3 = powerbi.embed($reportContainer3.get(0), embedConfiguration3);
+    var report4 = powerbi.embed($reportContainer4.get(0), embedConfiguration4);
+    var report5 = powerbi.embed($reportContainer5.get(0), embedConfiguration5);
+    var report50 = powerbi.embed($reportContainer50.get(0), embedConfiguration50);
+    
+    var report6 = powerbi.embed($reportContainer6.get(0), embedConfiguration6);
+    var report7 = powerbi.embed($reportContainer7.get(0), embedConfiguration7);
+    var report8 = powerbi.embed($reportContainer8.get(0), embedConfiguration8);
+    
+    
+    var report12 = powerbi.embed($reportContainer12.get(0), embedConfiguration12);
+   
+    var report14 = powerbi.embed($reportContainer14.get(0), embedConfiguration14);
+    var report15 = powerbi.embed($reportContainer15.get(0), embedConfiguration15);
+    var report16 = powerbi.embed($reportContainer16.get(0), embedConfiguration16);
+   
+    var report18 = powerbi.embed($reportContainer18.get(0), embedConfiguration18);
+  
+    
+    
+   
+    
+    
+}
 
     </script>
 </head>
@@ -473,28 +346,20 @@ html, body, .container {
 				<div class="carousel-item" id="reportContainer3"></div>
 				<div class="carousel-item" id="reportContainer4"></div>
 				<div class="carousel-item" id="reportContainer5"></div>
-				<div class="carousel-item" id="reportContainer24"></div>
-				<div class="carousel-item" id="reportContainer11"></div>
+				<div class="carousel-item" id="reportContainer50"></div>
 				<div class="carousel-item" id="reportContainer6"></div>
 				<div class="carousel-item" id="reportContainer7"></div>
 				<div class="carousel-item" id="reportContainer8"></div>
-				<div class="carousel-item" id="reportContainer9"></div>
-				<div class="carousel-item" id="reportContainer10"></div>
 				
 				<div class="carousel-item" id="reportContainer12"></div>
 			    
-			    <div class="carousel-item" id="reportContainer13"></div>				
+			    	
 				<div class="carousel-item" id="reportContainer14"></div>
 				<div class="carousel-item" id="reportContainer15"></div>
 				<div class="carousel-item" id="reportContainer16"></div>
-				<div class="carousel-item" id="reportContainer17"></div>
-				<div class="carousel-item" id="reportContainer18"></div>
-				<div class="carousel-item" id="reportContainer19"></div>
-				<div class="carousel-item" id="reportContainer20"></div>
-				<div class="carousel-item" id="reportContainer21"></div>
-				<div class="carousel-item" id="reportContainer22"></div>
 				
-				<div class="carousel-item" id="reportContainer23"></div>
+				<div class="carousel-item" id="reportContainer18"></div>
+				
 				
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls"
