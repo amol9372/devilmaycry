@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +81,11 @@ public class PowerbiUtils {
 		}
 		JSONObject jsonObject = new JSONObject(responseString.toString());
 		return jsonObject.getString("token");
+	}
+	
+	public void getReportsFromFile(){
+		List<> reportList = new ArrayList<>();
+		
 	}
 	
 }

@@ -298,7 +298,7 @@ html, body, .container {
             var $reportContainer8 = $('#reportContainer8');
             
             
-            
+            var $reportContainer11 = $('#reportContainer11');
             var $reportContainer12 = $('#reportContainer12');
             
             
@@ -321,7 +321,7 @@ html, body, .container {
             var report6 = powerbi.embed($reportContainer6.get(0), embedConfiguration6);
             var report7 = powerbi.embed($reportContainer7.get(0), embedConfiguration7);
             var report8 = powerbi.embed($reportContainer8.get(0), embedConfiguration8);
-            
+            var report11 = powerbi.embed($reportContainer11.get(0), embedConfiguration11);
             
             var report12 = powerbi.embed($reportContainer12.get(0), embedConfiguration12);
            
@@ -362,7 +362,7 @@ html, body, .container {
 				<div class="carousel-item" id="reportContainer6"></div>
 				<div class="carousel-item" id="reportContainer7"></div>
 				<div class="carousel-item" id="reportContainer8"></div>
-				
+				<div class="carousel-item" id="reportContainer11"></div>
 				<div class="carousel-item" id="reportContainer12"></div>
 			    
 			    	
