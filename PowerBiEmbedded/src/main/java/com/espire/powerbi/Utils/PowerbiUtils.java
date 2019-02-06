@@ -13,9 +13,11 @@ import java.util.List;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import com.espire.powerbi.Model.PowerBiReportModel;
 
+@Component
 public class PowerbiUtils {
 
 	@Autowired
@@ -83,8 +85,16 @@ public class PowerbiUtils {
 		return jsonObject.getString("token");
 	}
 	
-	public void getReportsFromFile(){
-		List<> reportList = new ArrayList<>();
+	public List<PowerBiReportModel> getReportsFromFile(String url){
+		List<PowerBiReportModel> reportList = new ArrayList<>();
+		String[] reportsArray = env.getProperty(url).split(",");
+		
+		for(String reportId : reportsArray) {
+			String embedUrl = "https://app.powerbi.com/reportEmbed?reportId=".concat(reportId).concat("&groupId=").concat(env.getProperty("groupId"));
+			reportList.add(new PowerBiReportModel(reportId,env.getProperty("groupId"),embedUrl,""));
+		}
+		
+		return reportList;
 		
 	}
 	
