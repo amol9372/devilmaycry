@@ -87,6 +87,9 @@ public class PowerbiUtils {
 	
 	public List<PowerBiReportModel> getReportsFromFile(String url){
 		List<PowerBiReportModel> reportList = new ArrayList<>();
+		if(PowerbiUtils.isEmpty(env.getProperty(url)))
+			return null;
+		
 		String[] reportsArray = env.getProperty(url).split(",");
 		
 		for(String reportId : reportsArray) {
@@ -96,6 +99,12 @@ public class PowerbiUtils {
 		
 		return reportList;
 		
+	}
+	
+	public static boolean isEmpty(String abc) {
+		if (abc == null || abc.trim().length() == 0)
+			return true;
+		return false;
 	}
 	
 }

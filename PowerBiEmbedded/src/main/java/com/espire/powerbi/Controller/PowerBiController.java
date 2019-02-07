@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.espire.powerbi.Config.SpringConfig;
 import com.espire.powerbi.Model.PowerBiModel;
 import com.espire.powerbi.Model.PowerBiReportModel;
 import com.espire.powerbi.Service.PowerBiService;
@@ -123,11 +127,17 @@ public class PowerBiController {
 		return reportView;
 	}
 	
-	@RequestMapping("/viewautomatedreports")
+	@RequestMapping("/viewautomatedreports1")
 	public ModelAndView viewAutomatedReports() throws JsonProcessingException {
-		List<PowerBiReportModel> reportList = powerbiUtils.getReportsFromFile("reports1");;
+        List<PowerBiReportModel> reportList = powerbiUtils.getReportsFromFile("reports1");;
 		
 		ModelAndView reportView = new ModelAndView();
+		
+		if(reportList == null){
+			reportView.setViewName("errorpage");
+			reportView.addObject("errorMessage", "No Reports are added for this URL");
+			return reportView;
+		}
 		
 		reportView.setViewName("powerbi4");
 		
@@ -149,6 +159,52 @@ public class PowerBiController {
 		reportView.addObject("reportJson", objectMapper.writeValueAsString(reportJson));
 
 		return reportView;
+	}
+	
+	@RequestMapping("/viewautomatedreports2")
+	public ModelAndView viewAutomatedReports2() throws JsonProcessingException {
+	
+		List<PowerBiReportModel> reportList = powerbiUtils.getReportsFromFile("reports2");;
+		
+		ModelAndView reportView = new ModelAndView();
+		
+		if(reportList == null){
+			reportView.setViewName("errorpage");
+			reportView.addObject("errorMessage", "No Reports are added for this URL");
+			return reportView;
+		}
+		
+		
+		
+		reportView.setViewName("powerbi4");
+		
+		for(PowerBiReportModel powerBiReportModel : reportList){
+			String accessToken = powerBiService.getAccessToken();			
+			powerBiReportModel.setEmbedToken(powerBiService.getEmbedToken(powerBiReportModel, accessToken));			
+		}
+		
+		PowerBiModel powerBiModel = new PowerBiModel();
+		powerBiModel.setReportList(reportList);
+		
+		
+		Gson gson = new Gson();
+		String reportJson = gson.toJson(powerBiModel);
+		System.out.println(reportJson);
+		
+		com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+
+		reportView.addObject("reportJson", objectMapper.writeValueAsString(reportJson));
+
+		return reportView;
+	}
+	
+	
+	@RequestMapping("/refreshcontext")
+	public void refreshContext() {
+		
+		ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+		((ConfigurableApplicationContext) context).refresh();
+		((ConfigurableApplicationContext) context).close();
 	}
 
 }
