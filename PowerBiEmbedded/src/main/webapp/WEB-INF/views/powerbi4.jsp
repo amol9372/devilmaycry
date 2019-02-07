@@ -86,6 +86,7 @@ html, body, .container {
 
 window.onload = function() {
 	
+	var childCaraoselCount = 0;
 	function loadPages(report, embeddedReport){
 		var models = window['powerbi-client'].models;
 
@@ -100,7 +101,7 @@ window.onload = function() {
 			    	if(pages.length == 1)
 			    		return;
 			    	for(var i=(pages.length-1);i>=1;i--){
-			    		 createChildDiv(carouselCount,pages[i].report.config.id);
+			    		 createChildDiv(childCaraoselCount,pages[i].report.config.id);
 					   	 console.log(pages[i].name)
 						 var embedConfiguration = {
 		            		type: 'report',
@@ -118,10 +119,10 @@ window.onload = function() {
 		                };  
 					   	 
 					   					   	
-						var $reportContainer = $('#reportContainer'+carouselCount);
+						var $reportContainer = $('#reportContainer'+childCaraoselCount);
 						//embeddedReport.render(embedConfiguration);
 						powerbi.embed($reportContainer.get(0), embedConfiguration);
-						carouselCount++;
+						childCaraoselCount++;
 					}
 			    });
 		
