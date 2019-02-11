@@ -36,33 +36,48 @@
 -->
 <br>
 
-
-<h4>Drag-and-Drop - Shopping basket</h4>
+<h4>Restricted Drag-and-Drop with zones</h4>
 <div class="row">
- 
     <div class="col-sm-3">
-        <div class="panel panel-success">
-            <div class="panel-heading">Available products</div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Available to drag</div>
             <div class="panel-body">
-                <div *ngFor="let product of availableProducts" class="panel panel-default"
-                    dnd-draggable [dragEnabled]="product.quantity>0" [dragData]="product" (onDragSuccess)="orderedProduct($event)" [dropZones]="['demo1']">
+                <div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dropZones]="['zone1']">
                     <div class="panel-body">
-                        <div [hidden]="product.quantity===0">{{product.name}} - \${{product.cost}}<br>(available: {{product.quantity}})</div>
-                        <div [hidden]="product.quantity>0"><del>{{product.name}}</del><br>(NOT available)</div>
+                        <div>Drag Me</div>
+                        <div>Zone 1 only</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="panel panel-success">
+            <div class="panel-heading">Available to drag</div>
+            <div class="panel-body">
+                <div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dropZones]="['zone1', 'zone2']">
+                    <div class="panel-body">
+                        <div>Drag Me</div>
+                        <div>Zone 1 & 2</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <br><br><br><br>
     <div class="col-sm-3">
-        <div dnd-droppable (onDropSuccess)="addToBasket($event)" [dropZones]="['demo1']" class="panel panel-info">
-            <div class="panel-heading">Shopping Basket<br>(to pay: \${{totalCost()}})</div>
+        <div dnd-droppable class="panel panel-info" [dropZones]="['zone1']" (onDropSuccess)="restrictedDrop1=$event">
+            <div class="panel-heading">Zone 4</div>
             <div class="panel-body">
-                <div *ngFor="let product of shoppingBasket" class="panel panel-default">
-                    <div class="panel-body">
-                    {{product.name}}<br>(ordered: {{product.quantity}}<br>cost: \${{product.cost * product.quantity}})
-                    </div>
-                </div>
+                <div *ngIf="restrictedDrop1">Item was dropped here</div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+    <div class="col-sm-3">
+        <div dnd-droppable class="panel panel-warning" [dropZones]="['zone2']" (onDropSuccess)="restrictedDrop2=$event">
+            <div class="panel-heading">Zone 2</div>
+            <div class="panel-body">
+                <div *ngIf="restrictedDrop2">Item was dropped here</div>
             </div>
         </div>
     </div>
