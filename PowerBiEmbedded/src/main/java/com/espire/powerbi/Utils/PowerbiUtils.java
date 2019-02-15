@@ -85,6 +85,42 @@ public class PowerbiUtils {
 		return jsonObject.getString("token");
 	}
 	
+	public static String getReportListFromGroupId(String groupId, String accessToken) {
+		StringBuilder getAccessTokenParams = new StringBuilder();
+		getAccessTokenParams.append("{\r\n  \"accessLevel\": \"View\",\r\n  \"allowSaveAs\": \"false\"\r\n}").append("")
+				.append("").append("").append("").append("").append("").append("");
+		StringBuilder responseString = null;
+		try {
+			URL url = new URL(           // use builder here
+					"https://api.powerbi.com/v1.0/myorg/groups/".concat(groupId).concat("/reports/"));
+	
+			byte[] postData = getAccessTokenParams.toString().getBytes(StandardCharsets.UTF_8);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+			conn.setRequestProperty("Authorization", "Bearer"+" "+ accessToken);
+			conn.setUseCaches(false);
+			DataOutputStream writer = new DataOutputStream(conn.getOutputStream());
+			writer.write(postData);
+			writer.flush();
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			responseString = new StringBuilder();
+			String line = null;
+			while ((line = in.readLine()) != null) {
+				responseString.append(line);
+			}
+			System.out.println(responseString.toString());
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSONObject jsonObject = new JSONObject(responseString.toString());
+		return jsonObject.getString("value");
+	}
+	
+	
 	public List<PowerBiReportModel> getReportsFromFile(String url){
 		List<PowerBiReportModel> reportList = new ArrayList<>();
 		if(PowerbiUtils.isEmpty(env.getProperty(url)))

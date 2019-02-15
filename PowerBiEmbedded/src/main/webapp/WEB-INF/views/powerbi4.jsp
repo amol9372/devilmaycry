@@ -48,6 +48,10 @@ html, body, .container {
 	background-color: #124c91;
 	padding: 10px;
 }
+
+#hiddenReport {
+    display: none;
+}
 </style>
 
 </head>
@@ -62,7 +66,46 @@ html, body, .container {
 		</div>
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel">
-			<div class="carousel-inner" id="carousel-inner"></div>
+			<div class="carousel-inner" id="carousel-inner">
+
+
+
+
+     
+				
+
+				<div id="hiddenReport" class="carousel-item">
+				  <div id="passw">
+					<div>
+						(THE PASSWORD IS PASSWORD) <br /> Enter the password to proceed:
+					</div>
+					<div>
+
+						<input type="password" id="password"
+							onkeydown="if (event.keyCode == 13) document.getElementById('button').click()" />
+						<!-- IMPORTANT! this part is so if you click enter, it works. -->
+					</div>
+
+
+					<div>
+						<br /> <input id="button" type="button" value="Login"
+							onclick="if (document.getElementById('password').value == 'PASSWORD') { 
+document.getElementById('hiddenReport').classList.toggle('show');   document.getElementById('passw').style.display='none'; } 
+else {  alert('Invalid Password!'); password.setSelectionRange(0, password.value.length);   } " />
+					</div>
+					<!-- it will autoselect wrong input if wrong -->
+					<br />
+					<br />
+					<br />
+				 </div>				
+				</div>
+
+
+
+
+
+
+			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls"
 				role="button" data-slide="prev"> <span
 				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
@@ -78,6 +121,11 @@ html, body, .container {
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<script>
+		$('.carousel').carousel({
+		    interval: false
+		}); 
+	</script>
 </body>
 
 <script type="text/javascript">
@@ -85,7 +133,13 @@ html, body, .container {
 
 
 window.onload = function() {
-	
+	var preloadConfig = {
+		type : 'report',
+		baseUrl : 'https://embedded.powerbi.com/reportEmbed',
+	};
+
+	var preloadElement = powerbi.preload(preloadConfig);
+
 	var childCaraoselCount = 0;
 	function loadPages(report, embeddedReport){
 		var models = window['powerbi-client'].models;
@@ -134,12 +188,7 @@ window.onload = function() {
 
 	var permissions = models.Permissions.All;
 
-// 	var preloadConfig = {
-// 		type : 'report',
-// 		baseUrl : 'https://embedded.powerbi.com/reportEmbed',
-// 	};
 
-// 	var preloadElement = powerbi.preload(preloadConfig);
 	
 	//==========================================
 	
@@ -166,97 +215,15 @@ window.onload = function() {
 		        
 		};
         
-		
-		var embeddedReport = powerbi.embed($('#reportContainer'+report.reportId).get(0), embedConfiguration1);
-		loadPages(report, embeddedReport);
-		 
+		if(report.reportId == 'cd1de139-444b-4360-b845-a0989ba86b46'){
+			document.getElementById('passw').style.display = 'inline'; 
+			var embeddedReport = powerbi.embed($('#hiddenReport').get(0), embedConfiguration1);
+		} else {	
+		    var embeddedReport = powerbi.embed($('#reportContainer'+report.reportId).get(0), embedConfiguration1);
+		    loadPages(report, embeddedReport);
+		} 
 	});
 	
-// 	for (reportId in reports) {
-// 		console.log('Started for report id  ...'+reports[reportId].reportId);
-	
-	    
-// 	    //var reportId = reports[i]
-// 		var embedConfiguration1 = {
-// 			type : 'report',
-// 			accessToken : reports[reportId].embedToken,
-// 			id : reports[reportId].reportId,
-// 			tokenType : models.TokenType.Embed,
-// 			embedUrl : reports[reportId].embedUrl,
-// 			permissions : permissions,
-// 			settings : {
-// 				filterPaneEnabled : true,
-// 				navContentPaneEnabled : true
-// 			}
-
-// 		};
-
-// 		createDiv(carouselCount);
-		
-// 		var $reportContainer = $('#reportContainer'+carouselCount);
-
-// 		var report = powerbi.embed($reportContainer.get(0), embedConfiguration1);
-
-// 		carouselCount++;
-		
-		
-		
-// 		report.on("loaded", function() {
-// 			//var pages = setTimeout(report.getPages(), 3000);
-// 			    report.getPages().then(pages => {
-// 			    	for(var i=0;i<pages.length;i++){
-// 					   	 console.log(pages[i].name)
-// 						 var embedConfiguration = {
-// 		            		type: 'report',
-// 		                    pageName: pages[i].name,
-// 		                    accessToken: reports[reportId].embedToken,
-// 		                    id: reports[reportId].reportId,
-// 		                    tokenType: models.TokenType.Embed,
-// 		                    embedUrl: reports[reportId].embedUrl,
-// 		                    permissions: permissions,
-// 		                    settings: {
-// 		                        filterPaneEnabled: true,
-// 		                        navContentPaneEnabled: true
-// 		                    }
-
-// 		                };  
-					   	 
-// 					   	createDiv(carouselCount);				   	
-// 						var $reportContainer = $('#reportContainer'+carouselCount);
-// 						//report.render(embedConfiguration);
-// 						powerbi.embed($reportContainer.get(0), embedConfiguration);
-// 						carouselCount++;
-// 					}
-// 			    });
-		
-// 		});
-		
-// 		setInterval(function(){ console.log("waiting .... ") }, 6000); 
-		
-		
-// 	}	
-		
-	
-// 	function getPages(report){
-// 			var pages = report.getPages().then(function (pages) {
-	             
-// 	             return pages;
-
-	            
-// 	         }).catch(function (errors) {
-// 	             console.log(errors);
-// 	         });	
-// 	}
-		
-		
-		
-		
-
-		
-    
-	
-
-		
 
 }
 function createDiv(i,index){
