@@ -74,31 +74,31 @@ html, body, .container {
      
 				
 
-				<div id="hiddenReport" class="carousel-item">
-				  <div id="passw">
-					<div>
-						(THE PASSWORD IS PASSWORD) <br /> Enter the password to proceed:
-					</div>
-					<div>
+<!-- 				<div id="hiddenReport" class="carousel-item"> -->
+<!-- 				  <div id="passw"> -->
+<!-- 					<div> -->
+<!-- 						(THE PASSWORD IS PASSWORD) <br /> Enter the password to proceed: -->
+<!-- 					</div> -->
+<!-- 					<div> -->
 
-						<input type="password" id="password"
-							onkeydown="if (event.keyCode == 13) document.getElementById('button').click()" />
-						<!-- IMPORTANT! this part is so if you click enter, it works. -->
-					</div>
+<!-- 						<input type="password" id="password" -->
+<!-- 							onkeydown="if (event.keyCode == 13) document.getElementById('button').click()" /> -->
+<!-- 						IMPORTANT! this part is so if you click enter, it works. -->
+<!-- 					</div> -->
 
 
-					<div>
-						<br /> <input id="button" type="button" value="Login"
-							onclick="if (document.getElementById('password').value == 'PASSWORD') { 
-document.getElementById('hiddenReport').classList.toggle('show');   document.getElementById('passw').style.display='none'; } 
-else {  alert('Invalid Password!'); password.setSelectionRange(0, password.value.length);   } " />
-					</div>
-					<!-- it will autoselect wrong input if wrong -->
-					<br />
-					<br />
-					<br />
-				 </div>				
-				</div>
+<!-- 					<div> -->
+<!-- 						<br /> <input id="button" type="button" value="Login" -->
+<!-- 							onclick="if (document.getElementById('password').value == 'PASSWORD') {  -->
+<!-- document.getElementById('hiddenReport').classList.toggle('show');   document.getElementById('passw').style.display='none'; }  -->
+<!-- else {  alert('Invalid Password!'); password.setSelectionRange(0, password.value.length);   } " /> -->
+<!-- 					</div> -->
+<!-- 					it will autoselect wrong input if wrong -->
+<!-- 					<br /> -->
+<!-- 					<br /> -->
+<!-- 					<br /> -->
+<!-- 				 </div>				 -->
+<!-- 				</div> -->
 
 
 
@@ -215,13 +215,13 @@ window.onload = function() {
 		        
 		};
         
-		if(report.reportId == 'cd1de139-444b-4360-b845-a0989ba86b46'){
-			document.getElementById('passw').style.display = 'inline'; 
-			var embeddedReport = powerbi.embed($('#hiddenReport').get(0), embedConfiguration1);
-		} else {	
+// 		if(report.reportId == 'cd1de139-444b-4360-b845-a0989ba86b46'){
+// 			document.getElementById('passw').style.display = 'inline'; 
+// 			var embeddedReport = powerbi.embed($('#hiddenReport').get(0), embedConfiguration1);
+// 		} else {	
 		    var embeddedReport = powerbi.embed($('#reportContainer'+report.reportId).get(0), embedConfiguration1);
 		    loadPages(report, embeddedReport);
-		} 
+// 		} 
 	});
 	
 
