@@ -56,6 +56,23 @@ public class Employee {
 		this.degreeStatus = degreeStatus;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Employee [name=");
+		builder.append(name);
+		builder.append(", id=");
+		builder.append(id);
+		builder.append(", degreeStatus=");
+		builder.append(degreeStatus);
+		builder.append(", optionalDepartment=");
+		builder.append(optionalDepartment);
+		builder.append(", department=");
+		builder.append(department);
+		builder.append("]");
+		return builder.toString();
+	}
+
 	
 
 }
