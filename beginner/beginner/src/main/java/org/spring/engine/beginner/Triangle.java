@@ -1,19 +1,23 @@
 package org.spring.engine.beginner;
 
+import java.util.List;
+
 public class Triangle {
 
-	private String type;
+	private List<Point> points;
 	
-	public String getType() {
-		return type;
+	public List<Point> getPoints() {
+		return points;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setPoints(List<Point> points) {
+		this.points = points;
 	}
 
 	public void draw()
 	{
-		System.out.println(getType() + " Triangle drawn!!");
+		for(Point point : points) {
+			System.out.println("value X=" + point.getX() + "value Y=" + point.getY());
+		}
 	}
 }
