@@ -4,7 +4,21 @@
   xsi:schemaLocation="
   http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
-	<bean id = "triangle" class = "org.spring.engine.beginner.Triangle">
-	<property name="type" value="Equilateral"/>
+	<bean id = "triangle" class = "org.spring.engine.beginner.Triangle" autowire="constructor">
+	</bean>
+	
+	<bean id = "pointA" class = "org.spring.engine.beginner.Point">
+	<property name="x" value="0"/>
+	<property name="y" value="0"/>
+	</bean>
+	
+	<bean id = "pointB" class = "org.spring.engine.beginner.Point">
+	<property name="x" value="-20"/>
+	<property name="y" value="0"/>
+	</bean>
+	
+	<bean id = "pointC" class = "org.spring.engine.beginner.Point">
+	<property name="x" value="20"/>
+	<property name="y" value="0"/>
 	</bean>
 </beans>
