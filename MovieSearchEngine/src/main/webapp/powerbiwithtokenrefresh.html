@@ -1,0 +1,103 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/jquery/dist/jquery.js"></script>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.js"></script>
+<meta charset="utf-8"/>
+<script type="text/javascript">
+    
+
+    window.onload = function embedReportAndSetTokenListener() {
+        var reportId = 'feb96c19-cad7-478a-934d-2e647f98a4ff';
+        var groupId = '1bef2b97-3211-4a73-8aad-580e412c4e78';
+        var accessLevel = 'view';
+        var embedUrl =
+            'https://app.powerbi.com/reportEmbed?reportId=feb96c19-cad7-478a-934d-2e647f98a4ff&groupId=1bef2b97-3211-4a73-8aad-580e412c4e78';
+        var access_token;
+        var embedToken;
+       
+            var settings = {
+                "async": false,
+                "crossDomain": true,
+                "url": "https://login.microsoftonline.com/common/oauth2/token",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "cache-control": "no-cache"
+                    //"Postman-Token": "055ddb8a-547c-47e5-a46d-570c49adf24f"
+                },
+                "data": {
+                    "grant_type": "password",
+                    "scope": "openid",
+                    "resource": "https://analysis.windows.net/powerbi/api",
+                    "username": "amol.singh@espire.com",
+                    "password": "Daredevil@12",
+                    "client_id": "b8d851b1-45da-436c-8c90-ef3697fb6133",
+                    "client_secret": "dYnZtZOZbEKwNuMR3yErmx1PF9Vc1vREowQuTeX1Yig="
+                }
+            }
+
+            $.ajax(settings).done(function (response) {
+                access_token = response.access_token;
+               
+            });
+
+            var settings2 = {
+                "async": false,
+                "crossDomain": true,
+                "url": "https://api.powerbi.com/v1.0/myorg/groups/1bef2b97-3211-4a73-8aad-580e412c4e78/reports/feb96c19-cad7-478a-934d-2e647f98a4ff/GenerateToken",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json; charset=utf-8",
+                    "Accept": "application/json",
+                    "cache-control": "no-cache",
+                    "Authorization": "Bearer" + ' ' + access_token
+                },
+                "data": "{\r\n  \"accessLevel\": \"View\",\r\n  \"allowSaveAs\": \"false\"\r\n}"
+            }
+
+            $.ajax(settings2).done(function (response) {
+                 embedToken = response.token;
+            });
+
+       
+    
+            var models = window['powerbi-client'].models;
+
+            var permissions = models.Permissions.All;
+
+            var embedConfiguration = {
+                type: 'report',
+                accessToken: embedToken,
+                id: reportId,
+                //for Power BI Embedded
+                tokenType: models.TokenType.Embed,
+                //tokenType: tokenType == '0' ? models.TokenType.Aad : models.TokenType.Embed,
+                embedUrl: embedUrl,
+                permissions: permissions,
+                settings: {
+                    filterPaneEnabled: true,
+                    navContentPaneEnabled: true
+                }
+
+            };
+
+            var $reportContainer = $('#reportContainer');
+
+            var report = powerbi.embed($reportContainer.get(0), embedConfiguration);
+           
+
+            report.fullscreen();
+
+
+    }
+
+</script>
+
+
+<body>
+    <div id="reportContainer"></div>
+</body>
+
+</html>

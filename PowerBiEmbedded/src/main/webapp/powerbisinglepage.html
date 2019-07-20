@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/jquery/dist/jquery.js"></script>
+    <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+    <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Power Bi - Report</title>
+    <style>
+        div {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin-top: 100px
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+        
+            var models = window['powerbi-client'].models;
+
+            var permissions = models.Permissions.All;
+
+            var embedConfiguration = {
+                type: 'report',
+                //pageName: 'ReportSection',
+                // visualName: '5a874c7e3621b4bb98b9',
+                accessToken: 'H4sIAAAAAAAEACWWxw60CA6E3-W_shK5gZXmQM45cyM0OWcY7btvj-Zq-WCXS67v7z9W-vRTWvz57589rLiAYsN3jw8bJ2U2NyO6SlmEajWAZ2khJ1CDn0llxTrncl0QCHTK6IpyTosdpsZNC-kKtqANGCmfm5H78urWHuQDt_pJ258Ge6-FWVja1lad_JBDRk7jO2MKTSk99D4OvRAybW8H5EbWQn6nhfa2OGYvsRoT0Y48R_t-bXZ9PD3Jm29Rs8J6LY7jbUSKgyiVn6CPjbkC4V-BU00RINHtky6L-rbo0vAD3Q5LAX7SdX_HqbBerroMh81fezZxkXj21LhwhaJnBYNk9Hgu9QRYq-QYmieHN01aNXtiSx-4LI8WorfcmjmUWX1fnf3cHa6k6Fc41X5yJUcH5mEn2tnktqYT3IO4N8yjk9uKfBgcihCbCtd5l9aR28x-hjUB1OMJhcY7BxaaDHmkdTS1MAsquArgZTkAVrjF6SMZ1Gp4lqokWD9SEYqwMGL37pCO_ccYWvNYknqnFkQMCp49BV8I6znuH3slofUj8_LHPb_uoQXDhCg9Fy6qyolSO34lzlRtL_A-I7ewI6wLqEgmiWl8v7Sr3g4tZOKhzWk6R4UgUFdXOi2hkJe7pZOEwNgTDb2lfHXW_-CV_m0TVeOudUzCgOACKxjiD3R7mqnZXK95Jp2tQrwI2c4D93nk0YwB8IcEKyQG32-rXXL9iI8altfb0vonoYK2RSQhfbqONGIrGjkNdK8q4Jwu0JbB2bhU0HF3jk0eTaFpWu7vh0zR95HF2oTzXz1AbhZDDKi7Ixxues00HnZUbedJ3nS-qeYj-tS8I3cOaWwDexCmVp2EbocgFw-l507EAqjDUjyVdOi6K8ngRynhSLu-7b5FlI535939hk7BkZ4cojzh-UMnKCc5zxpbVXLsj8oOdxOA4kybO7czWeiihKf4yEBMMKbAha5NAGdLprJmMdM3JBPswHrd8PhbgyI2TyKtMsj2grCrBKawWtFVs75UQ2hc5hhPcDmfLT9gRmlDVI9eo1LAgxHEkOsDnLsS2vf3SjaGOhIHNX0nd0PajG1GMKhLsddsd8XorfoAOQu5FUHZrGLs8yh1GkGenFZ7v72wmRoPL_0AMyYrRzGGrV-yeBxwNSZwlVW1R7eZRVj6kptZDjdoN4FpuA2Aehk3LYGdMFvJmkzLsKufOjgwjU_oRYoZZ6KbLCAfRoKIJwzl80_AIooP7OWHtth0nzpfd1-ILkgbPD7nhOmMQlReHwSrPRuRDe2PRJSRKMUy9RzauJDhTcSM9yhKq1BZlY90O7thIh0uD7sagvAgL_mg3_gSL_91aElrH0eFiC5tQHz7CacxE3KIMddcQyjBaKaBjgmaa_QbCln1bgmykKspkeNHsn9A41qIOWqUrnX4p2jSMNhnLXTpvCeynyOel3upJ5H0FkEPF6VAyOxEiRH265yCx1XrO3hAkQqFmpCxDX7m0SB-ZsgISgL8K7eOHqYlFDZh7-sbWQ0-1XDhAii1uQQ2jD8lpoYjUYYJcb8TSbJpJvLdZDimLwstzPt8eEnQMiB70xhWvO4xyJqEolXbCdc5cOBBDsFS7M9oNOWAzg7tGNDEo5D2nr8rjEkLQOvMnoblE_QDsHC8TQJcO4p0SbywCDTu4x5thRSJEXYPivaUnkEKKnf-iYb44ZaFnQ5Y9pYEGl9exadS8bAOGi_-92QXAN0xYhvHsaGZCTyulsUjoPcP49JyTvKSPnNWUragASoIh7JnfbAQ6rFMSAIdO0vOz2zMwZy1Wdx_nasKBUFegCDInihy3CJH6i92HSNj19zSJV4L1oWhiauIDnoXOLSmFlHmCuU36TYUZEi8PHSpuDV_njYdIiR1jSl0_ob2sn3p787gYmcNb_Pyrgwa3mrQJX3UAR2HUA4l-nyPRyypbqFMs_aVGg43v9M5UGfCPQaO_jJVzmJ8TUq2cFlQsJAnavnBLzYRGQR8yr2xbUHzMfVoZ0jyGSR53SrUDY9RkinpYpYj4FViwEf303hmiiiTbzTt7YpIbbD25n9sai-JXdmGxgLhigD9MNNrlz_EVMYZNnZJejRRkPdh1ehFHKzfXeNkBrk-FU8r47uYuayM6Gfnjg3ddPsK_NU2TDEK4E_aab_vDs23ndDblLgfNCYcLzDeJdwY0rF8ESklszYwU76HRxPZOKeekl2kVGOPh6vvG4L5K2-j9BcEvAZ3ZdpnnCRyJvKQ9UDZVKhrEAJLVUPbh31iTlaGN3E4-Tl_2gZg0pQhahdx9jhJp0d5-G1feYaD9zlkQdXKNZymsEU6nNtC4tCvOFdSr1K4RpLHqr_--vOfPz9omPdJ_T4_zHnKSlKWi3IVZqeJYPaDLRQb1fNnTaWquTAV3-9KS1Oi_JcaBvVNJ37u8pK6IbmW8cOj_ZQJe6qkJRF3N1O2Pdf9YYNNVeYvME0w5feHvRHoWJWSlPCNngui1QjawFKDyKd5p5AU_lnHBJ9TVYpIpckAnuH-xb4CYiR3OzspVUK7AGpuTw00V-gbcV719ZXWCmErWqxl3swWYjd8CBMz9zYnw5he9xhwSqUVCVnmAX3fYdILkhzkIlNzyAZQWa_7bCDribRF2eF61rFqD0sldOjVkJJNmOdK3wHonqLBFx2irt-1w-FWJngfteAKoL_tWpwEF-DoImApNOFBLQujXH8I-1-Zn7n-rnLwD0yKNPWuAvwjnBVMOpnQ8br8t8ttqjHdj_X7a3NpVBLJhQAwBX0cB0_PJoyozAqAvE_roWWhWgZDT6_xI-c5eko_wqEzHwzPv3mmIYxSvptaju_kmw8pQFjsTXCV2p2r6_P4oHPW5xIW2AvqNTOl4jmXQrvru58Xb1oU7B5c0nxTsJ0Y-mFk58FMiY5bMBGXyb5Wi3V7F5cOiOhrikbwaW1bxJTDi-VDFSGNf3nKQdY5aklTI3cHhiP3Js7sRBAb1fre6N_DWI2UB_EEZFmMEW9XbBi8kfYBbJUKkwK46m5wsvOe9ZApeJTh1ii-cXTGrCinocyvKUoPB0EJU_Lwif4YHBpx90M9zIroWwJ1gIeW02zu_kW_-gfIBC67__H8__4PW6fNrdoLAAA=',
+                id: '80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff',
+                //for Power BI Embedded
+                tokenType: models.TokenType.Embed,
+                //tokenType: tokenType == '0' ? models.TokenType.Aad : models.TokenType.Embed,
+                embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=80ba1f19-28f5-4d3b-bae9-56ad7c1f26ff&groupId=cb6d2214-38ec-405c-a7fc-92d3c32602f9',
+                permissions: permissions,
+                settings: {
+                    filterPaneEnabled: true,
+                    navContentPaneEnabled: true
+                }
+
+            };
+
+            var $reportContainer = $('#reportContainer');
+            var report = powerbi.embed($reportContainer.get(0), embedConfiguration);
+            
+            
+            var $reportContainer = $('#reportContainer')[0];
+            var report = powerbi.get($reportContainer);
+
+            
+//             report.getPages()
+//                 .then(function (pages) {
+//                     // Retrieve active page.
+//                     var activePage = pages.find(function (page) {
+//                         console.log("Active page is : " + page.name + " - " + page.displayName);
+//                         return page.isActive;
+//                     });
+
+                   
+//                 })
+//                 .catch(function (errors) {
+//                     console.log(errors);
+//                 });
+             
+             console.log(report);
+             
+             report.on("loaded", function() {
+            	console.log('report is loaded');
+                console.log(report);
+             });
+             
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             
+             
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+             console.log('After');
+
+        }
+
+        
+        
+        
+        function showVisuals() {
+            var $reportContainer = $('#reportContainer')[0];
+            var report = powerbi.get($reportContainer);
+
+            report.getPages()
+                .then(function (pages) {
+                    // Retrieve active page.
+                    var activePage = pages.find(function (page) {
+                        console.log("Active page is : " + page.name + " - " + page.displayName);
+                        return page.isActive;
+                    });
+
+                   
+                })
+                .catch(function (errors) {
+                    console.log(errors);
+                });
+        }      
+    </script>
+</head>
+
+<body>
+    <div id="reportContainer"></div>
+    <button id="showVisuals" onclick="showVisuals();">Show Visuals</button>
+</body>
+
+</html>

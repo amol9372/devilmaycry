@@ -7,13 +7,13 @@ $(document).ready(function(e) {
 					+ "&response_type="+ googleSignInParams.response_type
 					+ "&approval_prompt"+ googleSignInParams.approval_prompt;
 			
-	
-			
+				
 	document.getElementById('googleOAuthUrl').href = googleOAuthurl;		
 	
 	var options = {
 		url : function(phrase) {
-			return "restApi/getSampleList?phrase=" + phrase + "&format=json";
+			//return "restApi/getSearchSuggestions/" + phrase + "&format=json";
+			return "restApi/getSearchSuggestions/" + phrase;
 		},
 
 		getValue : "name"

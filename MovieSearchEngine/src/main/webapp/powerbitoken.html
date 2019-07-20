@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>access token Api</title>
+       <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.12/js/adal.min.js"></script>
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+
+var config = {
+    tenant: '67da140c-2b2e-4193-8cdf-3c07fc72ad37',
+    clientId: 'b8d851b1-45da-436c-8c90-ef3697fb6133',
+    redirectUri: 'http://localhost:8080/PowerBiApp',
+    navigateToLoginRequestUrl:false,
+
+};
+
+var authContext=new AuthenticationContext(config);
+
+var hash = window.location.hash;
+
+if(hash.length!=0){
+    authContext.handleWindowCallback(hash);
+    var user=authContext.getCachedUser();
+}
+    
+
+function login(){
+    authContext.login();
+}
+
+function acqureToken(){
+    authContext.acquireToken("https://graph.microsoft.com", function(error, token, message){
+        console.log(token)
+
+    })
+}
+
+</script>
+</head>
+
+<body>
+<button onclick="login()">Login</button>
+<button onclick="acqureToken()">AcquireToken</button>
+
+</body>
+</html>
+

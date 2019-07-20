@@ -1,0 +1,42 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/jquery/dist/jquery.js"></script>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+<script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.js"></script>
+<meta charset="utf-8"/>
+<script type="text/javascript">
+    window.onload = function () {
+
+        var models = window['powerbi-client'].models;
+        
+        var permissions = models.Permissions.All;
+
+        var embedConfiguration = {
+            type: 'report',
+            accessToken: 'H4sIAAAAAAAEAB2WRa7FCpJE9_KnbslMLdXAfM2MMzMzu9R771c1j5RSJ0OR8e9_rPQd5rT453__IWxiFaTsoNUvIuBmLvqxumwphC_FSvbQtl3aRo9PK4QJpZIXwvne6OotW6gzJf2gdFGJIBQ_VSFVDSB1l90qsfd1qLWJZF2P29x2-swy3tvnURBfVxxmHikutD8M1NGc8XYVzWXW14fiFnRc3WNl7dxmCfeKrCtlH-W5eCdxkkFu0mIlK9vdfHSZGwuQjk3tjLLXqPRiSmazqq-I9w9AInvhVZj6Q_BLHUwjUbaj4bgS4nOegzZXc4utuyADfX8xqmWp5qGQ8TtplycLcx0ZNXRVBkM1KgIRk5zF7sHHzI9Blv2GHvzVYWnXbUMkKN4w5wA0MGI8XsxJZ0TXYb0ubUHtO1Mw6ixv9e9VMpC_TJYfZlWBrJU84wZbM7GW27f8PLQRuhNsYM1LyuZ9WoVH9aOCSZRPjoMfZNIGPqwFW2Y9Vw_XrIpN2TfVr5jr3yQKMDBeUMHMKVuMsc-aUXdw76dJY8iu8MK2kNKQy86TedXj0y00WcjaYYM4rhubzREBrocBIcUM-x6bdVHSJ1f9zcDRgNAnycvv3HptrrBgs6BARNjTdgSnYIxBB0MGGSksaxtomSOsSYzLFlmQqpdELdxcFnIQ4ogItIBMED-TaCeNkLSYLWhvAwGY7R7tGmN3wCgHqx21FS39Oy3Yw1DFia30CcwXRk-IkuKlO75r35EOHpxdMu6GBrltD3kXHIybBs_mhUuFcDBrsV-oFhva9xNCxEorBq5IeRQbYfqhJbQqaO5ZnvYj4aSvcH8ms7Usu_eQL2aHmASh7F4IYZ2tX0gF8zMIYb-tY5Hoy-bdBOTiJC3YjL3pFSBStSieKtn3xctNbvMQnoZ9TGtlurWyC5iWECB5-iSyxjYMd_Msl1yBpWMlWQ2cuRv7NE_XwDNCESlGGUZUp_IjjZrlrzsqPRaPQEK4h1-WJHSSIkmDJSSMcTj1ouvpxnp4qChnqTd-z1E8hoLu8oRvk2BMmwN5IckNw4hSCITQ2jMr9T33JbKnZSsecsYGfGKjjkpGLU8sIzR7RrZ4I0eJrU3rrb4ulA2XHUCSEmSwTSyjQFlaa6iDT3dOzW6DP0Nqi9mkuYorIHJlVXRElKcp42yRxD71em_EN8t_ew41OxanG_VWR5fLwywhzoP6rQn_4XH2LolLcjVKEVNyh6xICNfkVnMBx3TGUmvcXC0vGmz5okEU7cXCc2jcj6PIbeWaiAK0_FntJezVvMm_yZg5Em8uYXpSu8WEA72lg5i_fCJei9L6slM9-_TxRp2dKwpEq7Vh7dsMT3w3ryigJEuWaVeCklOvYlagJqnR7bwN0jDleye7YJOLZ0-gtver31z0_4IgJuNBIOb3GwOxkkLSASMD-dS1Qab2QnEn-VLGCbKB3TXZlOBip1WOgVWIWsgqVfmjw4LACQ9iON4dRFPtp55pW55o0fpd_Pv0dXcgOrDys5IBTEDVJCbqih2qidNRPK7bWMNIovxFH6p42JBaG196XSViKHiV2lM8mj2CXNWDlPvzvNs5iBEon6d7ll3sh01ls_o1ttdxwZtzq2MjNkCaFyjk2FojeC5oXhQ2PzS7pg_vrz7ewmy2H13xOldQLwmfrH62np-bCvzqeBTSqhMNGL0bDELZQze9E8BdqLMoHma03fXB3z672IjtmEX9heWp3igdAjSgFWsCZf9JjvLrJCLbBnn7DEbO3btDGmD3z47twgQOKoYiII8yfUEGSxJuJgAf32i_3Tg9tECYeVQ2ySDPWaV8ul28k2FCET-KOtbU8SoWPy8K9ZROZSl4Cs1tSzNS3Fx7jT0-WwDwG40Xl27YJz9_DQUsfBr4psOmnhHPvokjexPty_53GLWrBfmTKuNEWke6P-qkumkKdBZrhRxj8S23_dz4csGUuxGOxmTSHAiBbfOm1HjLvpjjJ3mZ5g1ps7UYiCmgph2tK4Z4ItnzOanEfgbAD7Bpg44t11Qh2yALAz4HTQcwXZMLrfAUcFVjEdNRWj8GgvixpnPFufgbhZ3z2-7PhWfMZ7KRy07ETh_h3MHdcsH8pqEuX0z4--7rg7_PyMkwEOTLbZkFvLg875nW_ru_xITD5-Gdd3sxo_mDIXAYhKX2GrXWWnwA-1CKtOUy6ONzKa7HHpXuUn-p1RZNNq6XTjTDk10da7m3G2RvFwNTPavdGX6SPkCpJWUp4Nfi99EUw-bMJtmoNtwXV9SspQt6MA7rCDf74FLqzJFQZCyj8eq6thTywAsLWEq_4CGvNFtT5UyRjvzuugXJBQ95EWsPOMnfvAJ8vdj4S33FjvKgf_3zP_9w27scs1q-f9VHV0t7K9qKs15CofEfyDcUwX7PyNSDHfTv_SKsjaLlFBRX1HeWWjH8He-Ek_xoi5UQLEOO9ZgBOhUYahgg-UzKQxXtDQicCklxvVPmZdKOLWW889Eh2s9Qg6SFo8mqurn9YzGN4oOkamct66ri0AwU8baVlQj9fZDZdksQB0obKEgSiq-InaGiO1ApxjoRDx5gtImWNBj4o1k__sBMKfOnmFVhQSHdbaAtfywWIfdd8kWIYJQPDgl4aE4wkU8_EnbwHJZvAMVsKP68eMnVvWplhU5fnHi3Pyoz8FiEEuMS-1RS8MlHzUI2zr0-sjIjs73w0VuJIjZZj-qT3dp5oH9zcP_rv5jfpSk3OfijHDlnZvoRDMCrW3j53xb3ldn_VbltPaXHuZV_svb39wwCee5tpqhylsxlG9-3cHL35v05GkfMW3sUEudhHLD9Ft7YsmLDw5e87FJhL3shQuEvuVVBvNLelb5AOmCXrWWy2KtQyLl8grpWT5AsZ21qC9HNpcDMbvue6qLn8WAxBOPGcptkAWQ0zF7ST__Kh2eSt2gvV1GqRunj8QWKLusI7gvfDEMTbsMxwfEzO21eYOuMfCszzhivQXbs1JisMfqmp6Yuidz7uooDHgws3vxulMxHKO-BBRE8uMJvelwJMjW88REGSj2A3eizEBuQCXAh4Jxk8k906LZZozjwF35-_IJNIOseSZRpVGIpfiFUMQPp_nDZ_2KdrdODOATB_w_m__t_Xmo7Xe4LAAA=',
+            id: '77fe6cb3-7882-4a8c-9a58-05024a997210',
+            //for Power BI Embedded
+            tokenType: models.TokenType.Embed,
+            //tokenType: tokenType == '0' ? models.TokenType.Aad : models.TokenType.Embed,
+            embedUrl: 'https://app.powerbi.com/reportEmbed?reportId=77fe6cb3-7882-4a8c-9a58-05024a997210&groupId=cccf4917-3887-40e5-a7e3-710ad2864156',
+            permissions: permissions,
+            settings: {
+                filterPaneEnabled: true,
+                navContentPaneEnabled: true
+            }
+            
+        };
+
+        var $reportContainer = $('#reportContainer');
+
+        var report = powerbi.embed($reportContainer.get(0), embedConfiguration);
+        
+        report.fullscreen();
+
+    }
+</script>
+
+<div id="reportContainer"></div>
+
+</html>
