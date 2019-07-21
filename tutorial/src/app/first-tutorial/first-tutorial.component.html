@@ -1,0 +1,7 @@
+<p>
+   Tutorial List
+</p>
+
+<li *ngFor="let tutorial of tutorials" (click)="display(tutorial)">
+  {{ tutorial.name }}  
+</li>
