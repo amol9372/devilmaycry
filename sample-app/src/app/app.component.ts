@@ -5,6 +5,8 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { HeroService } from './hero.service';
 import { MessagesComponent } from './messages/messages.component';
+import { MessageService } from './message.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +18,13 @@ import { MessagesComponent } from './messages/messages.component';
   declarations: [
     HeroesComponent,
     HeroDetailsComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     FormsModule
   ],
-  providers: [HeroService]
+  providers: [HeroService, MessageService]
 })
 
 export class AppComponent {
@@ -29,6 +32,6 @@ export class AppComponent {
   title = 'sample-app';
 
   constructor(heroService: HeroService) {
-    heroService.displayName(' Amol');
+    
   }
 }
