@@ -38,7 +38,7 @@ import com.lucene.search.Model.NameBasicsModel;
 import com.lucene.search.Utils.NameBasicsIterator;
 import com.opencsv.CSVReader;
 
-@Component
+
 public class LuceneDemo {
 
 	private Directory memoryIndex;

@@ -1,14 +1,12 @@
 package com.practice.Java8;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import java.util.Random;
-import java.util.function.Consumer;
+import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class LambdaExp1 implements A{
     
@@ -16,6 +14,34 @@ public class LambdaExp1 implements A{
 	
 	@MyAutowiring
 	private LambdaExp2 lambdaExp2;
+	
+	// meet , emt
+	private static boolean isAnagram(String s1, String s2){
+		if(s1.length() !=s2.length()){
+			return false;
+		}
+		char[] s2CharArray = s2.toCharArray();
+		Map<Character, Integer> charMap = new HashMap<>();
+		
+		for(int i=0; i<s1.length();i++){
+			if(!charMap.containsKey(s1.charAt(i))){
+				charMap.put(s1.charAt(i), 1);
+			} else {
+				charMap.put(s1.charAt(i), charMap.get(s1.charAt(i)) + 1);
+			}
+		}
+		
+		for(char c : s2CharArray){
+			if(charMap.containsKey(c) && charMap.get(c) > 0){
+				charMap.put(c, charMap.get(c)-1);
+			} else {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	
 	public LambdaExp2 getLambdaExp2(){
 		return lambdaExp2;
@@ -33,6 +59,7 @@ public class LambdaExp1 implements A{
 		T calculate(T t1, T t2);
 	}
 	
+		
 	interface B{	
 		int operate(int a,int b);
 		
@@ -43,15 +70,24 @@ public class LambdaExp1 implements A{
 	}
 	
 	public static void main(String[] args) {
+		AMR amr =  new AMR("wdhfwe");
+		A a1 = amr::printMR; 
 		
-		B add = (a,b) -> a + b;
+//		A a1 = AMR::printMR2; 
+//		a.print("Amol Singh");
+//		System.out.println(isAnagram("teem", "maet"));
+//		
+		BiFunction<Integer, Integer, Integer> add = (a,b) -> a + b;
+		BiFunction<Integer, Integer, Integer> add1 = (a,b) -> a + b;
+        add.apply(3, 5);
+		//BiFunction<Integer, Integer, Integer> addBi = add;
 		
-		B multiply = (a,b) -> a*b;
-		
-		System.out.println(new LambdaExp1().operation(3, 4, multiply));
-		
-		A a = (n) -> System.out.println("This is sample lambda expression "+n);
-		a.print("Amol");
+//		B multiply = (a,b) -> a*b;
+//		
+//		System.out.println(new LambdaExp1().operation(3, 4, multiply));
+//		
+//		A a = (n) -> System.out.println("This is sample lambda expression "+n);
+//		a.print("Amol");
 		//new LambdaExp1().displayName(a);
 		//new LambdaExp1().method1();
 		
@@ -107,7 +143,7 @@ public class LambdaExp1 implements A{
 	
 }
 
-
+@FunctionalInterface
 interface A{
 	
 	void print(String name);
@@ -122,6 +158,21 @@ interface A{
 		
 	}
 	
+}
+
+class AMR {
+	
+	public AMR(String cv){
+		System.out.println("AMR constructor is called");
+	}
+	
+	public void printMR(String name1){
+		System.out.println(name1 + " is printed");
+	}
+	
+	public static void printMR2(String name){
+		System.out.println(name + " is printed");
+	}
 }
 
 // Predicate, Consumer, Function 

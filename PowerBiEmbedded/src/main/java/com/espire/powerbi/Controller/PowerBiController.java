@@ -50,6 +50,9 @@ public class PowerBiController {
 		
 		List<PowerBiReportModel> reportList = powerbiUtils.getReportsFromFile(domain);		
 		
+		reportList.stream().filter(l -> l.getReportId().equals("sdafwsfw"));
+		
+		
 		if(reportList == null){
 			reportView.setViewName("errorpage");
 			reportView.addObject("errorMessage", "No Reports are added for this URL");
@@ -119,59 +122,14 @@ public class PowerBiController {
 		return reportView;
 	}
 	
-	@RequestMapping("/refreshcontext")
-	public void refreshContext() {
-		
-		ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-		((ConfigurableApplicationContext) context).refresh();
-		((ConfigurableApplicationContext) context).close();
+	@GetMapping("/login.jsp")
+	public ModelAndView loginPage(){
+		ModelAndView reportView = new ModelAndView();
+		reportView.setViewName("loginpage");
+		return reportView;
 	}
 	
-	@PostMapping("/upload")
-    public String singleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
-
-//		String relativeWebPath = "/classes";
-//		String absoluteFilePath = context.getRealPath(relativeWebPath);
-//		
-//        if (file.isEmpty()) {
-//            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-//            return "redirect:uploadStatus";
-//        }
-//
-        try {
-//
-//            // Get the file and save it somewhere
-//            byte[] bytes = file.getBytes();
-//            Path path = Paths.get(absoluteFilePath + "\\" + file.getOriginalFilename());
-//            Files.write(path, bytes);
-//
-//            redirectAttributes.addFlashAttribute("message", 
-//                        "You successfully uploaded '" + file.getOriginalFilename() + "'");
-		String rootPath = "D:\\";
-		File dir = new File(rootPath + File.separator + "tmpFiles");
-		if (!dir.exists())
-			dir.mkdirs();
-		byte[] bytes = file.getBytes();
-		// Create the file on server
-		File serverFile = new File(dir.getAbsolutePath()
-				+ File.separator + "tmpfile");
-		BufferedOutputStream stream = new BufferedOutputStream(
-				new FileOutputStream(serverFile));
-		stream.write(bytes);
-		stream.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "redirect:/uploadStatus";
-    }
 	
-	@GetMapping("/uploadfile")
-    public ModelAndView fileUploadView() {
-
-		return new ModelAndView("fileupload");
-    }
-
+	
+    
 }

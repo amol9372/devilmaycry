@@ -13,14 +13,15 @@ import com.practice.LuceneSearch.practice.LuceneDemo;
 @Component
 public class SearchResults {
 	
-	@Autowired
-	private LuceneDemo getLuceneDemo;
+//	@Autowired
+//	private LuceneDemo getLuceneDemo;
     
 	public PersonModel getPersonDetails(String searchPhrase){
 		return null;
 	}
 	
 	public List<String> getPersonSuggestions(String searchPhrase) throws ParseException, IOException{
-		return getLuceneDemo.getSearchSuggestions(searchPhrase, "primaryName");
+		//return getLuceneDemo.getSearchSuggestions(searchPhrase, "primaryName");
+		return null;
 	}
 }
