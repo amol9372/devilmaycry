@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { FirstTutorialComponent } from './first-tutorial/first-tutorial.component';
 import { TutorialDetailComponent } from './tutorial-detail/tutorial-detail.component';
 import { TutorialService } from './tutorial.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TutorialService } from './tutorial.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [TutorialService],
   bootstrap: [AppComponent]
