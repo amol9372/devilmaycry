@@ -1,7 +1,13 @@
 <p>
    Tutorial List
 </p>
-
-<li *ngFor="let tutorial of tutorials" (click)="display(tutorial)">
-  {{ tutorial.name }}  
+<ul>
+<li *ngFor="let tutorial of tutorials" (click)="displayTutorial(tutorial.tid)">
+  <span class="badge">{{ tutorial.name }}</span> 
 </li>
+</ul>
+<tutorial-detail [tutorialDetails]="selectedTutorial"></tutorial-detail>
+
+<p> NgModel Example -- {{ ngModelInput }}</p>
+
+<input [(ngModel)]="ngModelInput">
