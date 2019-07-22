@@ -6,12 +6,14 @@ import { FirstTutorialComponent } from './first-tutorial/first-tutorial.componen
 import { TutorialDetailComponent } from './tutorial-detail/tutorial-detail.component';
 import { TutorialService } from './tutorial.service';
 import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstTutorialComponent,
-    TutorialDetailComponent
+    TutorialDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
