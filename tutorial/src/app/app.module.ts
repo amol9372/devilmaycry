@@ -7,13 +7,15 @@ import { TutorialDetailComponent } from './tutorial-detail/tutorial-detail.compo
 import { TutorialService } from './tutorial.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { NewcompComponent } from './newcomp/newcomp.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstTutorialComponent,
     TutorialDetailComponent,
-    HomeComponent
+    HomeComponent,
+    NewcompComponent
   ],
   imports: [
     BrowserModule,
