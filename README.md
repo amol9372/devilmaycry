@@ -1,2 +1,0 @@
-# devilmaycry
-random projects

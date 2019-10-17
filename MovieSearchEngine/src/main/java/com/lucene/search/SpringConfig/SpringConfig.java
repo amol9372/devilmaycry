@@ -63,14 +63,14 @@ public class SpringConfig
  		return env.getProperty(key);
  	}
      
-    @Bean
-    public LuceneDemo getLuceneDemo() throws FileNotFoundException{
-    	CSVReader csvReader = new CSVReader(
-				new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\name.basics.csv"), ',');
-		LuceneDemo luceneDemo = new LuceneDemo();
-		luceneDemo.indexCSVDocuments(csvReader);
-		return luceneDemo;
-    }
+//    @Bean
+//    public LuceneDemo getLuceneDemo() throws FileNotFoundException{
+//    	CSVReader csvReader = new CSVReader(
+//				new FileReader("C:\\Users\\amol.singh\\Desktop\\movies dataset\\name.basics.csv"), ',');
+//		LuceneDemo luceneDemo = new LuceneDemo();
+//		luceneDemo.indexCSVDocuments(csvReader);
+//		return luceneDemo;
+//    }
      
     public PersonModel getPersonModel() {
     	return new PersonModel("Amol", 1990, 0, Arrays.asList("Doctor","Carpenter","Enginner"));
