@@ -28,17 +28,8 @@ public class SearchController {
 	@RequestMapping("/getSampleList")
 	public String testPage(HttpServletRequest request) throws JSONException, IOException {
 		
-		String saveDir = null;
-		saveDir = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/TRIMdocs/trim.dotx");
-		
-		Path newPath = Paths.get("C:\\Users\\amol.singh\\Downloads\\sample2.dotx");		
-		byte[] templateByteArray = Files.readAllBytes(newPath);	
-		CustomMultipartFile customMultipartFile = new CustomMultipartFile(templateByteArray);
-		
-		customMultipartFile.transferTo(new File(saveDir));
-		
 		JSONArray jsonArray = new JSONArray();
-		String[] countries = new String[] { "india", "pakistan", "nepal", "bhutan" ,saveDir};
+		String[] countries = new String[] { "india", "pakistan", "nepal", "bhutan" };
 		for (String country : countries) {
 			JSONObject json = new JSONObject();
 			json.put("name", country);
