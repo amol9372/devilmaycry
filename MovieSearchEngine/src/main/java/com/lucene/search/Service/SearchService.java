@@ -32,6 +32,7 @@ public class SearchService {
         	JSONObject jsonObject = new JSONObject();
         	jsonObject.put("name", person);
         	jsonArray.put(jsonObject);
+        
         }
         
         return jsonArray;

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,8 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
+	private Logger logger = LoggerFactory.getLogger(SearchController.class);
+	
 	@RequestMapping("/getSampleList")
 	public String testPage(HttpServletRequest request) throws JSONException, IOException {
 		
@@ -35,6 +39,9 @@ public class SearchController {
 			json.put("name", country);
 			jsonArray.put(json);
 		}
+		
+		//logger.info("output is  :: ",jsonArray.toString());
+		
 		return jsonArray.toString();
 	}
 
