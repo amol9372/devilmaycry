@@ -28,8 +28,6 @@ public class SearchController {
 	@RequestMapping("/getSampleList")
 	public String testPage(HttpServletRequest request) throws JSONException, IOException {
 		
-		
-		
 		JSONArray jsonArray = new JSONArray();
 		String[] countries = new String[] { "india", "pakistan", "nepal", "bhutan"};
 		for (String country : countries) {
