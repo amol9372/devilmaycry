@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "geocode.address.url",
+    "type": "java.lang.String",
+    "description": "A description for 'geocode.address.url'"
+  },
+  {
+    "name": "google.api.key",
+    "type": "java.lang.String",
+    "description": "A description for 'google.api.key'"
+  }
+]}

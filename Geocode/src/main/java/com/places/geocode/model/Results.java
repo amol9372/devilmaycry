@@ -1,7 +1,9 @@
 package com.places.geocode.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Results {
 	@JsonProperty("formatted_address")
 	private String formattedAddress;
