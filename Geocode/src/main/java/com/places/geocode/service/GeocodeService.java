@@ -14,6 +14,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.places.geocode.model.GeocodeAddressResponse;
 
+import com.places.Utility.Enums.*;
+
 @Service
 public class GeocodeService {
    
@@ -33,6 +35,13 @@ public class GeocodeService {
 		
 		
 		GeocodeAddressResponse geocodeAddressResponse = restTemplate.getForObject(URLDecoder.decode(builder.toUriString(), "UTF-8"), GeocodeAddressResponse.class);
+		
+		// TODO if status is OK, (a) check list is empty or not
+		// TODO if status is NOT OK, return the response
+		
+		if(Status.OK.toString().equals(geocodeAddressResponse.getStatus())) {
+			
+		}
 		
 		return geocodeAddressResponse;
 	}
