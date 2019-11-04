@@ -6,12 +6,6 @@ import {map, startWith} from 'rxjs/operators';
 import { City } from './beans/city';
 import { SearchService } from '../search.service';
 
-export interface State {
-  flag: string;
-  name: string;
-  population: string;
-}
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -20,36 +14,26 @@ export interface State {
 export class SearchComponent implements OnInit {
 
   citiesList: City[] = [];
+  stateCtrl = new FormControl();
+  filteredStates: Observable<City[]>;
 
   constructor(private searchService: SearchService) {
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(state => state ? this._filterStates(state) : this.states.slice())
+        map(city => city ? this._filterStates(city) : this.citiesList.slice())
       );
   }
 
-  stateCtrl = new FormControl();
-  filteredStates: Observable<State[]>;
-
-  states: State[] = [
-    {
-      name: 'Arkansas',
-      population: '2.978M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
-    },
-  ];
-
   ngOnInit() {
-    this.searchService.getCitiesList().subscribe( data => {
-      this.citiesList = data[0];
+    this.searchService.getCitiesList().subscribe( (data: City[]) => {
+       this.citiesList = data;
     });
   }
 
-  private _filterStates(value: string): State[] {
+  private _filterStates(value: string): City[] {
     const filterValue = value.toLowerCase();
 
-    return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.citiesList.filter(city => city.city.toLowerCase().indexOf(filterValue) === 0);
   }
 }

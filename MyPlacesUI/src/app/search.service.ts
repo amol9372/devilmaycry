@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { filter } from 'rxjs/operators';
+import { Http, Response } from '@angular/http';
+import { filter, map } from 'rxjs/operators';
+import { City } from './search/beans/city';
+import { Observable } from 'rxjs';
+//import { map } from 'rxjs/Rx';
 
 @Injectable()
 export class SearchService {
 
-clientID = 'PAST YOUR CLIENT ID';
-baseUrl: string = 'https://api.spotify.com/v1/search?type=artist&limit=10&client_id=' + this.clientID + '&q=';
-
 constructor(private _http: Http) { }
 
-  search(queryString: string) {
-      let _URL = this.baseUrl + queryString;
-      return this._http.get(_URL);
-  }
-
-  getCitiesList() {
-    return this._http.get('http://localhost:8091/geocode/getCityList');
-  }
+getCountryList() {
+    return this._http.get('http://localhost:8091/geocode/getCountryList').pipe(map((response: any) => response.json()));
+}
+getCitiesList() {
+    return this._http.get('http://localhost:8091/geocode/getCityList').pipe(map((response: any) => response.json()));
+}
 
 }

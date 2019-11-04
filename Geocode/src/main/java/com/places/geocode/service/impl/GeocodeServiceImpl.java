@@ -17,7 +17,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.places.Utility.Enums.Status;
-import com.places.geocode.model.CityModel;
+import com.places.geocode.model.PlaceModel;
 import com.places.geocode.model.GeocodeAddressResponse;
 
 @Service
@@ -45,10 +45,10 @@ public class GeocodeServiceImpl {
 		return geocodeAddressResponse;
 	}
 	
-	public List<CityModel> getCityList() {
-		CsvToBean<CityModel> csv = new CsvToBean();
+	public List<PlaceModel> getPlaceList() {
+		CsvToBean<PlaceModel> csv = new CsvToBean();
 
-		String csvFilename = "C:\\Users\\amol.singh\\Downloads\\worldcities\\worldcities.csv";
+		String csvFilename = "C:\\Users\\amols\\Downloads\\world-cities\\world-cities.csv";
 		CSVReader csvReader = null;
 		try {
 			csvReader = new CSVReader(new FileReader(csvFilename));
@@ -58,10 +58,10 @@ public class GeocodeServiceImpl {
 		}
 
 		// Set column mapping strategy
-		List<CityModel> list = csv.parse(setColumMapping(), csvReader);
+		List<PlaceModel> list = csv.parse(setColumMapping(), csvReader);
 
 		for (Object object : list) {
-			CityModel cityModel = (CityModel) object;
+			PlaceModel cityModel = (PlaceModel) object;
 		}
 		
 		return list;
@@ -70,8 +70,8 @@ public class GeocodeServiceImpl {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static ColumnPositionMappingStrategy setColumMapping() {
 		ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
-		strategy.setType(CityModel.class);
-		String[] columns = new String[] { "name", "country", "subcountry" };
+		strategy.setType(PlaceModel.class);
+		String[] columns = new String[] { "city", "country", "province" };
 		strategy.setColumnMapping(columns);
 		return strategy;
 	}

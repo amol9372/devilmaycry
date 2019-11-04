@@ -1,6 +1,6 @@
 package com.places.geocode.model;
 
-public class CityModel {
+public class PlaceModel {
     private String city;
     private String province;
     private String country;
