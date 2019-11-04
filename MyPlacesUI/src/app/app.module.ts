@@ -10,6 +10,7 @@ import { FilterPipe } from './filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './imports/material.module';
 import { SearchService } from './search.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -18,8 +19,7 @@ import { SearchService } from './search.service';
     HomeComponent,
     HeaderComponent,
     SearchComponent,
-    FilterPipe,
-    ReactiveFormsModule
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -27,6 +27,7 @@ import { SearchService } from './search.service';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatAutocompleteModule,
     ReactiveFormsModule
   ],
   providers: [SearchService],
