@@ -3,6 +3,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { City } from './beans/city';
+import { SearchService } from '../search.service';
 
 export interface State {
   flag: string;
@@ -17,7 +19,15 @@ export interface State {
 })
 export class SearchComponent implements OnInit {
 
-  ngOnInit(){}
+  citiesList: City[] = [];
+
+  constructor(private searchService: SearchService) {
+    this.filteredStates = this.stateCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(state => state ? this._filterStates(state) : this.states.slice())
+      );
+  }
 
   stateCtrl = new FormControl();
   filteredStates: Observable<State[]>;
@@ -29,32 +39,12 @@ export class SearchComponent implements OnInit {
       // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
       flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
     },
-    {
-      name: 'California',
-      population: '39.14M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg'
-    },
-    {
-      name: 'Florida',
-      population: '20.27M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg'
-    },
-    {
-      name: 'Texas',
-      population: '27.47M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg'
-    }
   ];
 
-  constructor() {
-    this.filteredStates = this.stateCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(state => state ? this._filterStates(state) : this.states.slice())
-      );
+  ngOnInit() {
+    this.searchService.getCitiesList().subscribe( data => {
+      this.citiesList = data[0];
+    });
   }
 
   private _filterStates(value: string): State[] {
