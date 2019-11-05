@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import { City } from './beans/city';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { Place } from './beans/PlaceModel';
 import { SearchService } from '../search.service';
 
 @Component({
@@ -13,27 +13,71 @@ import { SearchService } from '../search.service';
 })
 export class SearchComponent implements OnInit {
 
-  citiesList: City[] = [];
-  stateCtrl = new FormControl();
-  filteredStates: Observable<City[]>;
+  placeList: Place[] = [];
+  countryList: string[] = [];
+  citiesInCountryList: string[] = [];
+  cityCtrl = new FormControl();
+  countryCtrl = new FormControl();
+  filteredCities: Observable<string[]>;
+  filteredCountries: Observable<string[]>;
 
   constructor(private searchService: SearchService) {
-    this.filteredStates = this.stateCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(city => city ? this._filterStates(city) : this.citiesList.slice())
-      );
+    this.searchService.getPlaceList().subscribe((data: Place[]) => {
+      if (data) {
+        this.placeList = data;
+        this.countryList = this.placeList.map(place => place.country);
+        const countrySet = new Set(this.countryList);
+        this.countryList = [];
+        countrySet.forEach(country => {
+          this.countryList.push(country.toString());
+        });
+
+        this.filteredCountries = this.countryCtrl.valueChanges
+          .pipe(
+            startWith(''),
+            map(country => country ? this.filterCountries(country) : this.countryList.slice())
+          );
+        console.log(this.filteredCountries);
+        this.filteredCities = this.cityCtrl.valueChanges
+          .pipe(
+            startWith(''),
+            map(city => city ? this.filterCities(city) : this.citiesInCountryList.slice())
+          );
+      }
+
+    });
+
+
   }
 
   ngOnInit() {
-    this.searchService.getCitiesList().subscribe( (data: City[]) => {
-       this.citiesList = data;
-    });
+
   }
 
-  private _filterStates(value: string): City[] {
+  private filterCities(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.citiesList.filter(city => city.city.toLowerCase().indexOf(filterValue) === 0);
+    return this.citiesInCountryList.filter(city => city.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  private filterCountries(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.countryList.filter(country => country.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  loadCities(event) {
+    const country = event.currentTarget.value;
+    if (country === undefined || country == null) {
+      alert('Please enter Country to proceed');
+      return;
+    }
+
+    this.citiesInCountryList = this.placeList.filter(place => {
+      return country === place.country;
+    }).map(place => place.city);
+
+    console.log(event.currentTarget.value);
+  }
+
 }

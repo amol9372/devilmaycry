@@ -1,4 +1,4 @@
-export class City {
+export class Place {
 
   private _city: string;
   private _province: string;

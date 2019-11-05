@@ -1,22 +1,20 @@
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="stateCtrl">
+    <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl" (change)="loadCities($event)" >
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let state of filteredCountries | async" [value]="state.country">
-        <span>{{state.country}}</span>
+      <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
+        <span>{{country}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-</form>
 
 <br><br>
 
-<form class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="City" aria-label="City" [matAutocomplete]="auto" [formControl]="stateCtrl">
+    <input matInput placeholder="City" aria-label="City" [matAutocomplete]="auto" [formControl]="cityCtrl">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let state of filteredStates | async" [value]="state.city">
-        <span>{{state.city}}</span>
+      <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+        <span>{{city}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
