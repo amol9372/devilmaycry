@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './imports/material.module';
 import { SearchService } from './search.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { PlacetypecardComponent } from './placetypecard/placetypecard.component';
+import { PlaceDetailsComponent } from './place-details/place-details.component';
+import { AppRoutingModule } from './app.routes';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -20,7 +23,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     HomeComponent,
     HeaderComponent,
     SearchComponent,
-    FilterPipe
+    FilterPipe,
+    PlacetypecardComponent,
+    PlaceDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MaterialModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]
