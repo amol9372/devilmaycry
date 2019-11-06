@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Place } from './beans/PlaceModel';
 import { SearchService } from '../search.service';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-search',
@@ -22,6 +23,9 @@ export class SearchComponent implements OnInit {
   filteredCountries: Observable<string[]>;
 
   constructor(private searchService: SearchService) {
+  }
+
+  ngOnInit() {
     this.searchService.getPlaceList().subscribe((data: Place[]) => {
       if (data) {
         this.placeList = data;
@@ -37,21 +41,14 @@ export class SearchComponent implements OnInit {
             startWith(''),
             map(country => country ? this.filterCountries(country) : this.countryList.slice())
           );
-        console.log(this.filteredCountries);
+        
         this.filteredCities = this.cityCtrl.valueChanges
           .pipe(
             startWith(''),
             map(city => city ? this.filterCities(city) : this.citiesInCountryList.slice())
-          );
+          );  
       }
-
     });
-
-
-  }
-
-  ngOnInit() {
-
   }
 
   private filterCities(value: string): string[] {
@@ -76,8 +73,6 @@ export class SearchComponent implements OnInit {
     this.citiesInCountryList = this.placeList.filter(place => {
       return country === place.country;
     }).map(place => place.city);
-
-    console.log(event.currentTarget.value);
   }
 
 }
