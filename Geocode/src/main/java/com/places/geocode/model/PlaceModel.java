@@ -1,8 +1,15 @@
 package com.places.geocode.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class PlaceModel {
+	
+	@Id
     private String city;
-    private String province;
+    
+	private String province;
     private String country;
 	
     public String getCity() {
