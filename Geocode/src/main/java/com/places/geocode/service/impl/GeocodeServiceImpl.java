@@ -26,8 +26,10 @@ public class GeocodeServiceImpl {
 	@Autowired
 	private Environment env;
 	
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	public GeocodeAddressResponse getLatLong(String address) throws RestClientException, UnsupportedEncodingException {
-		RestTemplate restTemplate = new RestTemplate();
 		String fooResourceUrl = env.getProperty("geocode.address.url");
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(fooResourceUrl)   // Used to add Query parameters
 		        .queryParam("address", address)
