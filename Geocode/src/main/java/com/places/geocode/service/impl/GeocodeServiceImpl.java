@@ -17,8 +17,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.places.Utility.Enums.Status;
-import com.places.geocode.model.PlaceModel;
 import com.places.geocode.model.GeocodeAddressResponse;
+import com.places.geocode.model.PlaceModel;
 
 @Service
 public class GeocodeServiceImpl {
@@ -26,8 +26,10 @@ public class GeocodeServiceImpl {
 	@Autowired
 	private Environment env;
 	
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	public GeocodeAddressResponse getLatLong(String address) throws RestClientException, UnsupportedEncodingException {
-		RestTemplate restTemplate = new RestTemplate();
 		String fooResourceUrl = env.getProperty("geocode.address.url");
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(fooResourceUrl)   // Used to add Query parameters
 		        .queryParam("address", address)
