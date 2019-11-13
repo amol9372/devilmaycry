@@ -17,8 +17,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.places.Utility.Enums.Status;
-import com.places.geocode.model.PlaceModel;
 import com.places.geocode.model.GeocodeAddressResponse;
+import com.places.geocode.model.PlaceModel;
 
 @Service
 public class GeocodeServiceImpl {
