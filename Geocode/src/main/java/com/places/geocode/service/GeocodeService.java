@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.places.Utility.Enums.Status;
-import com.places.geocode.model.PlaceModel;
 import com.places.geocode.model.GeocodeAddressResponse;
+import com.places.geocode.model.PlaceModel;
 import com.places.geocode.service.impl.GeocodeServiceImpl;
 
 @Service

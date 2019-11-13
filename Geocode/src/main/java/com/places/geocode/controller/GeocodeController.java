@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 
-import com.places.geocode.model.PlaceModel;
 import com.places.geocode.model.GeocodeAddressResponse;
+import com.places.geocode.model.PlaceModel;
 import com.places.geocode.service.GeocodeService;
 
 @RestController
