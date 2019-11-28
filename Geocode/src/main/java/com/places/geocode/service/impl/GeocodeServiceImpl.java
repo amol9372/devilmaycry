@@ -48,7 +48,7 @@ public class GeocodeServiceImpl {
 	}
 	
 	public List<PlaceModel> getPlaceList() {
-		CsvToBean<PlaceModel> csv = new CsvToBean();
+		CsvToBean<PlaceModel> csv = new CsvToBean<>();
 
 		String csvFilename = "C:\\Users\\amols\\Downloads\\world-cities\\world-cities.csv";
 		CSVReader csvReader = null;
@@ -60,11 +60,13 @@ public class GeocodeServiceImpl {
 		}
 
 		// Set column mapping strategy
+		@SuppressWarnings("deprecation")
 		List<PlaceModel> placeList = csv.parse(setColumMapping(), csvReader);
 
-		for (Object object : placeList) {
-			PlaceModel placeModel = (PlaceModel) object;
-		}
+		/*
+		 * for (Object object : placeList) { PlaceModel placeModel = (PlaceModel)
+		 * object; }
+		 */
 		
 		return placeList;
 	}
