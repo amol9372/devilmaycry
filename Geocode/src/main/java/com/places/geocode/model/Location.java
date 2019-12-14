@@ -1,7 +1,10 @@
 package com.places.geocode.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Location {
-	private double lat;
+	private double lat = 30.09;
 	private double lng;
 
 	public double getLat() {

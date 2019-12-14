@@ -6,6 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 import { Place } from './beans/PlaceModel';
 import { SearchService } from '../search.service';
 import { MatSelectChange } from '@angular/material/select';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-search',
@@ -26,6 +27,11 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchService.getEncryptedIteams().subscribe(data => {
+      if (data) {
+         this.decryptData(data);
+      }
+    });
     this.searchService.getPlaceList().subscribe((data: Place[]) => {
       if (data) {
         this.placeList = data;
@@ -74,5 +80,19 @@ export class SearchComponent implements OnInit {
       return country === place.country;
     }).map(place => place.city);
   }
+
+  decryptData(data) {
+
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, 'eoffender');
+      if (bytes.toString()) {
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 
 }

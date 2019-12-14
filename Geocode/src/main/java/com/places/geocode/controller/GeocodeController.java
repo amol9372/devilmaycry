@@ -19,24 +19,27 @@ import com.places.geocode.service.GeocodeService;
 @RestController
 @RequestMapping("/geocode")
 public class GeocodeController {
-   
+
 	@Autowired
 	private GeocodeService geocodeService;
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("/getLatLong")
-	public GeocodeAddressResponse getLatlongFromAddress(@RequestParam("address") String address) throws RestClientException, UnsupportedEncodingException {
+	public GeocodeAddressResponse getLatlongFromAddress(@RequestParam("address") String address)
+			throws RestClientException, UnsupportedEncodingException {
 		return geocodeService.getLatLongFromAddress(address);
 	}
-	
+
 	@CrossOrigin(origins = "*")
 	@GetMapping("/getCityList")
 	public List<PlaceModel> getCityList() {
 		return geocodeService.getCityList();
 	}
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("/getPlaceById")
 	public PlaceModel getPlaceById(@RequestParam("id") int id) throws PlaceNotFoundException {
 		return geocodeService.getPlace(id);
 	}
-	
+
 }

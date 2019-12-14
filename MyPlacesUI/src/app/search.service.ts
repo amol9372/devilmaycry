@@ -14,4 +14,8 @@ export class SearchService {
     return this._http.get('http://localhost:8091/geocode/getCityList').pipe(map((response: any) => response.json()));
   }
 
+  getEncryptedIteams() {
+    return this._http.get('http://localhost:8091/geocode/getEncryptedItems');
+  }
+
 }
