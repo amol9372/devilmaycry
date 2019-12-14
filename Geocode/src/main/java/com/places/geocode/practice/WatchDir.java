@@ -80,8 +80,9 @@ public class WatchDir {
 
     /**
      * Process all events for keys queued to the watcher
+     * @throws InterruptedException 
      */
-    void processEvents() {
+    void processEvents() throws InterruptedException {
         for (;;) {
 
             // wait for key to be signalled
@@ -98,6 +99,8 @@ public class WatchDir {
                 continue;
             }
 
+            Thread.sleep( 50 );
+            
             for (WatchEvent<?> event: key.pollEvents()) {
                 WatchEvent.Kind kind = event.kind();
 
@@ -145,7 +148,7 @@ public class WatchDir {
         System.exit(-1);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         // parse arguments
         if (args.length == 0 || args.length > 2)
             usage();
