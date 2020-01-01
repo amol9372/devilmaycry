@@ -19,8 +19,8 @@ public class StreamsDemo {
 		List<Integer> actualNumbers = numbers.map(Integer::parseInt).collect(Collectors.toList());
 		System.out.println(actualNumbers);
 
-		int x = Stream.of(1, 2, 3, 4, 5).reduce(0, (Integer a, Integer b) -> a + b);
-		System.out.println(x);
+		int sum = Stream.of(1, 2, 3, 4, 5).reduce(0, (Integer a, Integer b) -> a + b);
+		System.out.println(sum);
 
 		Map<Integer, Long> frequencyMap = Stream.of(1, 3, 4, 6, 6, 6, 7, 3, 2, 9, 4)
 				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -52,7 +52,7 @@ public class StreamsDemo {
 				.toMap(e -> e.toString(), e -> fileNameTimeStampMap.get(e).stream().max((i, j) -> i - j).get(), (e1, e2) -> e1 , LinkedHashMap::new)); 
 		System.out.println(fileWiseMaxTimeStamp);
 		
-		
+		Map<String, String> sampleMap = new HashMap<>();
 
 	}
 

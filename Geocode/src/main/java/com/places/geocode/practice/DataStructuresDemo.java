@@ -5,7 +5,7 @@ import java.util.TreeMap;
 public class DataStructuresDemo {
 	public static void main(String[] args) {
         TreeMap<Employee, String> employeeMap = new TreeMap<>();
-        employeeMap.put(new Employee(), "Amol Singh");
+        //employeeMap.put(new Employee(), "Amol Singh");
 	}
 }
 
@@ -13,7 +13,14 @@ public class DataStructuresDemo {
 class Employee {
 	private String name;
 	private int id;
+	private int salary;
 	
+	public Employee(String name, int id, int salary) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.salary = salary;
+	}
 	public String getName() {
 		return name;
 	}
@@ -25,6 +32,12 @@ class Employee {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
 	}
 	@Override
 	public int hashCode() {
