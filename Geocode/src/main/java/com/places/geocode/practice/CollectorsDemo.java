@@ -3,6 +3,7 @@ package com.places.geocode.practice;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,16 +44,25 @@ public class CollectorsDemo {
 		// Without Custom Collector
 		Map<Character, Set<String>> charFrequencyMap = getRandomList().stream().collect(Collectors.groupingBy(s -> s.charAt(0), Collectors.toSet()));/*.entrySet()
 				.forEach(e -> System.out.println(e.getKey() + " -> " + e.getValue()))*/;
-		Employee e1 = new Employee("Amol", 1, 1234000);
-		Employee e2 = new Employee("Rohit", 2, 45000);
-		Employee e3 = new Employee("Vikas", 3, 174800);
-		Employee e4 = new Employee("Rahul", 4, 567000);
-		Employee e5 = new Employee("Pankaj", 5, 589000);
-		Employee e6 = new Employee("Shrikant", 6, 938900);
-		Employee e7 = new Employee("Bunty", 7, 678000);
+		Employee e1 = new Employee("Amol", 1, 1234000, "RMCC");
+		Employee e2 = new Employee("Rohit", 2, 45000, "RMCC");
+		Employee e3 = new Employee("Vikas", 3, 174800, "OSS");
+		Employee e4 = new Employee("Rahul", 4, 567000, "GSS");
+		Employee e5 = new Employee("Pankaj", 5, 589000, "OSS");
+		Employee e6 = new Employee("Shrikant", 6, 938900, "GSS");
+		Employee e7 = new Employee("Bunty", 7, 678000, "RMCC");
 		
 		List<Employee> empList = Arrays.asList(e1, e2, e3, e4, e5, e6, e7);
 		
+		List<String> nameList = empList.stream().map(e -> e.getName()).collect(Collectors.toList());
+		List<String> nameList2 = empList.stream().collect(Collectors.mapping(Employee::getName, Collectors.toList()));
+		double avgSalary = empList.stream().collect(Collectors.maxBy((emp1, emp2) -> emp1.getSalary() - emp2.getSalary()))
+				.get().getSalary();
+		List<Employee> sortedEmpl = empList.stream().filter(e -> e.getName().startsWith("R")).collect(Collectors.toList());
+		double avgMaxSalOfDept = empList.stream().collect(Collectors.groupingBy(Employee::getDept, 
+															Collectors.averagingInt(Employee:: getSalary)))
+		.entrySet().stream().max((dept1, dept2) -> (int)(dept2.getValue() - dept1.getValue())).get().getValue().doubleValue();
+		System.out.println(sortedEmpl + "Max avg sal" + avgMaxSalOfDept);
 		int maxSalary = empList.stream().sorted((emp1, emp2) -> emp2.getSalary() - emp1.getSalary()).findFirst().get().getSalary();
 		System.out.println(maxSalary);
 	}

@@ -14,12 +14,14 @@ class Employee {
 	private String name;
 	private int id;
 	private int salary;
+	private String dept;
 	
-	public Employee(String name, int id, int salary) {
+	public Employee(String name, int id, int salary, String dept) {
 		super();
 		this.name = name;
 		this.id = id;
 		this.salary = salary;
+		this.dept = dept;
 	}
 	public String getName() {
 		return name;
@@ -38,6 +40,13 @@ class Employee {
 	}
 	public void setSalary(int salary) {
 		this.salary = salary;
+	}
+	
+	public String getDept() {
+		return dept;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
 	}
 	@Override
 	public int hashCode() {
