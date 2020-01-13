@@ -65,6 +65,15 @@ public class CollectorsDemo {
 		System.out.println(sortedEmpl + "Max avg sal" + avgMaxSalOfDept);
 		int maxSalary = empList.stream().sorted((emp1, emp2) -> emp2.getSalary() - emp1.getSalary()).findFirst().get().getSalary();
 		System.out.println(maxSalary);
+		
+		Stream.of(1, 2, 3, 5, 6).filter(i -> {
+			System.out.println("filtering :: "+i);
+			if (i % 2 == 0) 
+				return true;
+			else
+				return false;
+		}).findFirst();
+		
 	}
 
 	private static List<String> getRandomList() {
