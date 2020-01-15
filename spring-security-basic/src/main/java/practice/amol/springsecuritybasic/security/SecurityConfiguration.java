@@ -25,8 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 * .roles("USER") .and() .withUser("admin") .password("admin") .roles("ADMIN");
 		 */
 		auth.jdbcAuthentication()
-		    .dataSource(dataSource)
-		    .withDefaultSchema()
+		    .dataSource(dataSource);
+		  /*.withDefaultSchema() 
 		    .withUser(
 		    		  User.withUsername("amol")
 		    		      .password("singh")
@@ -35,14 +35,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		    		  User.withUsername("admin")
 	    		      .password("singh")
 	    		      .roles("ADMIN")
-	        );	     
+	        );	     */
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
        http.authorizeRequests()
-           .antMatchers("/user").hasRole("ADMIN")
-           .antMatchers("/admin").hasAnyRole("USER", "ADMIN")
+           .antMatchers("/admin").hasAnyRole("ADMIN", "USER")            // NEED TO ADD ROLE AS PREFIX IN DB
+           .antMatchers("/user").hasRole("USER")
+           .antMatchers("/").permitAll()
            .and().formLogin();
 	}
 	
