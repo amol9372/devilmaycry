@@ -32,7 +32,7 @@ public class CommonUtils {
 	
 	public String getKeyFromDocxFile(String fileName) throws InvalidFormatException, IOException {
 		String key = null;
-		try(OPCPackage opc = OPCPackage.open(env.getProperty("watcher.downloadPath") + File.separator + fileName);) {
+		try(OPCPackage opc = OPCPackage.open(env.getProperty("watcher.downloadPath.poi") + File.separator + fileName);) {
             
 			PackageProperties pp = opc.getPackageProperties();
 			Optional<String> templateNameUriOptional = pp.getCategoryProperty();

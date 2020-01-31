@@ -16,6 +16,7 @@ public class WatcherApplication extends SpringBootServletInitializer {
 	
 	
 	public static void main(String[] args) {
+		System.setProperty("java.awt.headless", "false");
 		ConfigurableApplicationContext context = SpringApplication.run(WatcherApplication.class, args);
 		context.getBean(WatcherService.class).startWatchService();
 	}

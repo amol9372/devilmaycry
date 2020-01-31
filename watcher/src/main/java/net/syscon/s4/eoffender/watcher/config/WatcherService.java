@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
@@ -30,7 +31,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import net.syscon.s4.eoffender.watcher.Utils.CommonUtils;
@@ -43,17 +45,17 @@ public class WatcherService {
 	private WatchService watchService;
 	
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private NamedParameterJdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate1;
 	
 	volatile ScheduledFuture<?> t;
 	ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(6);
 	
-	@Autowired
-	private ThreadPoolTaskExecutor taskExecutor;
-	
-	private Map<String, Long> filesUploadedTimeMap = new HashMap<>();
+	//private Map<String, Long> filesUploadedTimeMap = new HashMap<>();
 	private Map<String, Long> filesOpenTimeMap = new HashMap<>();
-	private Map<String, Boolean> newFileUploadMap = new HashMap<>();
+	//private Map<String, Boolean> newFileUploadMap = new HashMap<>();
 	
 	@Autowired
 	private Environment env;
@@ -81,27 +83,17 @@ public class WatcherService {
 						}
 						
 						try {
-						Desktop.getDesktop();	
-						if (Desktop.isDesktopSupported()) {
+						
+						if (Desktop.isDesktopSupported() && event.context().toString().startsWith("EDITED")) {
 
 								if(filesOpenTimeMap.containsKey(event.context().toString())){
 									continue;
 								}
 								
-//								if(!event.context().toString().startsWith("EDITED")) {
-//									File folder = new File("C:\\Users\\amol.singh\\Desktop\\eoffender_docs");
-//									Optional<File> latestFile = Arrays.stream(folder.listFiles()).filter(f -> f.getName().equals(event.context().toString())).sorted((f1, f2) -> (int)f2.lastModified() - (int)f1.lastModified()).findFirst();
-//									String generatedFileKey = CommonUtils.getKeyFromDocxFile(latestFile.get().getAbsolutePath());
-//							        FileInputStream insertFile = new FileInputStream(latestFile.get());
-//							        byte[] byteArray = IOUtils.toByteArray(insertFile);
-//							        insertFileByteArray(byteArray, generatedFileKey);
-//							        insertFile.close();
-//								}
-								
 								filesOpenTimeMap.put(event.context().toString(), System.currentTimeMillis());
 								System.out.println("Opening file :: "+event.context());
 								Desktop.getDesktop().open(new File(env.getProperty("watcher.downloadPath") + event.context()));	
-
+                               // copyWordFile(event.context().toString());     // COPY latest file
 							}
 						} catch (IOException ioe) {
 							ioe.printStackTrace();
@@ -129,18 +121,18 @@ public class WatcherService {
 							// IT IS NEW FILE
 							// SAVE LATEST FILE IN DB
 							
-							File folder = new File(env.getProperty("watcher.downloadPath.temp"));
-							Optional<File> latestFile = Arrays.stream(folder.listFiles()).filter(f -> f.getName().equals(event.context().toString())).sorted((f1, f2) -> (int)f2.lastModified() - (int)f1.lastModified()).findFirst();
-					        if(!latestFile.isPresent()){
-					        	System.out.println("File is Not Present !!!!!!!!!");
-					        	return;
-					        }
-							
-					        String generatedFileKey = commonUtils.getKeyFromDocxFile(event.context().toString());
-					        FileInputStream insertFile = new FileInputStream(latestFile.get());
-					        byte[] byteArray = IOUtils.toByteArray(insertFile);
-					        insertFileByteArray(byteArray, generatedFileKey);
-					        insertFile.close();
+//							File folder = new File(env.getProperty("watcher.downloadPath"));
+//							Optional<File> latestFile = Arrays.stream(folder.listFiles()).filter(f -> f.getName().equals(event.context().toString())).sorted((f1, f2) -> (int)f2.lastModified() - (int)f1.lastModified()).findFirst();
+//					        if(!latestFile.isPresent()){
+//					        	System.out.println("File is Not Present !!!!!!!!!");
+//					        	return;
+//					        }
+//							
+//					        String generatedFileKey = commonUtils.getKeyFromDocxFile(event.context().toString());
+//					        FileInputStream insertFile = new FileInputStream(latestFile.get());
+//					        byte[] byteArray = IOUtils.toByteArray(insertFile);
+//					        insertFileByteArray(byteArray, generatedFileKey, event.context().toString());
+//					        insertFile.close();
 						}
 						
 					}
@@ -157,15 +149,11 @@ public class WatcherService {
 	
 	private Runnable getUploadRunnable(String fileName, String path) {
 		Runnable uploadRunnable = () -> {
-
 			System.out.println("Checking file is Open or not");
-			try {
+			
 				if (!isWordFileOpen(fileName)) {
          
 					filesOpenTimeMap.clear();
-//					if (filesUploadedTimeMap.containsKey(fileName)) {
-//						System.out.println("ERROR -- File just uploaded :: " + fileName);
-//					} else {
 
 					File folder = new File(env.getProperty("watcher.downloadPath.temp"));
 					Optional<File> latestFile = Arrays.stream(folder.listFiles())
@@ -176,26 +164,29 @@ public class WatcherService {
 						return;
 					}
 
-					byte[] byteArray = IOUtils.toByteArray(new FileInputStream(latestFile.get()));
-
-					String editFileDBKey = generateRandomString();
-					insertFileByteArray(byteArray, editFileDBKey);
-
-					Map<String, String> uploadResult = uploadDocmentFromSchedular(editFileDBKey,
-							latestFile.get().getName());
-					if ("SUCCESS".equals(uploadResult.get(fileName))) {
-						System.out.println(uploadResult);
-						t.cancel(false);
-						Files.deleteIfExists(latestFile.get().toPath());
+				    try (FileInputStream fileInputStream = new FileInputStream(latestFile.get());){
+						
+						byte[] byteArray = IOUtils.toByteArray(fileInputStream);
+						String editFileDBKey = generateRandomString();
+						insertFileByteArray(byteArray, editFileDBKey, fileName);
+						String uploadResult = uploadDocmentFromSchedular(editFileDBKey,
+								latestFile.get().getName());
+						if ("SUCCESS".equals(uploadResult)) {
+							System.out.println(uploadResult);
+							t.cancel(true);
+							Files.deleteIfExists(latestFile.get().toPath());
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						if (t != null) {
+							t.cancel(true);
+						}
 					}
 					
 				}
-			} catch (Exception e) {
-				t.cancel(true);
-				e.printStackTrace();
-			}
+			
 		};
-        
 		return uploadRunnable;
 	}
 	
@@ -217,18 +208,43 @@ public class WatcherService {
 	}
 	
 	
-	public void insertFileByteArray(byte[] fileByteArray, String key) throws Exception {   
-	    jdbcTemplate.update(connection -> {
-	        PreparedStatement ps = connection
-	          .prepareStatement("INSERT INTO EOFFENDER_DOCUMENTS_2 (ID_GENERATED, FILE_DATA) VALUES (?, ?)");
-	          ps.setString(1, key);
-	          ps.setBlob(2, new ByteArrayInputStream(fileByteArray), fileByteArray.length);
-	          return ps;
-	        });
+	public void insertFileByteArray(byte[] fileByteArray, String key, String fileName) throws Exception {   
+		
+		// CHECK key is already present in database
+		
+        String getBlobFromDBQuery = "SELECT count(1) FROM EOFFENDER_DOCUMENTS_2 WHERE ID_GENERATED = :ID_GENERATED";
+		
+        MapSqlParameterSource retrieveKeyParams = new MapSqlParameterSource();
+        retrieveKeyParams.addValue("ID_GENERATED", key);
+        
+		int count = jdbcTemplate.queryForObject(getBlobFromDBQuery, retrieveKeyParams, Integer.class);
+		
+		if(count == 0) {
+
+			jdbcTemplate1.update(connection -> {
+				PreparedStatement ps = connection
+						.prepareStatement("INSERT INTO EOFFENDER_DOCUMENTS_2 (ID_GENERATED, FILE_DATA, DOCUMENT_NAME) VALUES (?, ?, ?)");
+				ps.setString(1, key);
+				ps.setBlob(2, new ByteArrayInputStream(fileByteArray), fileByteArray.length);
+				ps.setString(3, fileName);
+				return ps;
+			});
+			 
+		} else {
+			
+			jdbcTemplate1.update(connection -> {
+				PreparedStatement ps = connection
+						.prepareStatement("UPDATE EOFFENDER_DOCUMENTS_2 SET FILE_DATA = ? WHERE ID_GENERATED = ?");
+				ps.setBlob(1, new ByteArrayInputStream(fileByteArray), fileByteArray.length);
+				ps.setString(2, key);
+				return ps;
+			});
+		}
+		 
 	 }
 	
 	
-    private static Map<String, String> uploadDocmentFromSchedular(String key, String fileName) throws Exception {
+    private static String uploadDocmentFromSchedular(String key, String fileName) throws Exception {
 		
     	String authToken = EoffenderOAuth.getAuthToken();
     	
@@ -239,9 +255,12 @@ public class WatcherService {
     	
     	URI uri = builder.build();
     	HttpPost httpPost = new HttpPost(uri);
-    	httpPost.addHeader("Authorization", "Bearer" + authToken); 
+    	httpPost.addHeader("Authorization", "Bearer" + authToken);
+    	httpPost.addHeader("Accept", "application/json");
         HttpResponse response = httpClient.execute(httpPost);
-        int responseCode = response.getStatusLine().getStatusCode();  
+        if(response.getStatusLine().getStatusCode() == 200) {
+        	return "SUCCESS";
+        }
     	
 		return null;
 	}
@@ -260,5 +279,19 @@ public class WatcherService {
 	    
 	    return isWordFileOpen;
 	}
+	
+//	private boolean copyWordFile(String fileName){
+//		boolean isWordFileOpen = false;
+//	    try {
+//	    	File destDir = new File(env.getProperty("watcher.downloadPath.poi"));
+//	        File srcFile = new File(env.getProperty("watcher.downloadPath") + File.separator + fileName );
+//	        FileUtils.copyFileToDirectory(srcFile, destDir, true);
+//	    } catch(Exception e) {
+//	    	isWordFileOpen = true;
+//	    	System.out.println(e.getLocalizedMessage() + " :: " + fileName);	    	
+//	    }
+//	    
+//	    return isWordFileOpen;
+//	}
 	
 }
