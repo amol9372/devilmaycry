@@ -4,18 +4,25 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "currency_exchange")
 public class ExchangeValue {
 
 	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "currency_to")
+	@Column(name = "to_conversion")
 	private String to;
-	@Column(name = "currency_from")
+	@Column(name = "from_conversion")
 	private String from;
+	//@Column(name = "conversion_multiple")
 	private BigDecimal conversionMultiple;
+	
     private int port; 
 	
     public ExchangeValue() {
