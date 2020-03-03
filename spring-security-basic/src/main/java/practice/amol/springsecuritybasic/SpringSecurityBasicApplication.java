@@ -9,7 +9,7 @@ import practice.amol.springsecuritybasic.repository.UserRepository;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackageClasses = UserRepository.class )
-@PropertySource("file:config.properties")
+//@PropertySource("file:config.properties")
 public class SpringSecurityBasicApplication {
 
 	public static void main(String[] args) {
