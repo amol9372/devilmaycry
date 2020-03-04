@@ -27,11 +27,11 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchService.getEncryptedIteams().subscribe(data => {
-      if (data) {
-         this.decryptData(data);
-      }
-    });
+    //this.searchService.getEncryptedIteams().subscribe(data => {
+      //if (data) {
+       //  this.decryptData(data);
+     // }
+   // });
     this.searchService.getPlaceList().subscribe((data: Place[]) => {
       if (data) {
         this.placeList = data;

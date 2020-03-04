@@ -50,7 +50,7 @@ public class GeocodeServiceImpl {
 	public List<PlaceModel> getPlaceList() {
 		CsvToBean<PlaceModel> csv = new CsvToBean<>();
 
-		String csvFilename = "C:\\Users\\amol.singh\\Desktop\\world-cities\\world-cities.csv";
+		String csvFilename = "/Users/AmolSingh/Downloads/world-cities.csv";
 		CSVReader csvReader = null;
 		try {
 			csvReader = new CSVReader(new FileReader(csvFilename));
